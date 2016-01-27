@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.Common", "CatchMe.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.WebUI", "CatchMe.WebUI\CatchMe.WebUI.csproj", "{4FCFE6BE-EA8C-485D-B759-B5E514E06BD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.Entities", "CatchMe.Entities\CatchMe.Entities.csproj", "{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.Repositories", "CatchMe.Repositories\CatchMe.Repositories.csproj", "{C5C2BCE8-D497-407E-A728-D43E51EBA72C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{4FCFE6BE-EA8C-485D-B759-B5E514E06BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FCFE6BE-EA8C-485D-B759-B5E514E06BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FCFE6BE-EA8C-485D-B759-B5E514E06BD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C2BCE8-D497-407E-A728-D43E51EBA72C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C2BCE8-D497-407E-A728-D43E51EBA72C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C2BCE8-D497-407E-A728-D43E51EBA72C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C2BCE8-D497-407E-A728-D43E51EBA72C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

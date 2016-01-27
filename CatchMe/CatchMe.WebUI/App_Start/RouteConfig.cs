@@ -11,8 +11,8 @@ namespace CatchMe.WebUI
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Main", action = "Trips", id = UrlParameter.Optional }
+                url: "{*url}",
+                defaults: new { controller = "Main", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

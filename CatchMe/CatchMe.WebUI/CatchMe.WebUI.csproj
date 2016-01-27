@@ -143,13 +143,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\logo.png" />
-    <Content Include="Assets\Scripts\google-map-initialization.js" />
-    <Content Include="Assets\Scripts\iscroll-initialization.js" />
+    <Content Include="Assets\Scripts\angular\app\catchMeApp.js" />
+    <Content Include="Assets\Scripts\angular\controllers\AddNewTripController.js" />
+    <Content Include="Assets\Scripts\angular\controllers\TripListController.js" />
+    <Content Include="Assets\Scripts\common\services\GoogleMapsService.js" />
+    <Content Include="Assets\Scripts\namespaces.js" />
+    <Content Include="Assets\Scripts\pages\AddNewTrip\addNewTrip.js" />
+    <Content Include="Assets\Scripts\pages\TripList\google-map-initialization.js" />
+    <Content Include="Assets\Scripts\pages\iscroll-initialization.js" />
     <Content Include="Assets\Scripts\libs\additional-methods.js" />
     <Content Include="Assets\Scripts\libs\additional-methods.min.js" />
     <Content Include="Assets\Scripts\libs\angular-mocks.js" />
+    <Content Include="Assets\Scripts\libs\angular-route.js" />
     <Content Include="Assets\Scripts\libs\angular.js" />
-    <Content Include="Assets\Scripts\libs\angular.min.js" />
     <Content Include="Assets\Scripts\libs\google-map.js" />
     <Content Include="Assets\Scripts\libs\iscroll.js" />
     <Content Include="Assets\Scripts\libs\jquery-2.2.0.js" />
@@ -158,13 +164,16 @@
     <Content Include="Assets\Scripts\libs\jquery.validate.min.js" />
     <Content Include="Assets\Scripts\libs\material.js" />
     <Content Include="Assets\Scripts\libs\material.min.js" />
+    <Content Include="Assets\Scripts\angular\configs\catchMe.routes.js" />
     <None Include="Assets\Scripts\_references.js" />
+    <Content Include="Assets\Scripts\pages\Partials\DrawerMenu.js" />
     <Content Include="Assets\Styles\material-default.css" />
     <Content Include="Assets\Styles\material-design-lite.css" />
     <Content Include="Assets\Styles\material-fonts.css" />
     <Content Include="Assets\Styles\material.min.css" />
     <Content Include="Assets\Styles\material-customized.css" />
     <Content Include="Global.asax" />
+    <Content Include="Templates\AddNewTrip.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -183,16 +192,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\libs\angular.min.js.map" />
     <Content Include="Assets\Scripts\libs\jquery-2.2.0.min.map" />
     <Content Include="Assets\Scripts\libs\material.min.js.map" />
     <Content Include="Assets\Styles\material.min.css.map" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Main\Trips.cshtml" />
-    <Content Include="Views\Shared\LayoutHeader.cshtml" />
-    <Content Include="Views\Shared\LayoutDrawerMenu.cshtml" />
-    <Content Include="Views\Shared\LayoutContent.cshtml" />
+    <Content Include="Templates\TripList.html" />
+    <Content Include="Views\Shared\PartialHeader.cshtml" />
+    <Content Include="Views\Shared\PartialDrawerMenu.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -202,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\Scripts\angular\services\" />
     <Folder Include="Controllers\Api\" />
     <Folder Include="Models\" />
   </ItemGroup>

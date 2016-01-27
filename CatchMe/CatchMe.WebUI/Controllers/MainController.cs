@@ -3,10 +3,10 @@
 namespace CatchMe.WebUI.Controllers
 {
     public class MainController : Controller
-    {        
-        public ActionResult Trips()
+    {
+        public ActionResult Index()
         {
             return View();
-        }
+        }        
     }
 }

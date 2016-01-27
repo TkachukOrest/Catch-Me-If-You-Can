@@ -7,6 +7,7 @@
         fadeScrollbars: true
     });
 
+    //TODO: fix iscroll initialization
     setTimeout(function() {
         contentScroll.refresh();
     }, 2000);
