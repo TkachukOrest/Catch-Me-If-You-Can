@@ -80,6 +80,22 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi.WebHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.WebApi.WebHost.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -101,6 +117,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -143,43 +163,43 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\logo.png" />
-    <Content Include="Assets\Scripts\angular\app\catchMeApp.js" />
-    <Content Include="Assets\Scripts\angular\controllers\AddNewTripController.js" />
-    <Content Include="Assets\Scripts\angular\controllers\TripListController.js" />
-    <Content Include="Assets\Scripts\common\services\GoogleMapsService.js" />
-    <Content Include="Assets\Scripts\namespaces.js" />
-    <Content Include="Assets\Scripts\pages\AddNewTrip\addNewTrip.js" />
-    <Content Include="Assets\Scripts\pages\TripList\google-map-initialization.js" />
-    <Content Include="Assets\Scripts\pages\iscroll-initialization.js" />
-    <Content Include="Assets\Scripts\libs\additional-methods.js" />
-    <Content Include="Assets\Scripts\libs\additional-methods.min.js" />
-    <Content Include="Assets\Scripts\libs\angular-mocks.js" />
-    <Content Include="Assets\Scripts\libs\angular-route.js" />
-    <Content Include="Assets\Scripts\libs\angular.js" />
-    <Content Include="Assets\Scripts\libs\google-map.js" />
-    <Content Include="Assets\Scripts\libs\iscroll.js" />
-    <Content Include="Assets\Scripts\libs\jquery-2.2.0.js" />
-    <Content Include="Assets\Scripts\libs\jquery-2.2.0.min.js" />
-    <Content Include="Assets\Scripts\libs\jquery.validate.js" />
-    <Content Include="Assets\Scripts\libs\jquery.validate.min.js" />
-    <Content Include="Assets\Scripts\libs\material.js" />
-    <Content Include="Assets\Scripts\libs\material.min.js" />
-    <Content Include="Assets\Scripts\angular\configs\catchMe.routes.js" />
+    <Content Include="Assets\Scripts\angular\catchMe.app.js" />
+    <Content Include="Assets\Scripts\angular\catchMe.material.js" />
+    <Content Include="Assets\Scripts\angular\components\hoverClass.directive.js" />
+    <Content Include="Assets\Scripts\angular\controllers\tripAdd.controller.js" />
+    <Content Include="Assets\Scripts\angular\controllers\partialDrawerMenu.controller.js" />
+    <Content Include="Assets\Scripts\angular\controllers\tripList.controller.js" />
+    <Content Include="Assets\Scripts\angular\services\googleMap.service.js" />
+    <Content Include="Assets\Scripts\angular\services\trip.service.js" />
+    <Content Include="Assets\Scripts\common\namespaces.js" />
+    <Content Include="Assets\Scripts\libs\angular\angular-animate.js" />
+    <Content Include="Assets\Scripts\libs\angular\angular-aria.js" />
+    <Content Include="Assets\Scripts\libs\angular\angular-material.js" />
+    <Content Include="Assets\Scripts\libs\angular\angular-messages.js" />
+    <Content Include="Assets\Scripts\libs\angular\angular-mocks.js" />
+    <Content Include="Assets\Scripts\libs\angular\angular-route.js" />
+    <Content Include="Assets\Scripts\libs\angular\angular.js" />
+    <Content Include="Assets\Scripts\libs\iscroll\iscroll.js" />
+    <Content Include="Assets\Scripts\libs\material\material.js" />
+    <Content Include="Assets\Scripts\libs\material\material.min.js" />
+    <Content Include="Assets\Scripts\angular\catchMe.routes.js" />
     <None Include="Assets\Scripts\_references.js" />
-    <Content Include="Assets\Scripts\pages\Partials\DrawerMenu.js" />
+    <Content Include="Assets\Styles\angular-material.css" />
     <Content Include="Assets\Styles\material-default.css" />
     <Content Include="Assets\Styles\material-design-lite.css" />
     <Content Include="Assets\Styles\material-fonts.css" />
     <Content Include="Assets\Styles\material.min.css" />
     <Content Include="Assets\Styles\material-customized.css" />
     <Content Include="Global.asax" />
-    <Content Include="Templates\AddNewTrip.html" />
+    <Content Include="Assets\Scripts\angular\templates\tripAdd.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\TripController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,14 +212,13 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Scripts\libs\jquery-2.2.0.min.map" />
-    <Content Include="Assets\Scripts\libs\material.min.js.map" />
+    <Content Include="Assets\Scripts\libs\material\material.min.js.map" />
     <Content Include="Assets\Styles\material.min.css.map" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Templates\TripList.html" />
+    <Content Include="Assets\Scripts\angular\templates\tripList.html" />
     <Content Include="Views\Shared\PartialHeader.cshtml" />
     <Content Include="Views\Shared\PartialDrawerMenu.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Shared\AppUrls.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -209,8 +228,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\Scripts\angular\services\" />
-    <Folder Include="Controllers\Api\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +238,14 @@
     <ProjectReference Include="..\CatchMe.Common\CatchMe.Common.csproj">
       <Project>{542f64a3-d5e7-443c-8d13-02238c1595ea}</Project>
       <Name>CatchMe.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Entities\CatchMe.Entities.csproj">
+      <Project>{a3b4810a-f8e2-4708-9545-2efeb9f9d9e8}</Project>
+      <Name>CatchMe.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Repositories\CatchMe.Repositories.csproj">
+      <Project>{c5c2bce8-d497-407e-a728-d43e51eba72c}</Project>
+      <Name>CatchMe.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -40,11 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ITripRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sql\Repository.cs" />
+    <Compile Include="Sql\TripRepository.cs" />
+    <Compile Include="Static\StaticTripRepository.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Sql\" />
+    <ProjectReference Include="..\CatchMe.Entities\CatchMe.Entities.csproj">
+      <Project>{a3b4810a-f8e2-4708-9545-2efeb9f9d9e8}</Project>
+      <Name>CatchMe.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

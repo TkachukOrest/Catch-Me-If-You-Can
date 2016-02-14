@@ -1,0 +1,136 @@
+﻿<div id="add-new-trip-container" ng-controller="TripAddController as addTripVm">    
+    <div class="mdl-grid">
+        <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col" hover-class="mdl-shadow--24dp">
+            <div class="mdl-card__title mdl-color--accent">
+                <div class="mdl-card__title-text mdl-color-text--white">
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                            Way info
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-typography--text-right thumb-up">
+                            <i class="material-icons md-36 mdl-color-text--white">directions</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-card__supporting-text mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                    <md-input-container class="md-icon-float md-block">
+                        <label>From</label>
+                        <md-icon class="material-icons">adjust</md-icon>
+                        <input type="text" ng-model="addTripVm.trip.WayInfo.Origin.Address" required>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" 
+                                        ng-repeat="wayPoint in addTripVm.trip.WayInfo.WayPoints">
+                        <label>Way point: {{$index}}</label>
+                        <md-icon class="material-icons">clear</md-icon>
+                        <input type="text" ng-model="addTripVm.trip.WayInfo.WayPoints[$index].Address" required disabled>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block">
+                        <label>To</label>
+                        <md-icon class="material-icons">place</md-icon>
+                        <input type="text" ng-model="addTripVm.trip.WayInfo.Destination.Address" required>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Add way point</label>
+                        <md-icon class="material-icons" ng-click="addTripVm.addWayPoint()">add_circle</md-icon>
+                        <input type="text" ng-model="addTripVm.wayPointToAddAddress">
+                    </md-input-container>
+                </div>
+                <div id="trip-map" class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--8-col-phone wide-map"></div>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet" hover-class="mdl-shadow--24dp">
+                <div class="mdl-card__title mdl-color--accent">
+                    <div class="mdl-card__title-text mdl-color-text--white">
+                        <div class="mdl-grid mdl-grid--no-spacing">
+                            <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                                Trip info
+                            </div>
+                            <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-typography--text-right thumb-up">
+                                <i class="material-icons md-36 mdl-color-text--white">group</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell-12-col-tablet">
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Seats</label>
+                            <md-icon class="material-icons">airline_seat_recline_normal</md-icon>
+                            <input type="text" ng-model="addTripVm.trip.TripInfo.Seats" required>
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Price</label>
+                            <md-icon class="material-icons">attach_money</md-icon>
+                            <input type="text" ng-model="addTripVm.trip.TripInfo.Price" required>
+                        </md-input-container>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell-12-col-tablet">
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Date</label>
+                            <md-icon class="material-icons">event_note</md-icon>
+                            <input type="text" required>
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Time</label>
+                            <md-icon class="material-icons">access_time</md-icon>
+                            <input type="text" required>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-cell--12-col-desktop mdl-cell--1-col-tablet mdl-cell--12-col-phone"><br/>
+            </div>
+            <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--3-col-tablet" hover-class="mdl-shadow--24dp">
+                <div class="mdl-card__title mdl-color--accent">
+                    <div class="mdl-card__title-text mdl-color-text--white">
+                        <div class="mdl-grid mdl-grid--no-spacing">
+                            <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                                Vehicle info
+                            </div>
+                            <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-typography--text-right thumb-up">
+                                <i class="material-icons md-36 mdl-color-text--white">directions_car</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-card__supporting-text mdl-grid" style="">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell-12-col-tablet">
+                        <md-input-container class="md-block">
+                            <label>Manufacturer</label>
+                            <input type="text" ng-model="addTripVm.trip.VehicleInfo.Manufacturer" required>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label>Color</label>
+                            <input type="text" ng-model="addTripVm.trip.VehicleInfo.Color" required>
+                        </md-input-container>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell-12-col-tablet">
+                        <md-input-container class="md-block">
+                            <label>Model</label>
+                            <input type="text" ng-model="addTripVm.trip.VehicleInfo.Model" required>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label>Year</label>
+                            <input type="text" ng-model="addTripVm.trip.VehicleInfo.Year" required>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col mdl-typography--text-right">
+            <button ng-click="addTripVm.addTrip()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Add trip
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+
+@{
+    dynamic urls = new JObject();
+
+    //WEB API URLS
+    urls.GetAllTrips = Url.HttpRouteUrl("DefaultApi", new { controller = "Trip", action = "GetAllTrips" });
+    urls.GetTrip = Url.HttpRouteUrl("DefaultApi", new { controller = "Trip", action = "GetTrip" });
+    urls.AddTrip = Url.HttpRouteUrl("DefaultApi", new { controller = "Trip", action = "AddTrip" });
+}
+
+<script type="text/javascript">
+
+    CatchMe.Urls = @Html.Raw(JsonConvert.SerializeObject(urls));
+
+</script>

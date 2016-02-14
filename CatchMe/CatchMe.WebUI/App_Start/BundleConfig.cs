@@ -8,30 +8,35 @@ namespace Blog.WebUI
         {
             #region Scripts bundles
 
-            bundles.Add(new ScriptBundle("~/bundles/common-libs/js").Include(
-                        "~/Assets/Scripts/libs/jquery-{version}.js",
-                        "~/Assets/Scripts/libs/jquery.validate*",
-                        "~/Assets/Scripts/libs/material.js",
-                        "~/Assets/Scripts/libs/iscroll.js"));           
-
-            bundles.Add(new ScriptBundle("~/bundles/angular/js").Include(
-                        "~/Assets/Scripts/libs/angular.js",
-                        "~/Assets/Scripts/libs/angular-route.js",
-                        "~/Assets/Scripts/libs/angular-mocks.js"));
+            bundles.Add(new ScriptBundle("~/bundles/libs/js").Include(
+                        "~/Assets/Scripts/libs/material/material.js",
+                        "~/Assets/Scripts/libs/iscroll/iscroll.js",
+                        "~/Assets/Scripts/libs/angular/angular.js",
+                        "~/Assets/Scripts/libs/angular/angular-animate.js",
+                        "~/Assets/Scripts/libs/angular/angular-aria.js",
+                        "~/Assets/Scripts/libs/angular/angular-messages.js",
+                        "~/Assets/Scripts/libs/angular/angular-material.js",
+                        "~/Assets/Scripts/libs/angular/angular-route.js",
+                        "~/Assets/Scripts/libs/angular/angular-mocks.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-app/js").Include(
-                        "~/Assets/Scripts/angular/app/catchMeApp.js",
-                        "~/Assets/Scripts/angular/configs/catchMe.routes.js",
-                        "~/Assets/Scripts/angular/controllers/TripListController.js",
-                        "~/Assets/Scripts/angular/controllers/AddNewTripController.js"));
+                        "~/Assets/Scripts/angular/catchMe.app.js",
+                        "~/Assets/Scripts/angular/catchMe.routes.js",
+                        "~/Assets/Scripts/angular/catchMe.material.js",
+                        "~/Assets/Scripts/angular/services/trip.service.js",
+                        "~/Assets/Scripts/angular/services/googleMap.service.js",
+                        "~/Assets/Scripts/angular/controllers/tripList.controller.js",
+                        "~/Assets/Scripts/angular/controllers/tripAdd.controller.js",                        
+                        "~/Assets/Scripts/angular/controllers/partialDrawerMenu.controller.js",
+                        "~/Assets/Scripts/angular/components/hoverClass.directive.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/common/js").Include(
-                        "~/Assets/Scripts/namespaces.js",
-                        "~/Assets/Scripts/common/services/GoogleMapsService.js"));
+                        "~/Assets/Scripts/common/namespaces.js"));
             #endregion
 
             #region Styles bundles
             bundles.Add(new StyleBundle("~/styles/material/css").Include(
+                      "~/Assets/Styles/angular-material.css",
                       "~/Assets/Styles/material-design-lite.css",
                       "~/Assets/Styles/material-customized.css",
                       "~/Assets/Styles/material-fonts.css"));

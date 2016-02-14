@@ -1,29 +1,23 @@
-﻿@using System.Configuration
-@using System.Web.Optimization
+﻿@using System.Web.Optimization
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/"/>
+    <base href="/" />
     <title>@ViewBag.Title</title>
-
+    
     @Styles.Render("~/styles/material/css")
-    @Scripts.Render("~/bundles/common-libs/js")
-    @Scripts.Render("~/bundles/angular/js")
-    @Scripts.Render("~/bundles/angular/catchMe-app/js")
-    @Scripts.Render("~/bundles/common/js")
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=@ConfigurationManager.AppSettings["GoogleMapsApiDeveloperKey"]"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.GoogleMapsApiDeveloperKey"></script>
 </head>
 <body ng-app="catchMeApp">
     <div class="catch-me mdl-layout mdl-js-layout mdl-layout--fixed-header">
         @{
-            <!--HEADER-->
+        <!--HEADER-->
             Html.RenderPartial("PartialHeader");
 
-            <!--DRAWER MENU-->
+        <!--DRAWER MENU-->
             Html.RenderPartial("PartialDrawerMenu");
         }
 
@@ -35,11 +29,9 @@
         </div>
     </div>
 
-    <a href="/AddNewTrip" id="add-trip" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab
-                                     mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp">
-        <i class="material-icons">add</i>
-    </a>
-
-    <script src="/Assets/Scripts/pages/iscroll-initialization.js"></script>
+    @Scripts.Render("~/bundles/libs/js")
+    @Scripts.Render("~/bundles/angular/catchMe-app/js")
+    @Scripts.Render("~/bundles/common/js")
+    @{ Html.RenderPartial("AppUrls"); }
 </body>
 </html>
