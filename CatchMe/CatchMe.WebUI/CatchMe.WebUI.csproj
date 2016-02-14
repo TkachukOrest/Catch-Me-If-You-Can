@@ -180,10 +180,12 @@
     <Content Include="Assets\Scripts\libs\angular\angular-route.js" />
     <Content Include="Assets\Scripts\libs\angular\angular.js" />
     <Content Include="Assets\Scripts\libs\iscroll\iscroll.js" />
+    <Content Include="Assets\Scripts\libs\jasmine\jasmine.js" />
     <Content Include="Assets\Scripts\libs\material\material.js" />
     <Content Include="Assets\Scripts\libs\material\material.min.js" />
     <Content Include="Assets\Scripts\angular\catchMe.routes.js" />
     <None Include="Assets\Scripts\_references.js" />
+    <Content Include="Assets\Scripts\tests\services\trip.service.test.js" />
     <Content Include="Assets\Styles\angular-material.css" />
     <Content Include="Assets\Styles\material-default.css" />
     <Content Include="Assets\Styles\material-design-lite.css" />
@@ -228,6 +230,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\Scripts\tests\components\" />
+    <Folder Include="Assets\Scripts\tests\controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +254,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
