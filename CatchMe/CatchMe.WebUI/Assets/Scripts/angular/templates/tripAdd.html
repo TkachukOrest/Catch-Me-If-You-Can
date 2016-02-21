@@ -23,7 +23,7 @@
 
                     <md-input-container class="md-icon-float md-block md-small-spacing"
                                         ng-repeat="wayPoint in addTripVm.trip.WayInfo.WayPoints">                        
-                        <md-icon class="material-icons">clear</md-icon>
+                        <md-icon class="material-icons" ng-click="addTripVm.deleteWayPoint($index)">clear</md-icon>
                         <input type="text" ng-model="addTripVm.trip.WayInfo.WayPoints[$index].Address" required disabled>
                     </md-input-container>
 

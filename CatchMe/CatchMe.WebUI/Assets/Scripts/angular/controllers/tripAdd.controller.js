@@ -28,6 +28,7 @@
         }
         addTripVm.datePickerOpts = {}
         addTripVm.addTrip = addTrip;
+        addTripVm.deleteWayPoint = deleteWayPoint;
 
         //private fields
         var googleMap;
@@ -44,15 +45,15 @@
             initializeDatePickerAttributes();
         }
 
-        function initializeMap() {           
+        function initializeMap() {
             googleMap = googleMapService.createMap('trip-map', {
                 Latitude: 50.4501,
                 Longitude: 30.5234
-            });        
+            });
 
-            googleMapService.getCurrentPosition().then(function(position) {
+            googleMapService.getCurrentPosition().then(function (position) {
                 googleMap.setCenter(position);
-            });            
+            });
         }
 
         function initializeGoogleAutocompleteInputs() {
@@ -68,6 +69,10 @@
         //public functions              
         function addTrip() {
             tripService.addTrip(addTripVm.trip);
+        }
+
+        function deleteWayPoint(index) {
+            addTripVm.trip.WayInfo.WayPoints.splice(index, 1);
         }
 
         //private helpers
