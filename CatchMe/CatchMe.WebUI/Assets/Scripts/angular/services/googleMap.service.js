@@ -2,8 +2,10 @@
     angular
         .module('catchMeApp')
         .service('googleMapService', googleMapService);
-    
-    function googleMapService() {
+
+    googleMapService.$inject = ['$q'];
+
+    function googleMapService($q) {
         //fields        
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -53,15 +55,18 @@
             }
         ];
 
+        //service
         var service = {
             createMap: createMap,
             displayRoute: displayRoute,
-            decodeAddress: decodeAddress
+            deocodeAddress: deocodeAddress,
+            initAutocomplete: initAutocomplete,
+            isWayDirectionValid: isWayDirectionValid
         };
 
         return service;
 
-        //functions       
+        //public functions       
         function createMap(elementId, initializationPoint) {
             var map = new google.maps.Map(document.getElementById(elementId), {
                 zoom: 10,
@@ -82,13 +87,12 @@
         }
 
         function displayRoute(map, startPoint, endPoint, points) {
-            var wayPoints = convertWayPoints(points);
+            var wayPoints = convertToWayPoints(points);
 
             directionsService.route({
                 origin: new google.maps.LatLng(parseFloat(startPoint.Latitude), parseFloat(startPoint.Longitude)),
                 destination: new google.maps.LatLng(parseFloat(endPoint.Latitude), parseFloat(endPoint.Longitude)),
                 waypoints: wayPoints,
-                optimizeWaypoints: true,
                 travelMode: google.maps.TravelMode.DRIVING
             }, function (response, status) {
                 if (status === google.maps.DirectionsStatus.OK) {
@@ -98,7 +102,55 @@
             });
         }
 
-        function convertWayPoints(points) {
+        function deocodeAddress(address) {
+            var deferred = $q.defer();
+
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    var point = { Latitude: results[0].geometry.location.lat(), Longitude: results[0].geometry.location.lng() }
+
+                    deferred.resolve(point);
+                } else {
+                    deferred.reject(status);
+                }
+            });
+
+            return deferred.promise;
+        }
+
+        function initAutocomplete(elementId, onPlaceChanged) {
+            var initializedAutocomplete = new google.maps.places.Autocomplete((document.getElementById(elementId)), { types: ['address'] });
+
+            if (onPlaceChanged) {
+                initializedAutocomplete.addListener('place_changed', onPlaceChanged);
+            }
+
+            return initializedAutocomplete;
+        }
+
+        function isWayDirectionValid(startPoint, endPoint, points) {
+            var deferred = $q.defer();
+
+            var wayPoints = convertToWayPoints(points);
+
+            directionsService.route({
+                origin: new google.maps.LatLng(parseFloat(startPoint.Latitude), parseFloat(startPoint.Longitude)),
+                destination: new google.maps.LatLng(parseFloat(endPoint.Latitude), parseFloat(endPoint.Longitude)),
+                waypoints: wayPoints,
+                travelMode: google.maps.TravelMode.DRIVING
+            }, function (response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    deferred.resolve();
+                } else {
+                    deferred.reject(status);
+                }
+            });
+
+            return deferred.promise;
+        }
+
+        //private helpers
+        function convertToWayPoints(points) {
             var waypoints = [];
 
             for (var i = 0; i < points.length; i++) {
@@ -109,15 +161,6 @@
             };
 
             return waypoints;
-        }
-
-        function decodeAddress(address, successcb) {
-            geocoder.geocode({ 'address': address }, function(results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    var point = { Latitude: results[0].geometry.location.lat(), Longitude: results[0].geometry.location.lng() }
-                    successcb(point);                    
-                }
-            });
         }
     }
 })();

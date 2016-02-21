@@ -9,7 +9,7 @@
     <title>@ViewBag.Title</title>
     
     @Styles.Render("~/styles/material/css")
-    <script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.GoogleMapsApiDeveloperKey"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.GoogleMapsApiDeveloperKey&libraries=places"></script>
 </head>
 <body ng-app="catchMeApp">
     <div class="catch-me mdl-layout mdl-js-layout mdl-layout--fixed-header">

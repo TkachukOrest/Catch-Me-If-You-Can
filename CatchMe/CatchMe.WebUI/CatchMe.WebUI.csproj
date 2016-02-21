@@ -181,12 +181,15 @@
     <Content Include="Assets\Scripts\libs\angular\angular.js" />
     <Content Include="Assets\Scripts\libs\iscroll\iscroll.js" />
     <Content Include="Assets\Scripts\libs\jasmine\jasmine.js" />
+    <Content Include="Assets\Scripts\libs\material\material-datetimepicker.js" />
     <Content Include="Assets\Scripts\libs\material\material.js" />
     <Content Include="Assets\Scripts\libs\material\material.min.js" />
     <Content Include="Assets\Scripts\angular\catchMe.routes.js" />
     <None Include="Assets\Scripts\_references.js" />
+    <Content Include="Assets\Scripts\libs\moment\moment.js" />
     <Content Include="Assets\Scripts\tests\services\trip.service.test.js" />
     <Content Include="Assets\Styles\angular-material.css" />
+    <Content Include="Assets\Styles\material-datetimepicker.css" />
     <Content Include="Assets\Styles\material-default.css" />
     <Content Include="Assets\Styles\material-design-lite.css" />
     <Content Include="Assets\Styles\material-fonts.css" />

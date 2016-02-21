@@ -9,7 +9,7 @@ namespace Blog.WebUI
             #region Scripts bundles
 
             bundles.Add(new ScriptBundle("~/bundles/libs/js").Include(
-                        "~/Assets/Scripts/libs/material/material.js",
+                        "~/Assets/Scripts/libs/material/material.js",                        
                         "~/Assets/Scripts/libs/iscroll/iscroll.js",
                         "~/Assets/Scripts/libs/angular/angular.js",
                         "~/Assets/Scripts/libs/angular/angular-animate.js",
@@ -17,7 +17,10 @@ namespace Blog.WebUI
                         "~/Assets/Scripts/libs/angular/angular-messages.js",
                         "~/Assets/Scripts/libs/angular/angular-material.js",
                         "~/Assets/Scripts/libs/angular/angular-route.js",
-                        "~/Assets/Scripts/libs/angular/angular-mocks.js"));
+                        "~/Assets/Scripts/libs/angular/angular-mocks.js",
+                        "~/Assets/Scripts/libs/angular/angular-touch.js",
+                        "~/Assets/Scripts/libs/moment/moment.js",
+                        "~/Assets/Scripts/libs/material/material-datetimepicker.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-app/js").Include(
                         "~/Assets/Scripts/angular/catchMe.app.js",
@@ -39,7 +42,8 @@ namespace Blog.WebUI
                       "~/Assets/Styles/angular-material.css",
                       "~/Assets/Styles/material-design-lite.css",
                       "~/Assets/Styles/material-customized.css",
-                      "~/Assets/Styles/material-fonts.css"));
+                      "~/Assets/Styles/material-fonts.css",
+                      "~/Assets/Styles/material-datetimepicker.css"));
             #endregion
 
             //BundleTable.EnableOptimizations = true;            
