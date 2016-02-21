@@ -61,7 +61,8 @@
             displayRoute: displayRoute,
             deocodeAddress: deocodeAddress,
             initAutocomplete: initAutocomplete,
-            isWayDirectionValid: isWayDirectionValid
+            isWayDirectionValid: isWayDirectionValid,
+            getCurrentPosition: getCurrentPosition
         };
 
         return service;
@@ -145,6 +146,22 @@
                     deferred.reject(status);
                 }
             });
+
+            return deferred.promise;
+        }
+
+        function getCurrentPosition() {
+            var deferred = $q.defer();
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var currentPosition = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    deferred.resolve(currentPosition);
+                });
+            }
 
             return deferred.promise;
         }

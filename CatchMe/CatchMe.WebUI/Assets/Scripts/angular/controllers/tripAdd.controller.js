@@ -44,17 +44,15 @@
             initializeDatePickerAttributes();
         }
 
-        function initializeMap() {
-            var startPoint = { Latitude: 49.7946898, Longitude: 24.0647954 };
-            var endPoint = { Latitude: 49.842582, Longitude: 24.003351 };
-            var wayPoints = [{ Latitude: 49.835327, Longitude: 24.0144097 }];
-
+        function initializeMap() {           
             googleMap = googleMapService.createMap('trip-map', {
-                Latitude: 49.7946898,
-                Longitude: 24.0647954
-            });
+                Latitude: 50.4501,
+                Longitude: 30.5234
+            });        
 
-            googleMapService.displayRoute(googleMap, startPoint, endPoint, wayPoints);
+            googleMapService.getCurrentPosition().then(function(position) {
+                googleMap.setCenter(position);
+            });            
         }
 
         function initializeGoogleAutocompleteInputs() {
@@ -78,6 +76,7 @@
 
             if (isEmptyPoint(addTripVm.trip.WayInfo.Destination)) {
                 addTripVm.trip.WayInfo.Origin = originPoint;
+                setMapCenter(originPoint);
             } else {
                 function onWayDirectionExists() {
                     addTripVm.trip.WayInfo.Origin = originPoint;
@@ -94,6 +93,8 @@
 
             if (isEmptyPoint(addTripVm.trip.WayInfo.Origin)) {
                 addTripVm.trip.WayInfo.Destination = destinationPoint;
+                setMapCenter(destinationPoint);
+
             } else {
                 function onWayDirectionExists() {
                     addTripVm.trip.WayInfo.Destination = destinationPoint;
@@ -149,6 +150,10 @@
 
         function showWayNotFoundAlert() {
             alert("No route could be found between");
+        }
+
+        function setMapCenter(point) {
+            googleMap.setCenter({ lat: point.Latitude, lng: point.Longitude });
         }
     };
 })();
