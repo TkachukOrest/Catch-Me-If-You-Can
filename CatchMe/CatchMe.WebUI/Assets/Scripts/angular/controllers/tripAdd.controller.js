@@ -3,9 +3,9 @@
         .module('catchMeApp')
         .controller('TripAddController', TripAddController);
 
-    TripAddController.$inject = ['$scope', '$mdDialog', 'tripService', 'googleMapService'];
+    TripAddController.$inject = ['$scope', '$mdDialog', '$location', 'tripService', 'googleMapService'];
 
-    function TripAddController($scope, $mdDialog, tripService, googleMapService) {
+    function TripAddController($scope, $mdDialog, $location, tripService, googleMapService) {
         var addTripVm = this;
 
         //view model
@@ -72,12 +72,15 @@
         //public functions              
         function addTrip(addNewTripForm) {
             if (!addNewTripForm.$invalid) {
-                tripService.addTrip(addTripVm.trip);
+                tripService.addTrip(addTripVm.trip).then(function () {
+                    $location.path('/Trips');
+                });
             }
         }
 
         function deleteWayPoint(index) {
             addTripVm.trip.WayInfo.WayPoints.splice(index, 1);
+            renderMap();
         }
 
         function isOriginAndDestinationValid() {
@@ -91,47 +94,59 @@
         function addOriginPoint() {
             var originPoint = getSelectedPoint(originPointAutocomplete);
 
-            if (isEmptyPoint(addTripVm.trip.WayInfo.Destination)) {
-                addTripVm.trip.WayInfo.Origin = originPoint;
-                addTripVm.trip.WayInfo.Origin.IsValid = true;
-                setMapCenter(originPoint);
-            } else {
-                function onWayDirectionExists() {
+            if (!wayContainsPoint(originPoint)) {
+                if (isEmptyPoint(addTripVm.trip.WayInfo.Destination)) {
                     addTripVm.trip.WayInfo.Origin = originPoint;
                     addTripVm.trip.WayInfo.Origin.IsValid = true;
-                    renderMap();
-                }
-                function onWayDirectionNotExists() {
-                    addTripVm.trip.WayInfo.Origin.IsValid = false;
-                    showWayNotFoundAlert();
-                }
+                    setMapCenter(originPoint);
+                } else {
+                    function onWayDirectionExists() {
+                        addTripVm.trip.WayInfo.Origin = originPoint;
+                        addTripVm.trip.WayInfo.Origin.IsValid = true;
+                        renderMap();
+                    }
 
-                googleMapService.isWayDirectionValid(originPoint, addTripVm.trip.WayInfo.Destination, addTripVm.trip.WayInfo.WayPoints)
-                   .then(onWayDirectionExists, onWayDirectionNotExists);
+                    function onWayDirectionNotExists() {
+                        addTripVm.trip.WayInfo.Origin.IsValid = false;
+                        showWayNotFoundAlert();
+                    }
+
+                    googleMapService.isWayDirectionValid(originPoint, addTripVm.trip.WayInfo.Destination, addTripVm.trip.WayInfo.WayPoints)
+                        .then(onWayDirectionExists, onWayDirectionNotExists);
+                }
+            } else {
+                addTripVm.trip.WayInfo.Origin.IsValid = false;
+                showWayAlreadyContainsPointAlert();
             }
         }
 
         function addDestinationPoint() {
             var destinationPoint = getSelectedPoint(destinationPointAutocomplete);
 
-            if (isEmptyPoint(addTripVm.trip.WayInfo.Origin)) {
-                addTripVm.trip.WayInfo.Destination = destinationPoint;
-                addTripVm.trip.WayInfo.Destination.IsValid = true;
-                setMapCenter(destinationPoint);
-
-            } else {
-                function onWayDirectionExists() {
+            if (!wayContainsPoint(destinationPoint)) {
+                if (isEmptyPoint(addTripVm.trip.WayInfo.Origin)) {
                     addTripVm.trip.WayInfo.Destination = destinationPoint;
                     addTripVm.trip.WayInfo.Destination.IsValid = true;
-                    renderMap();
-                }
-                function onWayDirectionNotExists() {
-                    addTripVm.trip.WayInfo.Destination.IsValid = false;
-                    showWayNotFoundAlert();
-                }
+                    setMapCenter(destinationPoint);
 
-                googleMapService.isWayDirectionValid(addTripVm.trip.WayInfo.Origin, destinationPoint, addTripVm.trip.WayInfo.WayPoints)
-                    .then(onWayDirectionExists, onWayDirectionNotExists);
+                } else {
+                    function onWayDirectionExists() {
+                        addTripVm.trip.WayInfo.Destination = destinationPoint;
+                        addTripVm.trip.WayInfo.Destination.IsValid = true;
+                        renderMap();
+                    }
+
+                    function onWayDirectionNotExists() {
+                        addTripVm.trip.WayInfo.Destination.IsValid = false;
+                        showWayNotFoundAlert();
+                    }
+
+                    googleMapService.isWayDirectionValid(addTripVm.trip.WayInfo.Origin, destinationPoint, addTripVm.trip.WayInfo.WayPoints)
+                        .then(onWayDirectionExists, onWayDirectionNotExists);
+                }
+            } else {
+                addTripVm.trip.WayInfo.Destination.IsValid = false;
+                showWayAlreadyContainsPointAlert();
             }
         }
 
@@ -140,15 +155,21 @@
 
             if (!isEmptyPoint(addTripVm.trip.WayInfo.Origin) &&
                 !isEmptyPoint(addTripVm.trip.WayInfo.Destination)) {
-                function onWayDirectionExists() {
-                    addTripVm.trip.WayInfo.WayPoints.push(addedWayPoint);
-                    renderMap();
-                }
+                if (!wayContainsPoint(addedWayPoint)) {
+                    function onWayDirectionExists() {
+                        addTripVm.trip.WayInfo.WayPoints.push(addedWayPoint);
+                        renderMap();
+                    }
 
-                var wayPoints = addTripVm.trip.WayInfo.WayPoints.concat(addedWayPoint);
-                googleMapService.isWayDirectionValid(addTripVm.trip.WayInfo.Origin, addTripVm.trip.WayInfo.Destination, wayPoints)
-                    .then(onWayDirectionExists, showWayNotFoundAlert);
+                    var wayPoints = addTripVm.trip.WayInfo.WayPoints.concat(addedWayPoint);
+                    googleMapService.isWayDirectionValid(addTripVm.trip.WayInfo.Origin, addTripVm.trip.WayInfo.Destination, wayPoints)
+                        .then(onWayDirectionExists, showWayNotFoundAlert);
+                } else {
+                    showWayAlreadyContainsPointAlert();
+                }
             }
+
+            addTripVm.trip.WayInfo.WayPointToAdd = "";
         }
 
         function getSelectedPoint(autocomplete) {
@@ -171,25 +192,56 @@
             }
         }
 
+        function showWayNotFoundAlert() {
+            showWarningBox('No route could be found! Please, change your route points.');
+        }
+
+        function showWayAlreadyContainsPointAlert() {
+            showWarningBox('Route already contains this point! Please, change your route.');
+        }
+
+        function showWarningBox(message) {
+            $mdDialog.show(
+               $mdDialog.alert()
+                 .parent(angular.element(document.querySelector('#add-new-trip-container')))
+                 .clickOutsideToClose(true)
+                 .title('Warning!')
+                 .textContent(message)
+                 .ok('Ok')
+             );
+        }
+
+        function setMapCenter(point) {
+            googleMap.setCenter({ lat: point.Latitude, lng: point.Longitude });
+        }
+
         function isEmptyPoint(point) {
             return (!point.Address) ||
                 (point.Latitude === 0) ||
                 (point.longitude === 0);
         }
 
-        function showWayNotFoundAlert() {
-            $mdDialog.show(
-             $mdDialog.alert()
-               .parent(angular.element(document.querySelector('#add-new-trip-container')))
-               .clickOutsideToClose(true)
-               .title('Warning!')
-               .textContent('No route could be found! Please, change your route points.')               
-               .ok('Ok')               
-           );
+        function wayContainsPoint(point) {
+            return isEqualPoints(addTripVm.trip.WayInfo.Origin, point) ||
+                isEqualPoints(addTripVm.trip.WayInfo.Destination, point) ||
+                wayPointsContains(point);
         }
 
-        function setMapCenter(point) {
-            googleMap.setCenter({ lat: point.Latitude, lng: point.Longitude });
+        function wayPointsContains(point) {
+            var result = false;
+
+            addTripVm.trip.WayInfo.WayPoints.forEach(function (element) {
+                result = result || isEqualPoints(element, point);
+            });
+
+            return result;
         }
+
+        function isEqualPoints(left, right) {
+            return left.Address === right.Address &&
+                left.Latitude === right.Latitude &&
+                left.Longitude === right.Longitude;
+        }
+
     };
 })();

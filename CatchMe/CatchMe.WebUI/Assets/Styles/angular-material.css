@@ -9487,7 +9487,7 @@ md-autocomplete {
   margin: 0;
   list-style: none;
   padding: 0; }
-  .md-autocomplete-suggestions li {
+  .md-autocomplete-suggestions li, .pac-item  {
     font-size: 14px;
     overflow: hidden;
     padding: 0 15px;
@@ -9501,6 +9501,10 @@ md-autocomplete {
       outline: none; }
     .md-autocomplete-suggestions li:not(.md-not-found-wrapper) {
       cursor: pointer; }
+    .pac-item .pac-icon {
+         position:relative;
+         top: calc(50% - 20px);
+     }
 
 @media screen and (-ms-high-contrast: active) {
   md-autocomplete,

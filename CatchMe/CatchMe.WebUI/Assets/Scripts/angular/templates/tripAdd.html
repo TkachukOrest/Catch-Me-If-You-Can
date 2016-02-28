@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="mdl-card__supporting-text wide-card mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                    <div class="mdl-cell mdl-cell--5-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
                         <md-input-container class="md-icon-float md-block md-small-spacing">
                             <label>From</label>
                             <md-icon class="material-icons">adjust</md-icon>
@@ -37,10 +37,10 @@
                         <md-input-container class="md-icon-float md-block md-small-spacing" ng-show="addTripVm.isOriginAndDestinationValid()">
                             <label>Add way point</label>
                             <md-icon class="material-icons">add_circle</md-icon>
-                            <input id="way-point" placeholder="" type="text">
+                            <input id="way-point" placeholder="" type="text" ng-model="addTripVm.trip.WayInfo.WayPointToAdd">
                         </md-input-container>
                     </div>
-                    <div id="trip-map" class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--8-col-phone wide-map"></div>
+                    <div id="trip-map" class="mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet mdl-cell--8-col-phone wide-map"></div>
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="mdl-card__supporting-text mdl-grid">
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell-12-col-phone">
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
                             <md-input-container class="md-icon-float md-block">
                                 <label>Seats</label>
                                 <md-icon class="material-icons">airline_seat_recline_normal</md-icon>
@@ -66,7 +66,7 @@
                             </md-input-container>
                         </div>
 
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell-12-col-phone">
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
                             <md-input-container class="md-icon-float md-block">
                                 <label>Price</label>
                                 <md-icon class="material-icons">attach_money</md-icon>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="mdl-card__supporting-text mdl-grid">
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell-12-col-tablet mdl-cell-12-col-phone">
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
                             <md-input-container class="md-block">
                                 <label>Manufacturer</label>
                                 <input type="text" ng-model="addTripVm.trip.VehicleInfo.Manufacturer" required>
@@ -118,7 +118,7 @@
                                 <input type="text" ng-model="addTripVm.trip.VehicleInfo.Color" required>
                             </md-input-container>
                         </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell-12-col-tablet mdl-cell-12-col-phone">
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
                             <md-input-container class="md-block">
                                 <label>Model</label>
                                 <input type="text" ng-model="addTripVm.trip.VehicleInfo.Model" required>

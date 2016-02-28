@@ -27,7 +27,7 @@ namespace Blog.WebUI
                         "~/Assets/Scripts/angular/catchMe.routes.js",
                         "~/Assets/Scripts/angular/catchMe.material.js",
                         "~/Assets/Scripts/angular/services/trip.service.js",
-                        "~/Assets/Scripts/angular/services/googleMap.service.js",
+                        "~/Assets/Scripts/angular/services/googleMap.service.js",                        
                         "~/Assets/Scripts/angular/controllers/tripList.controller.js",
                         "~/Assets/Scripts/angular/controllers/tripAdd.controller.js",                        
                         "~/Assets/Scripts/angular/controllers/partialDrawerMenu.controller.js",
