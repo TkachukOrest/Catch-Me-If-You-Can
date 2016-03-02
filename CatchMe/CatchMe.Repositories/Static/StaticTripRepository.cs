@@ -1,69 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CatchMe.Entities;
+using CatchMe.Domain.Entities;
+using CatchMe.Domain.Values;
 using CatchMe.Repositories.Abstract;
 
 namespace CatchMe.Repositories.Static
 {
     public class StaticTripRepository : ITripRepository
     {
-        private static List<Trip> _trips = new List<Trip>()
+        private static List<TripEntity> _trips = new List<TripEntity>()
         {
-            new Trip()
+            new TripEntity()
             {
-                TripInfo = new TripInfo()
-                {
-                    DateTime = DateTime.Today,
-                    Price = 100,
-                    Seats = 5
-                },
-                VehicleInfo = new VehicleInfo()
+                Price = 100,
+                Seats = 5,
+                Origin = new MapPoint(49.7946898, 24.0647954),
+                Destination = new MapPoint(49.842582, 24.003351),
+                WayPoints = new List<MapPoint>() {new MapPoint(49.835327, 24.0144097)},
+                StartDateTime = DateTime.Today,
+                Vehicle = new VehicleEntity()
                 {
                     Color = "red",
                     Manufacturer = "Audi",
                     Model = "a6",
                     Year = 2015
-                },
-                WayInfo = new WayInfo()
-                {
-                    Origin = new MapPoint(49.7946898, 24.0647954),
-                    Destination = new MapPoint(49.842582, 24.003351),
-                    WayPoints = new List<MapPoint>() {new MapPoint(49.835327, 24.0144097)}
                 }
             },
-            new Trip()
+            new TripEntity()
             {
-                TripInfo = new TripInfo()
-                {
-                    DateTime = DateTime.Today,
-                    Price = 100,
-                    Seats = 5
-                },
-                VehicleInfo = new VehicleInfo()
+                Price = 100,
+                Seats = 5,
+                Origin = new MapPoint(49.7946898, 24.0647954),
+                Destination = new MapPoint(49.842582, 24.003351),
+                WayPoints = new List<MapPoint>() {new MapPoint(49.835327, 24.0144097)},
+                StartDateTime = DateTime.Today,
+                Vehicle = new VehicleEntity()
                 {
                     Color = "red",
                     Manufacturer = "Audi",
                     Model = "a6",
                     Year = 2015
-                },
-                WayInfo = new WayInfo()
-                {
-                    Origin = new MapPoint(49.7946898, 24.0647954),
-                    Destination = new MapPoint(49.842582, 24.003351),
-                    WayPoints = new List<MapPoint>() {new MapPoint(49.835327, 24.0144097)}
                 }
             }
         };
 
-        public IEnumerable<Trip> GetAll()
+        public IEnumerable<TripEntity> GetAll()
         {
             return _trips;
         }
 
-        public bool Add(Trip trip)
+        public bool Add(TripEntity trip)
         {
             _trips.Add(trip);
 

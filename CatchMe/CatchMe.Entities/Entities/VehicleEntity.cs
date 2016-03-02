@@ -1,7 +1,9 @@
-﻿namespace CatchMe.Entities
+﻿namespace CatchMe.Domain.Entities
 {
-    public class VehicleInfo
+    public class VehicleEntity
     {
+        public int Id { get; set; }
+
         public string Manufacturer { get; set; }
 
         public string Model { get; set; }

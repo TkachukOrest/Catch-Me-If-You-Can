@@ -48,9 +48,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\CatchMe.Entities\CatchMe.Entities.csproj">
+    <ProjectReference Include="..\CatchMe.Entities\CatchMe.Domain.csproj">
       <Project>{a3b4810a-f8e2-4708-9545-2efeb9f9d9e8}</Project>
-      <Name>CatchMe.Entities</Name>
+      <Name>CatchMe.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

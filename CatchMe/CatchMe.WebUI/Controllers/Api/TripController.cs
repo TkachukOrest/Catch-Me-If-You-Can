@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using CatchMe.Entities;
+using CatchMe.Domain.Entities;
 using CatchMe.Repositories.Abstract;
 
 namespace CatchMe.WebUI.Controllers.Api
@@ -15,7 +15,7 @@ namespace CatchMe.WebUI.Controllers.Api
         }
 
         [HttpGet]
-        public IEnumerable<Trip> GetAllTrips()
+        public IEnumerable<TripEntity> GetAllTrips()
         {
             var trips = _tripRepository.GetAll();
 
@@ -29,7 +29,7 @@ namespace CatchMe.WebUI.Controllers.Api
         }
 
         [HttpPost]
-        public bool AddTrip(Trip trip)
+        public bool AddTrip(TripEntity trip)
         {
             return _tripRepository.Add(trip);
         }

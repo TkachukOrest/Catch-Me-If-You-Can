@@ -7,8 +7,8 @@
     <ProjectGuid>{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CatchMe.Entities</RootNamespace>
-    <AssemblyName>CatchMe.Entities</AssemblyName>
+    <RootNamespace>CatchMe.Domain</RootNamespace>
+    <AssemblyName>CatchMe.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,13 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapPoint.cs" />
+    <Compile Include="Values\MapPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Trip.cs" />
-    <Compile Include="TripInfo.cs" />
-    <Compile Include="VehicleInfo.cs" />
-    <Compile Include="WayInfo.cs" />
+    <Compile Include="Entities\TripEntity.cs" />
+    <Compile Include="Entities\VehicleEntity.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

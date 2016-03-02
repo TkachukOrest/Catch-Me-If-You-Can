@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using CatchMe.Entities;
+using CatchMe.Domain.Entities;
 
 namespace CatchMe.Repositories.Abstract
 {
     public interface ITripRepository
     {
-        bool Add(Trip trip);
+        bool Add(TripEntity trip);
 
-        IEnumerable<Trip> GetAll();
+        IEnumerable<TripEntity> GetAll();
     }
 }

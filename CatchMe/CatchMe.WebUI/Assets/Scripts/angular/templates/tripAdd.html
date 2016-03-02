@@ -19,25 +19,25 @@
                         <md-input-container class="md-icon-float md-block md-small-spacing">
                             <label>From</label>
                             <md-icon class="material-icons">adjust</md-icon>
-                            <input id="origin-point" placeholder="" type="text" ng-model="addTripVm.trip.WayInfo.Origin.Address" required>
+                            <input id="origin-point" placeholder="" type="text" ng-model="addTripVm.trip.Origin.Address" required>
                         </md-input-container>
 
                         <md-input-container class="md-icon-float md-block md-small-spacing"
-                                            ng-repeat="wayPoint in addTripVm.trip.WayInfo.WayPoints">
+                                            ng-repeat="wayPoint in addTripVm.trip.WayPoints">
                             <md-icon class="material-icons" ng-click="addTripVm.deleteWayPoint($index)">clear</md-icon>
-                            <input type="text" ng-model="addTripVm.trip.WayInfo.WayPoints[$index].Address" required disabled>
+                            <input type="text" ng-model="addTripVm.trip.WayPoints[$index].Address" required disabled>
                         </md-input-container>
 
                         <md-input-container class="md-icon-float md-block md-small-spacing">
                             <label>To</label>
                             <md-icon class="material-icons">place</md-icon>
-                            <input id="destination-point" placeholder="" type="text" ng-model="addTripVm.trip.WayInfo.Destination.Address" required>
+                            <input id="destination-point" placeholder="" type="text" ng-model="addTripVm.trip.Destination.Address" required>
                         </md-input-container>
 
                         <md-input-container class="md-icon-float md-block md-small-spacing" ng-show="addTripVm.isOriginAndDestinationValid()">
                             <label>Add way point</label>
                             <md-icon class="material-icons">add_circle</md-icon>
-                            <input id="way-point" placeholder="" type="text" ng-model="addTripVm.trip.WayInfo.WayPointToAdd">
+                            <input id="way-point" placeholder="" type="text" ng-model="addTripVm.trip.WayPointToAdd">
                         </md-input-container>
                     </div>
                     <div id="trip-map" class="mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet mdl-cell--8-col-phone wide-map"></div>
@@ -62,7 +62,7 @@
                             <md-input-container class="md-icon-float md-block">
                                 <label>Seats</label>
                                 <md-icon class="material-icons">airline_seat_recline_normal</md-icon>
-                                <input type="text" ng-model="addTripVm.trip.TripInfo.Seats" required>
+                                <input type="text" ng-model="addTripVm.trip.Seats" required>
                             </md-input-container>
                         </div>
 
@@ -70,7 +70,7 @@
                             <md-input-container class="md-icon-float md-block">
                                 <label>Price</label>
                                 <md-icon class="material-icons">attach_money</md-icon>
-                                <input type="text" ng-model="addTripVm.trip.TripInfo.Price" required>
+                                <input type="text" ng-model="addTripVm.trip.Price" required>
                             </md-input-container>
                         </div>
 
@@ -85,7 +85,7 @@
                                 class="md-input"
                                 placeholder="Date & Time"
                                 min-date="addTripVm.datePickerOpts.minDate"
-                                ng-model="addTripVm.trip.TripInfo.DateTime">
+                                ng-model="addTripVm.trip.StartDateTime">
                             </md-input-container>
                         </div>
                     </div>
@@ -110,23 +110,23 @@
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
                             <md-input-container class="md-block">
                                 <label>Manufacturer</label>
-                                <input type="text" ng-model="addTripVm.trip.VehicleInfo.Manufacturer" required>
+                                <input type="text" ng-model="addTripVm.trip.Vehicle.Manufacturer" required>
                             </md-input-container>
 
                             <md-input-container class="md-block">
                                 <label>Color</label>
-                                <input type="text" ng-model="addTripVm.trip.VehicleInfo.Color" required>
+                                <input type="text" ng-model="addTripVm.trip.Vehicle.Color" required>
                             </md-input-container>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
                             <md-input-container class="md-block">
                                 <label>Model</label>
-                                <input type="text" ng-model="addTripVm.trip.VehicleInfo.Model" required>
+                                <input type="text" ng-model="addTripVm.trip.Vehicle.Model" required>
                             </md-input-container>
 
                             <md-input-container class="md-block">
                                 <label>Year</label>
-                                <input type="text" ng-model="addTripVm.trip.VehicleInfo.Year" required>
+                                <input type="text" ng-model="addTripVm.trip.Vehicle.Year" required>
                             </md-input-container>
                         </div>
                     </div>
