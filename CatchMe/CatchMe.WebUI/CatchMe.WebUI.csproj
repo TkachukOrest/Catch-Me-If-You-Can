@@ -88,6 +88,10 @@
       <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC3.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
       <Private>True</Private>
@@ -187,7 +191,6 @@
     <Content Include="Assets\Scripts\angular\catchMe.routes.js" />
     <None Include="Assets\Scripts\_references.js" />
     <Content Include="Assets\Scripts\libs\moment\moment.js" />
-    <Content Include="Assets\Scripts\tests\services\trip.service.test.js" />
     <Content Include="Assets\Styles\angular-material.css" />
     <Content Include="Assets\Styles\material-datetimepicker.css" />
     <Content Include="Assets\Styles\material-default.css" />
@@ -222,7 +225,7 @@
     <Content Include="Assets\Scripts\angular\templates\tripList.html" />
     <Content Include="Views\Shared\PartialHeader.cshtml" />
     <Content Include="Views\Shared\PartialDrawerMenu.cshtml" />
-    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Shared\AppUrls.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -233,18 +236,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\Scripts\tests\components\" />
-    <Folder Include="Assets\Scripts\tests\controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Main\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CatchMe.BL\CatchMe.BL.csproj">
       <Project>{315fc341-f818-4a46-ad71-bea4774222b2}</Project>
       <Name>CatchMe.BL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CatchMe.Common\CatchMe.Common.csproj">
+    <ProjectReference Include="..\CatchMe.Common\CatchMe.Infrastructure.csproj">
       <Project>{542f64a3-d5e7-443c-8d13-02238c1595ea}</Project>
-      <Name>CatchMe.Common</Name>
+      <Name>CatchMe.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\CatchMe.Entities\CatchMe.Domain.csproj">
       <Project>{a3b4810a-f8e2-4708-9545-2efeb9f9d9e8}</Project>

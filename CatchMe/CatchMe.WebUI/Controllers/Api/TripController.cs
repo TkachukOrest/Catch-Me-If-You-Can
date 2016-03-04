@@ -7,7 +7,7 @@ namespace CatchMe.WebUI.Controllers.Api
 {
     public class TripController : ApiController
     {
-        private ITripRepository _tripRepository;
+        private readonly ITripRepository _tripRepository;
 
         public TripController(ITripRepository tripRepository)
         {

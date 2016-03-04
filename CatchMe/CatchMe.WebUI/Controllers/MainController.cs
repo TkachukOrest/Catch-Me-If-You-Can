@@ -1,13 +1,20 @@
-﻿using System.Configuration;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using CatchMe.Infrastructure.Abstract;
 
 namespace CatchMe.WebUI.Controllers
 {
     public class MainController : Controller
     {
+        private readonly IMapService _mapService;        
+
+        public MainController(IMapService mapService)
+        {
+            _mapService = mapService;
+        }
+
         public ActionResult Index()
         {
-            ViewBag.GoogleMapsApiDeveloperKey = ConfigurationManager.AppSettings["GoogleMapsApiDeveloperKey"];
+            ViewBag.MapsApiSource = _mapService.GetApiUrl();
 
             return View();
         }
