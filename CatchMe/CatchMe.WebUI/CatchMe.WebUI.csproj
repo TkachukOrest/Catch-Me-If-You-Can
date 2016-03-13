@@ -244,14 +244,6 @@
       <Project>{315fc341-f818-4a46-ad71-bea4774222b2}</Project>
       <Name>CatchMe.BL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CatchMe.Common\CatchMe.Infrastructure.csproj">
-      <Project>{542f64a3-d5e7-443c-8d13-02238c1595ea}</Project>
-      <Name>CatchMe.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CatchMe.Entities\CatchMe.Domain.csproj">
-      <Project>{a3b4810a-f8e2-4708-9545-2efeb9f9d9e8}</Project>
-      <Name>CatchMe.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CatchMe.Repositories\CatchMe.Repositories.csproj">
       <Project>{c5c2bce8-d497-407e-a728-d43e51eba72c}</Project>
       <Name>CatchMe.Repositories</Name>
