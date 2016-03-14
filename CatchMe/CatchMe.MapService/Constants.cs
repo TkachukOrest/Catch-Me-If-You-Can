@@ -1,6 +1,6 @@
-﻿namespace CatchMe.Infrastructure
+﻿namespace CatchMe.MapService
 {
-    class Constants
+    public class Constants
     {
         public const string GoogleMapsApiDeveloperKey = "GoogleMapsApiDeveloperKey";
     }

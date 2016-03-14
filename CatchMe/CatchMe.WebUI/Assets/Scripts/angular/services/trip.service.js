@@ -3,9 +3,9 @@
         .module('catchMeApp')
         .service('tripService', tripService);
 
-    tripService.$inject = ['$http'];
+    tripService.$inject = ['$http', 'urlConfigs'];
 
-    function tripService($http) {
+    function tripService($http, urlConfigs) {
         var service = {
             getAllTrips: getAllTrips,
             getTrip: getTrip,
@@ -18,7 +18,7 @@
         function getAllTrips() {
             return $http({
                 method: 'GET',
-                url: CatchMe.Urls.GetAllTrips
+                url: urlConfigs.GetAllTrips
             });
         }
 
@@ -26,7 +26,7 @@
             return $http({
                 method: 'GET',
                 data: id,
-                url: CatchMe.Urls.GetTrip
+                url: urlConfigs.GetTrip
             });
         }
 
@@ -34,7 +34,7 @@
             return $http({
                 method: 'POST',
                 data: trip,
-                url: CatchMe.Urls.AddTrip
+                url: urlConfigs.AddTrip
             });
         }
     }

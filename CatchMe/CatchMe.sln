@@ -17,6 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.Domain", "CatchMe.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.Infrastructure", "CatchMe.Infrastructure\CatchMe.Infrastructure.csproj", "{542F64A3-D5E7-443C-8D13-02238C1595EA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MapService", "MapService", "{A712DA30-05D1-428A-8ED9-ABD1FE76EA9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.MapService", "CatchMe.MapService\CatchMe.MapService.csproj", "{A881DBF7-18E1-426C-A645-1E713384A37F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.MapService.GoogleMapService", "CatchMe.MapService.GoogleMapService\CatchMe.MapService.GoogleMapService.csproj", "{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,8 +57,20 @@ Global
 		{542F64A3-D5E7-443C-8D13-02238C1595EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{542F64A3-D5E7-443C-8D13-02238C1595EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{542F64A3-D5E7-443C-8D13-02238C1595EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A881DBF7-18E1-426C-A645-1E713384A37F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A881DBF7-18E1-426C-A645-1E713384A37F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A881DBF7-18E1-426C-A645-1E713384A37F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A881DBF7-18E1-426C-A645-1E713384A37F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A881DBF7-18E1-426C-A645-1E713384A37F} = {A712DA30-05D1-428A-8ED9-ABD1FE76EA9B}
+		{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80} = {A712DA30-05D1-428A-8ED9-ABD1FE76EA9B}
 	EndGlobalSection
 EndGlobal

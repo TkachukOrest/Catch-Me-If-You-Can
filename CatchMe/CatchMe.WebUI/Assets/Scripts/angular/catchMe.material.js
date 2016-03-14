@@ -3,6 +3,8 @@
         .module('catchMeApp')
         .config(mdlThemeConfig);
 
+    mdlThemeConfig.$inject = ['$mdThemingProvider'];
+
     function mdlThemeConfig($mdThemingProvider) {
         var customizedBlueGreyTheme = $mdThemingProvider.extendPalette('blue-grey', {
             '500': '86a8a8'

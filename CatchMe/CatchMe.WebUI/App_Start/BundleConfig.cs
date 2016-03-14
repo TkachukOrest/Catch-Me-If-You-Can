@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Blog.WebUI
+namespace CatchMe.WebUI
 {
     public class BundleConfig
     {
@@ -22,19 +22,18 @@ namespace Blog.WebUI
                         "~/Assets/Scripts/libs/moment/moment.js",
                         "~/Assets/Scripts/libs/material/material-datetimepicker.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-app/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-module/js").Include(
                         "~/Assets/Scripts/angular/catchMe.app.js",
                         "~/Assets/Scripts/angular/catchMe.routes.js",
-                        "~/Assets/Scripts/angular/catchMe.material.js",
+                        "~/Assets/Scripts/angular/catchMe.material.js"));                        
+
+            bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-app/js").Include(            
                         "~/Assets/Scripts/angular/services/trip.service.js",
-                        "~/Assets/Scripts/angular/services/googleMap.service.js",                        
+                        "~/Assets/Scripts/angular/services/googleMap.service.js",
                         "~/Assets/Scripts/angular/controllers/tripList.controller.js",
-                        "~/Assets/Scripts/angular/controllers/tripAdd.controller.js",                        
+                        "~/Assets/Scripts/angular/controllers/tripAdd.controller.js",
                         "~/Assets/Scripts/angular/controllers/partialDrawerMenu.controller.js",
                         "~/Assets/Scripts/angular/components/hoverClass.directive.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/common/js").Include(
-                        "~/Assets/Scripts/common/namespaces.js"));
             #endregion
 
             #region Styles bundles
@@ -46,7 +45,7 @@ namespace Blog.WebUI
                       "~/Assets/Styles/material-datetimepicker.css"));
             #endregion
 
-            //BundleTable.EnableOptimizations = true;            
+            BundleTable.EnableOptimizations = true;            
         }
     }
 }

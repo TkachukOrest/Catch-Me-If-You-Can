@@ -3,6 +3,8 @@
         .module('catchMeApp')
         .config(config);
 
+    config.$inject = ['$routeProvider', '$locationProvider'];
+
 	function config($routeProvider, $locationProvider) {	    
 		$routeProvider.when('/', {
 			templateUrl: '/Assets/Scripts/angular/templates/tripList.html',

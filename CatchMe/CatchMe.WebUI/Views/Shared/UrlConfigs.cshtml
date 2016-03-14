@@ -10,8 +10,9 @@
     urls.AddTrip = Url.HttpRouteUrl("DefaultApi", new { controller = "Trip", action = "AddTrip" });
 }
 
+
 <script type="text/javascript">
-
-    CatchMe.Urls = @Html.Raw(JsonConvert.SerializeObject(urls));
-
+    angular
+    .module('catchMeApp')
+    .constant('urlConfigs', @Html.Raw(JsonConvert.SerializeObject(urls)));
 </script>

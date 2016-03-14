@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{542F64A3-D5E7-443C-8D13-02238C1595EA}</ProjectGuid>
+    <ProjectGuid>{A881DBF7-18E1-426C-A645-1E713384A37F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CatchMe.Infrastructure</RootNamespace>
-    <AssemblyName>CatchMe.Infrastructure</AssemblyName>
+    <RootNamespace>CatchMe.MapService</RootNamespace>
+    <AssemblyName>CatchMe.MapService</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,12 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IConfigurationService.cs" />
-    <Compile Include="Concrete\ConfigurationService.cs" />
-    <Compile Include="Concrete\ParseExtension.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="IMapService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

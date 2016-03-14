@@ -11,5 +11,7 @@
         public string Color { get; set; }
 
         public int Year { get; set; }
+        
+        public string Number { get; set; }
     }
 }

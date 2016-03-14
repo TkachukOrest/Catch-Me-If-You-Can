@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
-using CatchMe.Infrastructure.Abstract;
+using CatchMe.MapService;
+
 
 namespace CatchMe.WebUI.Controllers
 {

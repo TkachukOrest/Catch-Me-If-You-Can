@@ -175,7 +175,6 @@
     <Content Include="Assets\Scripts\angular\controllers\tripList.controller.js" />
     <Content Include="Assets\Scripts\angular\services\googleMap.service.js" />
     <Content Include="Assets\Scripts\angular\services\trip.service.js" />
-    <Content Include="Assets\Scripts\common\namespaces.js" />
     <Content Include="Assets\Scripts\libs\angular\angular-animate.js" />
     <Content Include="Assets\Scripts\libs\angular\angular-aria.js" />
     <Content Include="Assets\Scripts\libs\angular\angular-material.js" />
@@ -225,8 +224,8 @@
     <Content Include="Assets\Scripts\angular\templates\tripList.html" />
     <Content Include="Views\Shared\PartialHeader.cshtml" />
     <Content Include="Views\Shared\PartialDrawerMenu.cshtml" />
-    <Content Include="Views\Shared\Index.cshtml" />
-    <Content Include="Views\Shared\AppUrls.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Shared\UrlConfigs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -237,7 +236,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Main\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CatchMe.BL\CatchMe.BL.csproj">
@@ -251,6 +249,14 @@
     <ProjectReference Include="..\CatchMe.Infrastructure\CatchMe.Infrastructure.csproj">
       <Project>{542f64a3-d5e7-443c-8d13-02238c1595ea}</Project>
       <Name>CatchMe.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.MapService.GoogleMapService\CatchMe.MapService.GoogleMapService.csproj">
+      <Project>{d943fdb5-6d1b-45c3-ac68-757eba4baa80}</Project>
+      <Name>CatchMe.MapService.GoogleMapService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.MapService\CatchMe.MapService.csproj">
+      <Project>{a881dbf7-18e1-426c-a645-1e713384a37f}</Project>
+      <Name>CatchMe.MapService</Name>
     </ProjectReference>
     <ProjectReference Include="..\CatchMe.Repositories\CatchMe.Repositories.csproj">
       <Project>{c5c2bce8-d497-407e-a728-d43e51eba72c}</Project>

@@ -43,6 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="configs\url.configs.test.js" />
     <Content Include="karma.conf.js" />
     <Content Include="services\trip.service.test.js" />
   </ItemGroup>

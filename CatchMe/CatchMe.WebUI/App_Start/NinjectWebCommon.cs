@@ -2,6 +2,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using CatchMe.Infrastructure.Abstract;
 using CatchMe.Infrastructure.Concrete;
+using CatchMe.MapService;
+using CatchMe.MapService.GoogleMapService;
 using CatchMe.Repositories.Abstract;
 using CatchMe.Repositories.Static;
 using Ninject.Web.WebApi;
@@ -57,6 +59,7 @@ namespace CatchMe.WebUI.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ITripRepository>().To<StaticTripRepository>();
+            kernel.Bind<IConfigurationService>().To<ConfigurationService>();
             kernel.Bind<IMapService>().To<GoogleMapService>();
         }        
     }

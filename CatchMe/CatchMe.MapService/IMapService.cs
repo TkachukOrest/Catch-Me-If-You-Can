@@ -1,4 +1,4 @@
-﻿namespace CatchMe.Infrastructure.Abstract
+﻿namespace CatchMe.MapService
 {
     public interface IMapService
     {
