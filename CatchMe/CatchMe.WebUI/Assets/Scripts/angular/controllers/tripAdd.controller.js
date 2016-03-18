@@ -3,32 +3,22 @@
         .module('catchMeApp')
         .controller('TripAddController', TripAddController);
 
-    TripAddController.$inject = ['$scope', '$mdDialog', '$location', 'tripService', 'googleMapService'];
+    TripAddController.$inject = ['$scope', '$mdDialog', '$location', 'tripService', 'googleMapService', 'MapPoint'];
 
-    function TripAddController($scope, $mdDialog, $location, tripService, googleMapService) {
+    function TripAddController($scope, $mdDialog, $location, tripService, googleMapService, MapPoint) {
         var addTripVm = this;
 
         //view model
         addTripVm.trip = {
-            Origin: {
-                Address: "",
-                Latitude: 0,
-                Longitude: 0,
-                IsValid: false
-            },
-            Destination: {
-                Address: "",
-                Latitude: 0,
-                Longitude: 0,
-                IsValid: false
-            },
+            Origin: new MapPoint(0, 0),
+            Destination: new MapPoint(0, 0),
             WayPoints: [],
             Seats: null,
             Price: null,
             StartDateTime: null,
             Vehicle: {}
         }
-        addTripVm.datePickerOpts = {}
+        addTripVm.dateOpts = {}
         addTripVm.addTrip = addTrip;
         addTripVm.deleteWayPoint = deleteWayPoint;
         addTripVm.isOriginAndDestinationValid = isOriginAndDestinationValid;
@@ -49,10 +39,7 @@
         }
 
         function initializeMap() {
-            googleMap = googleMapService.createMap('trip-map', {
-                Latitude: 50.4501,
-                Longitude: 30.5234
-            });
+            googleMap = googleMapService.createMap('trip-map', new MapPoint(50.4501, 30.5234));                
 
             googleMapService.getCurrentPosition().then(function (position) {
                 googleMap.setCenter(position);
@@ -66,7 +53,7 @@
         }
 
         function initializeDatePickerAttributes() {
-            addTripVm.datePickerOpts.minDate = moment();
+            addTripVm.dateOpts.currentDate = moment();
         }
 
         //public functions              
@@ -84,8 +71,8 @@
         }
 
         function isOriginAndDestinationValid() {
-            return !isEmptyPoint(addTripVm.trip.Origin) &&
-                   !isEmptyPoint(addTripVm.trip.Destination) &&
+            return !addTripVm.trip.Origin.isEmptyPoint() &&
+                   !addTripVm.trip.Destination.isEmptyPoint() &&
                     addTripVm.trip.Origin.IsValid &&
                     addTripVm.trip.Destination.IsValid;
         }
@@ -95,7 +82,7 @@
             var originPoint = getSelectedPoint(originPointAutocomplete);
 
             if (!wayContainsPoint(originPoint)) {
-                if (isEmptyPoint(addTripVm.trip.Destination)) {
+                if (addTripVm.trip.Destination.isEmptyPoint()) {
                     addTripVm.trip.Origin = originPoint;
                     addTripVm.trip.Origin.IsValid = true;
                     setMapCenter(originPoint);
@@ -124,7 +111,7 @@
             var destinationPoint = getSelectedPoint(destinationPointAutocomplete);
 
             if (!wayContainsPoint(destinationPoint)) {
-                if (isEmptyPoint(addTripVm.trip.Origin)) {
+                if (addTripVm.trip.Origin.isEmptyPoint()) {
                     addTripVm.trip.Destination = destinationPoint;
                     addTripVm.trip.Destination.IsValid = true;
                     setMapCenter(destinationPoint);
@@ -153,8 +140,8 @@
         function addWayPoint() {
             var addedWayPoint = getSelectedPoint(wayPointAutocomplete);
 
-            if (!isEmptyPoint(addTripVm.trip.Origin) &&
-                !isEmptyPoint(addTripVm.trip.Destination)) {
+            if (!addTripVm.trip.Origin.isEmptyPoint() &&
+                !addTripVm.trip.Destination.isEmptyPoint()) {
                 if (!wayContainsPoint(addedWayPoint)) {
                     function onWayDirectionExists() {
                         addTripVm.trip.WayPoints.push(addedWayPoint);
@@ -175,16 +162,12 @@
         function getSelectedPoint(autocomplete) {
             var place = autocomplete.getPlace();
 
-            return {
-                Address: place.formatted_address,
-                Latitude: place.geometry.location.lat(),
-                Longitude: place.geometry.location.lng()
-            };
+            return new MapPoint(place.geometry.location.lat(), place.geometry.location.lng(), place.formatted_address);
         }
 
         function renderMap() {
-            if (!isEmptyPoint(addTripVm.trip.Origin) &&
-                !isEmptyPoint(addTripVm.trip.Destination)) {
+            if (!addTripVm.trip.Origin.isEmptyPoint() &&
+                !addTripVm.trip.Destination.isEmptyPoint()) {
                 googleMapService.displayRoute(googleMap,
                     addTripVm.trip.Origin,
                     addTripVm.trip.Destination,
@@ -213,17 +196,11 @@
 
         function setMapCenter(point) {
             googleMap.setCenter({ lat: point.Latitude, lng: point.Longitude });
-        }
-
-        function isEmptyPoint(point) {
-            return (!point.Address) ||
-                (point.Latitude === 0) ||
-                (point.longitude === 0);
-        }
+        }        
 
         function wayContainsPoint(point) {
-            return isEqualPoints(addTripVm.trip.Origin, point) ||
-                isEqualPoints(addTripVm.trip.Destination, point) ||
+            return addTripVm.trip.Origin.isEqualTo(point) ||
+                addTripVm.trip.Destination.isEqualTo(point) ||
                 wayPointsContains(point);
         }
 
@@ -231,17 +208,10 @@
             var result = false;
 
             addTripVm.trip.WayPoints.forEach(function (element) {
-                result = result || isEqualPoints(element, point);
+                result = result || element.isEqualTo(point);
             });
 
             return result;
         }
-
-        function isEqualPoints(left, right) {
-            return left.Address === right.Address &&
-                left.Latitude === right.Latitude &&
-                left.Longitude === right.Longitude;
-        }
-
     };
 })();

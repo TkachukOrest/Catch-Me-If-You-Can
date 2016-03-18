@@ -29,6 +29,7 @@ module.exports = function (config) {
             '../catchme.webui/Assets/Scripts/libs/material/material-datetimepicker.js',
             '../catchme.webui/Assets/Scripts/angular/catchMe.app.js',
             '../catchme.webui/Assets/Scripts/angular/catchMe.routes.js',
+            '../catchme.webui/Assets/Scripts/angular/catchMe.constants.js',
             '../catchme.webui/Assets/Scripts/angular/catchMe.material.js',
             '../catchme.webui/Assets/Scripts/angular/services/trip.service.js',
             '../catchme.webui/Assets/Scripts/angular/services/googleMap.service.js',
@@ -78,8 +79,8 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome', 'PhantomJS'],
-        //browsers: ['PhantomJS'],
+        //browsers: ['Chrome', 'PhantomJS'],
+        browsers: ['PhantomJS'],
 
 
         // Continuous Integration mode

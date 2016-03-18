@@ -20,14 +20,17 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/libs/angular/angular-mocks.js",
                         "~/Assets/Scripts/libs/angular/angular-touch.js",
                         "~/Assets/Scripts/libs/moment/moment.js",
-                        "~/Assets/Scripts/libs/material/material-datetimepicker.js"));
+                        "~/Assets/Scripts/libs/material/material-datetimepicker.js",
+                        "~/Assets/Scripts/libs/input-masks/input-masks.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-module/js").Include(
                         "~/Assets/Scripts/angular/catchMe.app.js",
                         "~/Assets/Scripts/angular/catchMe.routes.js",
+                        "~/Assets/Scripts/angular/catchMe.constants.js",
                         "~/Assets/Scripts/angular/catchMe.material.js"));                        
 
-            bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-app/js").Include(            
+            bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-app/js").Include(
+                        "~/Assets/Scripts/angular/data_models/mapPoint.model.js",
                         "~/Assets/Scripts/angular/services/trip.service.js",
                         "~/Assets/Scripts/angular/services/googleMap.service.js",
                         "~/Assets/Scripts/angular/controllers/tripList.controller.js",
@@ -45,7 +48,7 @@ namespace CatchMe.WebUI
                       "~/Assets/Styles/material-datetimepicker.css"));
             #endregion
 
-            BundleTable.EnableOptimizations = true;            
+            BundleTable.EnableOptimizations = false;            
         }
     }
 }

@@ -2,9 +2,9 @@
 {
     public struct MapPoint
     {
-        public readonly double Latitude;
+        public double Latitude { get; set; }
 
-        public readonly double Longitude;
+        public double Longitude { get; set; }
 
         public MapPoint(double latitude, double longitude)
         {

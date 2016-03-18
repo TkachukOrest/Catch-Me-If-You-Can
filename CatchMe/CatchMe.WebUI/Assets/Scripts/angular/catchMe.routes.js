@@ -7,9 +7,7 @@
 
 	function config($routeProvider, $locationProvider) {	    
 		$routeProvider.when('/', {
-			templateUrl: '/Assets/Scripts/angular/templates/tripList.html',
-			controller: 'TripListController',
-			controllerAs: 'tripListVm'
+			templateUrl: '/Assets/Scripts/angular/templates/tripList.html'			
 		});
 
 		$routeProvider.when('/TripAdd', {
