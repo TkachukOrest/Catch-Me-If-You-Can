@@ -176,6 +176,7 @@
     <Content Include="Assets\Scripts\angular\controllers\tripList.controller.js" />
     <Content Include="Assets\Scripts\angular\data_models\mapPoint.model.js" />
     <Content Include="Assets\Scripts\angular\services\googleMap.service.js" />
+    <Content Include="Assets\Scripts\angular\services\loadingDialog.service.js" />
     <Content Include="Assets\Scripts\angular\services\trip.service.js" />
     <Content Include="Assets\Scripts\libs\angular\angular-animate.js" />
     <Content Include="Assets\Scripts\libs\angular\angular-aria.js" />
@@ -214,6 +215,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TripAddRequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -237,7 +239,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CatchMe.BL\CatchMe.BL.csproj">

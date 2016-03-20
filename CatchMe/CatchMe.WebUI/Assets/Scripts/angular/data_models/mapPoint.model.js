@@ -19,7 +19,7 @@
             this.isEmptyPoint = function() {
                 return (!this.Address) ||
                 (this.Latitude === 0) ||
-                (this.longitude === 0);
+                (this.Longitude === 0);
             };
         };        
         

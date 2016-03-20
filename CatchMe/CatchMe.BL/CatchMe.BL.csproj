@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ITripManager.cs" />
+    <Compile Include="Concrete\TripManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -47,7 +49,20 @@
       <Project>{c2de84be-33ae-4786-b9fa-b6744e3a54f4}</Project>
       <Name>CatchMe.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Domain\CatchMe.Domain.csproj">
+      <Project>{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}</Project>
+      <Name>CatchMe.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.MapService\CatchMe.MapService.csproj">
+      <Project>{a881dbf7-18e1-426c-a645-1e713384a37f}</Project>
+      <Name>CatchMe.MapService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Repositories\CatchMe.Repositories.csproj">
+      <Project>{c5c2bce8-d497-407e-a728-d43e51eba72c}</Project>
+      <Name>CatchMe.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

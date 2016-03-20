@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using CatchMe.BL.Abstract;
 using CatchMe.Domain.Entities;
-using CatchMe.Repositories.Abstract;
+using CatchMe.WebUI.Models;
 
 namespace CatchMe.WebUI.Controllers.Api
 {
     public class TripController : ApiController
     {
-        private readonly ITripRepository _tripRepository;
+        private readonly ITripManager _tripManager;
 
-        public TripController(ITripRepository tripRepository)
-        {
-            _tripRepository = tripRepository;
+        public TripController(ITripManager tripManager)
+        {            
+            _tripManager = tripManager;
         }
 
         [HttpGet]
         public IEnumerable<TripEntity> GetAllTrips()
         {
-            var trips = _tripRepository.GetAll();
+            var trips = _tripManager.GetAll();
 
             return trips;
         }
@@ -29,9 +30,9 @@ namespace CatchMe.WebUI.Controllers.Api
         }
 
         [HttpPost]
-        public bool AddTrip(TripEntity trip)
+        public void AddTrip(TripAddRequestModel tripAddModel)
         {
-            return _tripRepository.Add(trip);
+            _tripManager.AddTrip(tripAddModel.Trip, tripAddModel.StaticMapConfiguration);
         }
     }
 }

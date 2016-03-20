@@ -43,6 +43,13 @@
     <Compile Include="Constants.cs" />
     <Compile Include="IMapService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticMapConfiguration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CatchMe.Domain\CatchMe.Domain.csproj">
+      <Project>{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}</Project>
+      <Name>CatchMe.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

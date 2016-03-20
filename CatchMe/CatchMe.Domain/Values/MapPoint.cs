@@ -1,6 +1,6 @@
 ﻿namespace CatchMe.Domain.Values
 {
-    public struct MapPoint
+    public class MapPoint
     {
         public double Latitude { get; set; }
 

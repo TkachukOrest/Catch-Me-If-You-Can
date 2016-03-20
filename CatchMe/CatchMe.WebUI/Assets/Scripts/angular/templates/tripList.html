@@ -1,9 +1,9 @@
 ﻿<div class="mdl-grid" ng-controller="TripListController as tripListVm">
 
     <div ng-repeat="trip in tripListVm.trips" 
-         class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-phone mdl-cell--4-col-tablet mdl-shadow--4dp">
+         class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--4-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__media">
-            <div id="trip-map0" class="map" style="width: 405px; height: 300px;"> </div>
+            <img ng-src="{{trip.StaticMapUrl}}" style="width: 100%; height: 100%"/>            
         </div>
         <div class="mdl-card__supporting-text">
             {{trip.Destination.Latitude}}

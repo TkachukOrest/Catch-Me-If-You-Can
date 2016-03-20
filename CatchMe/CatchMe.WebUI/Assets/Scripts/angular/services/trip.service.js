@@ -30,10 +30,13 @@
             });
         }
 
-        function addTrip(trip) {
+        function addTrip(trip, staticMapConfiguration) {
             return $http({
                 method: 'POST',
-                data: trip,
+                data: {
+                    trip: trip,
+                    staticMapConfiguration: staticMapConfiguration
+                },
                 url: urlConfigs.AddTrip
             });
         }

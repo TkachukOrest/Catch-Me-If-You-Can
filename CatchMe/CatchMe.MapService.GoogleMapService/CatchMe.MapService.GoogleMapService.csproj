@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CatchMe.Domain\CatchMe.Domain.csproj">
+      <Project>{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}</Project>
+      <Name>CatchMe.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CatchMe.Infrastructure\CatchMe.Infrastructure.csproj">
       <Project>{542f64a3-d5e7-443c-8d13-02238c1595ea}</Project>
       <Name>CatchMe.Infrastructure</Name>

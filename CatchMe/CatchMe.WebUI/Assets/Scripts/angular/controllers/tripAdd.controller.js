@@ -3,9 +3,9 @@
         .module('catchMeApp')
         .controller('TripAddController', TripAddController);
 
-    TripAddController.$inject = ['$scope', '$mdDialog', '$location', 'tripService', 'googleMapService', 'MapPoint'];
+    TripAddController.$inject = ['$scope', '$mdDialog', '$location', 'tripService', 'googleMapService', 'loadingDialogService', 'MapPoint'];
 
-    function TripAddController($scope, $mdDialog, $location, tripService, googleMapService, MapPoint) {
+    function TripAddController($scope, $mdDialog, $location, tripService, googleMapService, loadingDialogService, MapPoint) {
         var addTripVm = this;
 
         //view model
@@ -25,6 +25,7 @@
 
         //private fields
         var googleMap;
+        var polilinePoints;
         var originPointAutocomplete;
         var destinationPointAutocomplete;
         var wayPointAutocomplete;
@@ -32,17 +33,20 @@
         //initialization        
         activate();
 
-        function activate() {
+        function activate() {            
             initializeMap();
             initializeGoogleAutocompleteInputs();
-            initializeDatePickerAttributes();
+            initializeDatePickerAttributes();            
         }
 
         function initializeMap() {
-            googleMap = googleMapService.createMap('trip-map', new MapPoint(50.4501, 30.5234));                
+            loadingDialogService.show();
+            googleMap = googleMapService.createMap('trip-map', new MapPoint(50.4501, 30.5234));
 
-            googleMapService.getCurrentPosition().then(function (position) {
-                googleMap.setCenter(position);
+            googleMapService.getCurrentPosition().then(function(position) {
+                googleMap.setCenter(position);                
+            }).finally(function() {
+                loadingDialogService.hide();
             });
         }
 
@@ -59,8 +63,14 @@
         //public functions              
         function addTrip(addNewTripForm) {
             if (!addNewTripForm.$invalid) {
-                tripService.addTrip(addTripVm.trip).then(function () {
+                loadingDialogService.show();
+                var staticMapConfiguration = googleMapService.createStaticMapConfiguration(googleMap, polilinePoints);
+                
+                tripService.addTrip(addTripVm.trip, staticMapConfiguration).then(function () {
                     $location.path('/Trips');
+                    googleMapService.clearMap(googleMap);
+                }).finally(function () {                    
+                    loadingDialogService.hide();
                 });
             }
         }
@@ -171,7 +181,10 @@
                 googleMapService.displayRoute(googleMap,
                     addTripVm.trip.Origin,
                     addTripVm.trip.Destination,
-                    addTripVm.trip.WayPoints);
+                    addTripVm.trip.WayPoints)
+                    .then(function(points) {
+                        polilinePoints = points;
+                    });
             }
         }
 

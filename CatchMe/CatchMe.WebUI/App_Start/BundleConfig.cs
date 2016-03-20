@@ -36,6 +36,8 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/controllers/tripList.controller.js",
                         "~/Assets/Scripts/angular/controllers/tripAdd.controller.js",
                         "~/Assets/Scripts/angular/controllers/partialDrawerMenu.controller.js",
+                        "~/Assets/Scripts/angular/controllers/dialog.controller.js",
+                        "~/Assets/Scripts/angular/services/loadingDialog.service.js",
                         "~/Assets/Scripts/angular/components/hoverClass.directive.js"));
             #endregion
 
@@ -48,7 +50,7 @@ namespace CatchMe.WebUI
                       "~/Assets/Styles/material-datetimepicker.css"));
             #endregion
 
-            BundleTable.EnableOptimizations = false;            
+            BundleTable.EnableOptimizations = true;            
         }
     }
 }

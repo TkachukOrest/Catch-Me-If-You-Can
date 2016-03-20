@@ -20,6 +20,8 @@ namespace CatchMe.Domain.Entities
 
         public DateTime StartDateTime { get; set; }
 
-        public VehicleEntity Vehicle { get; set; }        
+        public VehicleEntity Vehicle { get; set; }   
+        
+        public string StaticMapUrl { get; set; }        
     }
 }

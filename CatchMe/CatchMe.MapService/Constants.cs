@@ -2,6 +2,8 @@
 {
     public class Constants
     {
-        public const string GoogleMapsApiDeveloperKey = "GoogleMapsApiDeveloperKey";
+        public const string MapsApiDeveloperKey = "MapsApiDeveloperKey";
+        public const string StaticMapImageWidth = "StaticMapImageWidth";
+        public const string StaticMapImageHeight = "StaticMapImageHeight";
     }
 }

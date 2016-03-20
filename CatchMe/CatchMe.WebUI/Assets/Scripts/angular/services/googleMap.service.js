@@ -3,9 +3,9 @@
         .module('catchMeApp')
         .service('googleMapService', googleMapService);
 
-    googleMapService.$inject = ['$q'];
+    googleMapService.$inject = ['$q', 'MapPoint'];
 
-    function googleMapService($q) {
+    function googleMapService($q, MapPoint) {
         //fields        
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -62,12 +62,14 @@
             deocodeAddress: deocodeAddress,
             initAutocomplete: initAutocomplete,
             isWayDirectionValid: isWayDirectionValid,
-            getCurrentPosition: getCurrentPosition
+            getCurrentPosition: getCurrentPosition,
+            createStaticMapConfiguration: createStaticMapConfiguration,
+            clearMap: clearMap
         };
 
         return service;
 
-        //public functions       
+        //public functions               
         function createMap(elementId, initializationPoint) {
             var map = new google.maps.Map(document.getElementById(elementId), {
                 zoom: 10,
@@ -88,6 +90,7 @@
         }
 
         function displayRoute(map, startPoint, endPoint, points) {
+            var deferred = $q.defer();
             var wayPoints = convertToWayPoints(points);
 
             directionsService.route({
@@ -99,8 +102,11 @@
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setMap(map);
                     directionsDisplay.setDirections(response);
+                    deferred.resolve(response.routes[0].overview_polyline);
                 }
             });
+
+            return deferred.promise;
         }
 
         function deocodeAddress(address) {
@@ -166,6 +172,25 @@
             return deferred.promise;
         }
 
+        function createStaticMapConfiguration(googleMap, pathPoints) {
+            var center = googleMap.getCenter();
+            
+            return {
+                Center: new MapPoint(center.lat(), center.lng()),
+                Zoom: googleMap.getZoom(),
+                MapType: "roadmap",
+                StyleRules: getStaticStyle(styles),
+                Path: pathPoints
+            };
+        }
+
+        function clearMap(googleMap) {
+            directionsDisplay.suppressMarkers = true;
+            directionsDisplay.setMap(googleMap);
+            directionsDisplay.setDirections({ routes: [] });
+            directionsDisplay.setMap();
+        }
+
         //private helpers
         function convertToWayPoints(points) {
             var waypoints = [];
@@ -178,6 +203,27 @@
             };
 
             return waypoints;
+        }
+
+        function getStaticStyle(styles) {
+            var result = [];
+            styles.forEach(function (elem) {
+                var style='';
+                if( elem.stylers ) {
+                    if (elem.stylers.length > 0) {
+                        style += (elem.hasOwnProperty('featureType') ? 'feature:' + elem.featureType : 'feature:all') + '|';
+                        style += (elem.hasOwnProperty('elementType') ? 'element:' + elem.elementType : 'element:all') + '|';
+                        elem.stylers.forEach(function (val) {
+                            var propertyname = Object.keys(val)[0];
+                            var propertyval = val[propertyname].toString().replace('#', '0x');
+                            style += propertyname + ':' + propertyval + '|';
+                        });
+                    }
+                }
+                result.push(encodeURIComponent(style));
+            });
+    
+            return result.join('&');
         }
     }
 })();

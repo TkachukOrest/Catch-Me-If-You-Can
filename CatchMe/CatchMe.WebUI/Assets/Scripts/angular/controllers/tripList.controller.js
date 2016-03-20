@@ -5,14 +5,11 @@
 
     TripListController.$inject = ['tripService', 'googleMapService', 'MapPoint'];
 
-    function TripListController(tripService, googleMapService, MapPoint) {
+    function TripListController(tripService) {
         var tripListVm = this;
 
         //view model
-        tripListVm.trips = []; 
-        
-        //private fields
-        var googleMaps = {};        
+        tripListVm.trips = [];         
 
         //initializtion
         initialize();
@@ -23,17 +20,8 @@
 
         function getTrips() {
             tripService.getAllTrips().then(function (response) {
-                tripListVm.trips = response.data;
-                //initializeGoogleMaps();
+                tripListVm.trips = response.data;                
             });
-        };
-
-        function initializeGoogleMaps() {
-            tripListVm.trips.forEach(function(trip) {
-                googleMaps[trip.Id] = googleMapService.createMap('trip-map' + trip.Id, new MapPoint(trip.Origin.Latitude, trip.Origin.Longitude));
-
-                googleMapService.displayRoute(googleMaps[trip.Id], trip.Origin, trip.Destination, trip.WayPoints);
-            });
-        }        
+        };        
     };
 })();

@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.DataAccess", "CatchMe.DataAccess\CatchMe.DataAccess.csproj", "{C2DE84BE-33AE-4786-B9FA-B6744E3A54F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.BL", "CatchMe.BL\CatchMe.BL.csproj", "{315FC341-F818-4A46-AD71-BEA4774222B2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.WebUI", "CatchMe.WebUI\CatchMe.WebUI.csproj", "{4FCFE6BE-EA8C-485D-B759-B5E514E06BD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.Repositories", "CatchMe.Repositories\CatchMe.Repositories.csproj", "{C5C2BCE8-D497-407E-A728-D43E51EBA72C}"
@@ -23,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.MapService", "Catch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.MapService.GoogleMapService", "CatchMe.MapService.GoogleMapService\CatchMe.MapService.GoogleMapService.csproj", "{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.BL", "CatchMe.BL\CatchMe.BL.csproj", "{315FC341-F818-4A46-AD71-BEA4774222B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +33,6 @@ Global
 		{C2DE84BE-33AE-4786-B9FA-B6744E3A54F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2DE84BE-33AE-4786-B9FA-B6744E3A54F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2DE84BE-33AE-4786-B9FA-B6744E3A54F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{315FC341-F818-4A46-AD71-BEA4774222B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{315FC341-F818-4A46-AD71-BEA4774222B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{315FC341-F818-4A46-AD71-BEA4774222B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{315FC341-F818-4A46-AD71-BEA4774222B2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4FCFE6BE-EA8C-485D-B759-B5E514E06BD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4FCFE6BE-EA8C-485D-B759-B5E514E06BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FCFE6BE-EA8C-485D-B759-B5E514E06BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,6 +61,10 @@ Global
 		{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D943FDB5-6D1B-45C3-AC68-757EBA4BAA80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{315FC341-F818-4A46-AD71-BEA4774222B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{315FC341-F818-4A46-AD71-BEA4774222B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{315FC341-F818-4A46-AD71-BEA4774222B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{315FC341-F818-4A46-AD71-BEA4774222B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
