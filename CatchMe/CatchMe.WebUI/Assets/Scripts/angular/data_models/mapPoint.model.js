@@ -1,28 +1,38 @@
 ﻿(function () {
     angular
         .module('catchMeApp')
-        .factory('MapPoint', mapPointFactory);    
+        .factory('mapPointFactory', mapPointFactory);
 
     function mapPointFactory() {
-        function mapPoint(latitude, longitude, address) {
+        //factory method
+        function create(latitude, longitude, address) {
+            return new MapPoint(latitude, longitude, address);
+        }
+
+        return { create: create };
+
+        //model
+        function MapPoint(latitude, longitude, address) {
             this.Latitude = latitude;
             this.Longitude = longitude;
             this.Address = address ? address : "";
             this.IsValid = false;
 
-            this.isEqualTo = function(point) {
+            this.isEqualTo = function (point) {
                 return this.Address === point.Address &&
                     this.Latitude === point.Latitude &&
                     this.Longitude === point.Longitude;
             };
 
-            this.isEmptyPoint = function() {
+            this.isEmptyPoint = function () {
                 return (!this.Address) ||
                 (this.Latitude === 0) ||
                 (this.Longitude === 0);
             };
-        };        
-        
-        return mapPoint;
+
+            this.convertToGoogleMapPoint = function () {
+                return { lat: this.Latitude, lng: this.Longitude };
+            }
+        };
     }
 })();

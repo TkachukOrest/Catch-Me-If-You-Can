@@ -3,57 +3,14 @@
         .module('catchMeApp')
         .service('googleMapService', googleMapService);
 
-    googleMapService.$inject = ['$q', 'MapPoint'];
+    googleMapService.$inject = ['$q', 'googleMapConfigs', 'mapPointFactory'];
 
-    function googleMapService($q, MapPoint) {
+    function googleMapService($q, googleMapConfigs, mapPointFactory) {
         //fields        
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var geocoder = new google.maps.Geocoder();
-        var styles = [
-            {
-                "stylers": [{ "saturation": -100 }, { "gamma": 1 }]
-            },
-            {
-                "elementType": "labels.text.stroke",
-                "stylers": [{ "visibility": "off" }]
-            }, {
-                "featureType": "poi.business",
-                "elementType": "labels.text",
-                "stylers": [{ "visibility": "off" }]
-            }, {
-                "featureType": "poi.business",
-                "elementType": "labels.icon",
-                "stylers": [{ "visibility": "off" }]
-            }, {
-                "featureType": "poi.place_of_worship",
-                "elementType": "labels.text",
-                "stylers": [{ "visibility": "off" }]
-            }, {
-                "featureType": "poi.place_of_worship",
-                "elementType": "labels.icon",
-                "stylers": [{ "visibility": "off" }]
-            }, {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [{ "visibility": "simplified" }]
-            }, {
-                "featureType": "water",
-                "stylers": [{ "visibility": "on" }, { "saturation": 50 }, { "gamma": 0 }, { "hue": "#50a5d1" }]
-            }, {
-                "featureType": "administrative.neighborhood",
-                "elementType": "labels.text.fill",
-                "stylers": [{ "color": "#333333" }]
-            }, {
-                "featureType": "road.local",
-                "elementType": "labels.text",
-                "stylers": [{ "weight": 0.5 }, { "color": "#333333" }]
-            }, {
-                "featureType": "transit.station",
-                "elementType": "labels.icon",
-                "stylers": [{ "gamma": 1 }, { "saturation": 50 }]
-            }
-        ];
+        var styles = googleMapConfigs.styles;
 
         //service
         var service = {
@@ -64,7 +21,9 @@
             isWayDirectionValid: isWayDirectionValid,
             getCurrentPosition: getCurrentPosition,
             createStaticMapConfiguration: createStaticMapConfiguration,
-            clearMap: clearMap
+            clearMap: clearMap,
+            getCenter: getCenter,
+            getZoom: getZoom
         };
 
         return service;
@@ -104,6 +63,8 @@
                     directionsDisplay.setDirections(response);
                     deferred.resolve(response.routes[0].overview_polyline);
                 }
+            }, function () {
+                deferred.reject();
             });
 
             return deferred.promise;
@@ -151,7 +112,7 @@
                 } else {
                     deferred.reject(status);
                 }
-            });
+            }, function () { deferred.reject(status); });
 
             return deferred.promise;
         }
@@ -161,23 +122,22 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                    var currentPosition = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
+                    var currentPosition = mapPointFactory.create(position.coords.latitude, position.coords.longitude);
                     deferred.resolve(currentPosition);
+                }, function () {
+                    deferred.reject();
                 });
+            } else {
+                deferred.reject();
             }
 
             return deferred.promise;
         }
 
-        function createStaticMapConfiguration(googleMap, pathPoints) {
-            var center = googleMap.getCenter();
-            
+        function createStaticMapConfiguration(googleMap, pathPoints, center, zoom) {            
             return {
-                Center: new MapPoint(center.lat(), center.lng()),
-                Zoom: googleMap.getZoom(),
+                Center: center,
+                Zoom: zoom,
                 MapType: "roadmap",
                 StyleRules: getStaticStyle(styles),
                 Path: pathPoints
@@ -208,8 +168,8 @@
         function getStaticStyle(styles) {
             var result = [];
             styles.forEach(function (elem) {
-                var style='';
-                if( elem.stylers ) {
+                var style = '';
+                if (elem.stylers) {
                     if (elem.stylers.length > 0) {
                         style += (elem.hasOwnProperty('featureType') ? 'feature:' + elem.featureType : 'feature:all') + '|';
                         style += (elem.hasOwnProperty('elementType') ? 'element:' + elem.elementType : 'element:all') + '|';
@@ -222,8 +182,18 @@
                 }
                 result.push(encodeURIComponent(style));
             });
-    
+
             return result.join('&');
+        }
+
+        function getCenter(googleMap) {
+            var center = googleMap.getCenter();
+
+            return mapPointFactory.create(center.lat(), center.lng());
+        }
+
+        function getZoom(googleMap) {
+            return googleMap.getZoom();
         }
     }
 })();

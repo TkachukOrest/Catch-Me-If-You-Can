@@ -1,9 +1,9 @@
 ﻿<div class="mdl-grid" ng-controller="TripListController as tripListVm">
 
-    <div ng-repeat="trip in tripListVm.trips" 
+    <div ng-repeat="trip in tripListVm.trips"
          class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--4-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__media">
-            <img ng-src="{{trip.StaticMapUrl}}" style="width: 100%; height: 100%"/>            
+            <img ng-src="{{trip.StaticMapUrl}}" style="width: 100%; height: 100%" />
         </div>
         <div class="mdl-card__supporting-text">
             {{trip.Destination.Latitude}}
@@ -12,6 +12,10 @@
         <div class="mdl-card__supporting-text mdl-color-text--grey-600 trip-info">
             <div class="mdl-grid mdl-grid--no-spacing ">
                 <div class="mdl-cell mdl-cell--4-col price">{{trip.Price}} грн.</div>
+                <div>
+                    <i class="material-icons md-18" ng-click="tripListVm.deleteTrip($index, trip.Id)">delete</i>
+                    <i class="material-icons md-18" ng-click="tripListVm.editTrip(trip.Id)">mode_edit</i>
+                </div>
                 <!--<div class="mdl-cell mdl-cell--8-col mdl-typography--text-right thumb-up">
                     <i class="material-icons md-18">thumb_up</i>
                 </div>-->

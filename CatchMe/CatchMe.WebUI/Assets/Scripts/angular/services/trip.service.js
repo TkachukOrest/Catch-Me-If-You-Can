@@ -9,7 +9,8 @@
         var service = {
             getAllTrips: getAllTrips,
             getTrip: getTrip,
-            addTrip: addTrip
+            addTrip: addTrip,
+            deleteTrip: deleteTrip
         };
 
         return service;
@@ -18,7 +19,7 @@
         function getAllTrips() {
             return $http({
                 method: 'GET',
-                url: urlConfigs.GetAllTrips
+                url: urlConfigs.getAllTrips
             });
         }
 
@@ -26,7 +27,7 @@
             return $http({
                 method: 'GET',
                 data: id,
-                url: urlConfigs.GetTrip
+                url: urlConfigs.getTrip
             });
         }
 
@@ -37,7 +38,14 @@
                     trip: trip,
                     staticMapConfiguration: staticMapConfiguration
                 },
-                url: urlConfigs.AddTrip
+                url: urlConfigs.addTrip
+            });
+        }
+
+        function deleteTrip(tripId) {
+            return $http({
+                method: 'DELETE',                
+                url: urlConfigs.deleteTrip + tripId
             });
         }
     }

@@ -1,5 +1,5 @@
-﻿<form name="addNewTripForm">
-    <div id="add-new-trip-container" ng-controller="TripAddController as addTripVm">
+﻿<form name="tripForm">
+    <div id="add-new-trip-container" ng-controller="TripController as tripVm">
         <div class="mdl-grid">
             <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col" hover-class="mdl-shadow--24dp">
                 <div class="mdl-card__title mdl-color--accent">
@@ -19,25 +19,47 @@
                         <md-input-container class="md-icon-float md-block md-small-spacing">
                             <label>From</label>
                             <md-icon class="material-icons">adjust</md-icon>
-                            <input id="origin-point" placeholder="" type="text" ng-model="addTripVm.trip.Origin.Address" required>
+                            <input id="origin-point"
+                                   placeholder=""
+                                   type="text"
+                                   name="originPoint"                                   
+                                   ng-model="tripVm.trip.Origin.Address"
+                                   ng-change="tripVm.onOriginAddressChange()"
+                                   is-valid="tripVm.trip.Origin.IsValid"
+                                   required>
+                            <div ng-messages="tripForm.originPoint.$error">
+                                <div ng-message="required">Origin point is required.</div>
+                                <div ng-message="is-valid">Origin point is not valid.</div>
+                            </div>
                         </md-input-container>
 
                         <md-input-container class="md-icon-float md-block md-small-spacing"
-                                            ng-repeat="wayPoint in addTripVm.trip.WayPoints">
-                            <md-icon class="material-icons" ng-click="addTripVm.deleteWayPoint($index)">clear</md-icon>
-                            <input type="text" ng-model="addTripVm.trip.WayPoints[$index].Address" required disabled>
+                                            ng-repeat="wayPoint in tripVm.trip.WayPoints">
+                            <md-icon class="material-icons" ng-click="tripVm.deleteWayPoint($index)">clear</md-icon>
+                            <input type="text" ng-model="tripVm.trip.WayPoints[$index].Address" required disabled>
                         </md-input-container>
 
                         <md-input-container class="md-icon-float md-block md-small-spacing">
                             <label>To</label>
                             <md-icon class="material-icons">place</md-icon>
-                            <input id="destination-point" placeholder="" type="text" ng-model="addTripVm.trip.Destination.Address" required>
+                            <input id="destination-point"
+                                   placeholder=""
+                                   type="text"
+                                   name="destinationPoint"
+                                   ng-model="tripVm.trip.Destination.Address"
+                                   ng-change="tripVm.onDestinationAddressChange()"
+                                   is-valid="tripVm.trip.Destination.IsValid"
+                                   required>
+                            <div ng-messages="tripForm.destinationPoint.$error">
+                                <div ng-message="required">Destination point is required.</div>
+                                <div ng-message="is-valid">Destination point is not valid.</div>
+                            </div>
                         </md-input-container>
 
-                        <md-input-container class="md-icon-float md-block md-small-spacing" ng-show="addTripVm.isOriginAndDestinationValid()">
+                        <md-input-container class="md-icon-float md-block md-small-spacing" ng-show="tripVm.isOriginAndDestinationValid()">
                             <label>Add way point</label>
                             <md-icon class="material-icons">add_circle</md-icon>
-                            <input id="way-point" placeholder="" type="text" ng-model="addTripVm.trip.WayPointToAdd">
+                            <input id="way-point" placeholder="" type="text" ng-model="tripVm.trip.WayPointToAdd">
                         </md-input-container>
                     </div>
                     <div id="trip-map" class="mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet mdl-cell--8-col-phone wide-map"></div>
@@ -64,10 +86,17 @@
                                 <md-icon class="material-icons">airline_seat_recline_normal</md-icon>
                                 <input type="number"
                                        step="any"
-                                       ng-model="addTripVm.trip.Seats"                                       
+                                       name="seatsNumber"
+                                       ng-model="tripVm.trip.Seats"
                                        min="1"
                                        max="100"
                                        required>
+                                <div ng-messages="tripForm.seatsNumber.$error">
+                                    <div ng-message="required">Number of seats is required.</div>
+                                    <div ng-message="number">Not valid number.</div>
+                                    <div ng-message="max">Number of seats should be less than 100</div>
+                                    <div ng-message="min">Number of seats should be greater than 1</div>
+                                </div>
                             </md-input-container>
                         </div>
 
@@ -76,11 +105,17 @@
                                 <label>Price</label>
                                 <md-icon class="material-icons">account_balance_wallet</md-icon>
                                 <input type="text"
-                                       ng-model="addTripVm.trip.Price"
+                                       name="price"
+                                       ng-model="tripVm.trip.Price"
                                        ui-money-mask="0"
+                                       min="0"
                                        max="99999"
                                        currency-symbol="&#8372;"
-                                       required/>                                        
+                                       required/>
+                                <div ng-messages="tripForm.price.$error">
+                                    <div ng-message="required">Price is required.</div>                                    
+                                    <div ng-message-exp="['max', 'min']">Price should be between 0 and 99,999 &#8372;</div>                                    
+                                </div>
                             </md-input-container>
                         </div>
 
@@ -88,14 +123,19 @@
                             <md-input-container class="md-icon-float md-block">
                                 <md-icon class="material-icons">access_time</md-icon>
                                 <input mdc-datetime-picker
-                                date="true"
-                                time="true"
-                                type="text"
-                                id="datetime"
-                                class="md-input"
-                                placeholder="Date & Time"
-                                min-date="addTripVm.dateOpts.currentDate"
-                                ng-model="addTripVm.trip.StartDateTime">
+                                       id="datetime"
+                                       name="tipDateTime"
+                                       type="text"     
+                                       date="true"
+                                       time="true"                                                                         
+                                       class="md-input"
+                                       placeholder="Date & Time"
+                                       min-date="tripVm.dateOpts.currentDate"
+                                       ng-model="tripVm.trip.StartDateTime"
+                                       required>
+                                <div ng-messages="tripForm.tipDateTime.$error">
+                                    <div ng-message="required">Date & Time are required.</div>                                    
+                                </div>
                             </md-input-container>
                         </div>
                     </div>
@@ -121,31 +161,52 @@
                             <md-input-container class="md-block">
                                 <label>Manufacturer</label>
                                 <input type="text"
-                                       ng-model="addTripVm.trip.Vehicle.Manufacturer"
-                                       minlength="3"
+                                       name="manufacturer"
+                                       ng-model="tripVm.trip.Vehicle.Manufacturer"
+                                       ng-minlength="3"
                                        required>
+                                <div ng-messages="tripForm.manufacturer.$error">
+                                    <div ng-message="required">Manufacturer is required.</div>
+                                    <div ng-message="minlength">Manufacturer must have at least 3 characters.</div>                                    
+                                </div>
                             </md-input-container>
 
                             <md-input-container class="md-block">
                                 <label>Color</label>
                                 <input type="text"
-                                       ng-model="addTripVm.trip.Vehicle.Color"
+                                       name="color"
+                                       ng-model="tripVm.trip.Vehicle.Color"
                                        required>
+                                <div ng-messages="tripForm.color.$error">
+                                    <div ng-message="required">Color is required.</div>                                    
+                                </div>
                             </md-input-container>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
                             <md-input-container class="md-block">
                                 <label>Model</label>
                                 <input type="text"
-                                       ng-model="addTripVm.trip.Vehicle.Model"                                       
+                                       name="model"
+                                       ng-model="tripVm.trip.Vehicle.Model"
                                        required>
+                                <div ng-messages="tripForm.model.$error">
+                                    <div ng-message="required">Model is required.</div>
+                                </div>
                             </md-input-container>
 
                             <md-input-container class="md-block">
                                 <label>Year</label>
-                                <input type="text"
-                                       ng-model="addTripVm.trip.Vehicle.Year" 
+                                <input type="number"
+                                       name="year"
+                                       step="any"
+                                       ng-model="tripVm.trip.Vehicle.Year"
+                                       ng-max="{{tripVm.dateOpts.maxYear}}"
+                                       ng-min="{{tripVm.dateOpts.minYear}}"
                                        required>
+                                <div ng-messages="tripForm.year.$error">
+                                    <div ng-message="required">Year is required.</div>
+                                    <div ng-message-exp="['max', 'min']">Year should be between {{tripVm.dateOpts.minYear}} and {{tripVm.dateOpts.maxYear}}</div>                                                                        
+                                </div>
                             </md-input-container>
                         </div>
                     </div>
@@ -153,8 +214,8 @@
             </div>
 
             <div class="mdl-cell mdl-cell--12-col mdl-typography--text-right">
-                <button ng-click="addTripVm.addTrip(addNewTripForm)"
-                        ng-disabled="addNewTripForm.$invalid || !addTripVm.isOriginAndDestinationValid()"
+                <button ng-click="tripVm.addTrip(tripForm)"
+                        ng-disabled="tripForm.$invalid || !tripVm.isOriginAndDestinationValid()"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                     Add trip
                 </button>

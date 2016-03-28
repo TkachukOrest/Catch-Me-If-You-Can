@@ -171,6 +171,7 @@
     <Content Include="Assets\Scripts\angular\catchMe.constants.js" />
     <Content Include="Assets\Scripts\angular\catchMe.material.js" />
     <Content Include="Assets\Scripts\angular\components\hoverClass.directive.js" />
+    <Content Include="Assets\Scripts\angular\components\isValid.directive.js" />
     <Content Include="Assets\Scripts\angular\controllers\tripAdd.controller.js" />
     <Content Include="Assets\Scripts\angular\controllers\partialDrawerMenu.controller.js" />
     <Content Include="Assets\Scripts\angular\controllers\tripList.controller.js" />
@@ -192,6 +193,7 @@
     <Content Include="Assets\Scripts\libs\material\material.js" />
     <Content Include="Assets\Scripts\libs\material\material.min.js" />
     <Content Include="Assets\Scripts\angular\catchMe.routes.js" />
+    <Content Include="AppSettings.config" />
     <None Include="Assets\Scripts\_references.js" />
     <Content Include="Assets\Scripts\libs\moment\moment.js" />
     <Content Include="Assets\Styles\angular-material.css" />
@@ -202,7 +204,7 @@
     <Content Include="Assets\Styles\material.min.css" />
     <Content Include="Assets\Styles\material-customized.css" />
     <Content Include="Global.asax" />
-    <Content Include="Assets\Scripts\angular\templates\tripAdd.html" />
+    <Content Include="Assets\Scripts\angular\templates\trip.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

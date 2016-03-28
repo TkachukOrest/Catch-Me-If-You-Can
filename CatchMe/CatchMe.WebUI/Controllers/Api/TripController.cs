@@ -1,38 +1,69 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
-using CatchMe.BL.Abstract;
-using CatchMe.Domain.Entities;
+using CatchMe.Domain.Values;
+using CatchMe.MapService;
+using CatchMe.Repositories.Abstract;
 using CatchMe.WebUI.Models;
 
 namespace CatchMe.WebUI.Controllers.Api
 {
     public class TripController : ApiController
     {
-        private readonly ITripManager _tripManager;
+        #region Fields
 
-        public TripController(ITripManager tripManager)
-        {            
-            _tripManager = tripManager;
+        private readonly ITripRepository _tripRepository;
+        private readonly IMapService _mapService;
+
+        #endregion
+
+        #region Constructor
+
+        public TripController(ITripRepository tripRepository, IMapService mapService)
+        {
+            _tripRepository = tripRepository;
+            _mapService = mapService;
+        }
+
+        #endregion
+
+        #region Actions
+
+        [HttpGet]
+        public IHttpActionResult GetAllTrips()
+        {
+            var trips = _tripRepository.GetAll();
+
+            return Ok(trips);
         }
 
         [HttpGet]
-        public IEnumerable<TripEntity> GetAllTrips()
+        public IHttpActionResult GetTripById(int id)
         {
-            var trips = _tripManager.GetAll();
+            var trip = _tripRepository.GetById(id);
 
-            return trips;
+            return Ok(trip);
         }
 
-        [HttpGet]
-        public string GetTrip(int id)
+        [HttpDelete]
+        public IHttpActionResult DeleteTrip([FromUri] int id)
         {
-            return "";
+            _tripRepository.Delete(id);
+
+            return Ok();
         }
 
         [HttpPost]
-        public void AddTrip(TripAddRequestModel tripAddModel)
+        public IHttpActionResult AddTrip(TripAddRequestModel tripAddModel)
         {
-            _tripManager.AddTrip(tripAddModel.Trip, tripAddModel.StaticMapConfiguration);
+            var mapPoints = new List<MapPoint>(tripAddModel.Trip.WayPoints) { tripAddModel.Trip.Origin, tripAddModel.Trip.Destination };
+
+            tripAddModel.Trip.StaticMapUrl = _mapService.CreateStaticMapUrl(tripAddModel.StaticMapConfiguration, mapPoints);
+
+            _tripRepository.Add(tripAddModel.Trip);
+
+            return Ok();
         }
+        #endregion
     }
 }

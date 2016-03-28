@@ -6,13 +6,23 @@ using CatchMe.Repositories.Abstract;
 namespace CatchMe.Repositories.Sql
 {
     class TripRepository : Repository, ITripRepository
-    {
-        public bool Add(TripEntity trip)
+    {        
+        public IEnumerable<TripEntity> GetAll()
         {
             throw new NotImplementedException();
-        }        
+        }
 
-        public IEnumerable<TripEntity> GetAll()
+        public TripEntity GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(TripEntity trip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }

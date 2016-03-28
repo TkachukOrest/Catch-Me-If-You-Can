@@ -38,7 +38,8 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/controllers/partialDrawerMenu.controller.js",
                         "~/Assets/Scripts/angular/controllers/dialog.controller.js",
                         "~/Assets/Scripts/angular/services/loadingDialog.service.js",
-                        "~/Assets/Scripts/angular/components/hoverClass.directive.js"));
+                        "~/Assets/Scripts/angular/components/hoverClass.directive.js",
+                        "~/Assets/Scripts/angular/components/isValid.directive.js"));
             #endregion
 
             #region Styles bundles
@@ -50,7 +51,7 @@ namespace CatchMe.WebUI
                       "~/Assets/Styles/material-datetimepicker.css"));
             #endregion
 
-            BundleTable.EnableOptimizations = true;            
+            BundleTable.EnableOptimizations = false;            
         }
     }
 }

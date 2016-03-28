@@ -11,7 +11,11 @@
 		});
 
 		$routeProvider.when('/TripAdd', {
-		    templateUrl: '/Assets/Scripts/angular/templates/tripAdd.html'		    
+		    templateUrl: '/Assets/Scripts/angular/templates/trip.html'		    
+		});
+
+		$routeProvider.when('/TripEdit/:tripId', {
+		    templateUrl: '/Assets/Scripts/angular/templates/trip.html'
 		});
 
 		$routeProvider.when('/Trips', { redirectTo: '/' });

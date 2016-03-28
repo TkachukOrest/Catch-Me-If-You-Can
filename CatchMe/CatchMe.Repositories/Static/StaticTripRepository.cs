@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CatchMe.Domain.Entities;
 using CatchMe.Domain.Values;
 using CatchMe.Repositories.Abstract;
@@ -12,6 +13,7 @@ namespace CatchMe.Repositories.Static
         {
             new TripEntity()
             {
+                Id = 1,
                 Price = 100,
                 Seats = 5,
                 Origin = new MapPoint(49.7946898, 24.0647954),
@@ -29,6 +31,7 @@ namespace CatchMe.Repositories.Static
             },
             new TripEntity()
             {
+                Id = 2,
                 Price = 22,
                 Seats = 5,
                 Origin = new MapPoint(49.7946898, 24.0647954),
@@ -51,11 +54,23 @@ namespace CatchMe.Repositories.Static
             return _trips;
         }
 
-        public bool Add(TripEntity trip)
+        public void Add(TripEntity trip)
         {
-            _trips.Add(trip);
+            _trips.Add(trip);            
+        }
 
-            return true;
+        public TripEntity GetById(int id)
+        {
+            var trip = _trips.First(x => x.Id == id);
+
+            return trip;
+        }
+
+        public void Delete(int id)
+        {
+            var tripToRemoveIndex = _trips.FindIndex(x => x.Id == id);
+
+            _trips.RemoveAt(tripToRemoveIndex);
         }
     }
 }
