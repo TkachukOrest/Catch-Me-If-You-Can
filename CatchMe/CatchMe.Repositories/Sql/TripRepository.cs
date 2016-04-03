@@ -5,9 +5,14 @@ using CatchMe.Repositories.Abstract;
 
 namespace CatchMe.Repositories.Sql
 {
-    class TripRepository : Repository, ITripRepository
+    public class TripRepository : ITripRepository
     {        
         public IEnumerable<TripEntity> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save(TripEntity trip)
         {
             throw new NotImplementedException();
         }
@@ -15,12 +20,7 @@ namespace CatchMe.Repositories.Sql
         public TripEntity GetById(int id)
         {
             throw new NotImplementedException();
-        }
-
-        public void Add(TripEntity trip)
-        {
-            throw new NotImplementedException();
-        }
+        }       
 
         public void Delete(int id)
         {

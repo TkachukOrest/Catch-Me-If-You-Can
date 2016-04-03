@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IConfigurationService.cs" />
     <Compile Include="Concrete\ConfigurationService.cs" />
-    <Compile Include="Concrete\ParseExtension.cs" />
+    <Compile Include="Extensions\ParseExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -20,8 +20,8 @@
 
             this.isEqualTo = function (point) {
                 return this.Address === point.Address &&
-                    this.Latitude === point.Latitude &&
-                    this.Longitude === point.Longitude;
+                       this.Latitude === point.Latitude &&
+                       this.Longitude === point.Longitude;
             };
 
             this.isEmptyPoint = function () {

@@ -3,13 +3,13 @@
         .module('catchMeApp')
         .service('tripService', tripService);
 
-    tripService.$inject = ['$http', 'urlConfigs'];
+    tripService.$inject = ['$http', 'urlConfigs', 'snackBarNotification'];
 
-    function tripService($http, urlConfigs) {
+    function tripService($http, urlConfigs, snackBarNotification) {
         var service = {
             getAllTrips: getAllTrips,
             getTrip: getTrip,
-            addTrip: addTrip,
+            saveTrip: saveTrip,            
             deleteTrip: deleteTrip
         };
 
@@ -17,36 +17,33 @@
 
         //functions
         function getAllTrips() {
-            return $http({
-                method: 'GET',
-                url: urlConfigs.getAllTrips
-            });
+            return $http.get(urlConfigs.getAllTrips)
+                   .error(errorCallback);
         }
 
         function getTrip(id) {
-            return $http({
-                method: 'GET',
-                data: id,
-                url: urlConfigs.getTrip
-            });
+            return $http.get(urlConfigs.getTrip + id)
+                   .error(errorCallback);
         }
 
-        function addTrip(trip, staticMapConfiguration) {
+        function saveTrip(trip, staticMapConfiguration) {
             return $http({
-                method: 'POST',
+                method: 'POST',                
                 data: {
                     trip: trip,
                     staticMapConfiguration: staticMapConfiguration
                 },
-                url: urlConfigs.addTrip
-            });
-        }
+                url: urlConfigs.saveTrip
+            }).error(errorCallback);
+        }        
 
         function deleteTrip(tripId) {
-            return $http({
-                method: 'DELETE',                
-                url: urlConfigs.deleteTrip + tripId
-            });
+            return $http.delete(urlConfigs.deleteTrip + tripId)
+                        .error(errorCallback);
+        }
+
+        function errorCallback() {
+            snackBarNotification.create('An error has been occured.', 'OK');
         }
     }
 })();

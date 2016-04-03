@@ -15,13 +15,13 @@
 
         return directive;
 
-        function link(scope, element, attr, ngModelCtrl) {
+        function link(scope, element, attr, ngModelCtrl) {           
             scope.$watch(function () {
                 return scope.isValid;
             }, function (newValue, oldValue) {
-                if (newValue || oldValue) {
+                if ((newValue || oldValue)) {
                     ngModelCtrl.$setValidity("is-valid", newValue);
-                }                 
+                }                
             });            
         }
     };

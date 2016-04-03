@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using CatchMe.Infrastructure.Abstract;
+using CatchMe.Infrastructure.Extensions;
 
 namespace CatchMe.Infrastructure.Concrete
 {

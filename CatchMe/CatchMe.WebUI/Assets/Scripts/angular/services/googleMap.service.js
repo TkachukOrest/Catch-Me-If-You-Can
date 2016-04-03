@@ -87,7 +87,7 @@
         }
 
         function initAutocomplete(elementId, onPlaceChanged) {
-            var initializedAutocomplete = new google.maps.places.Autocomplete((document.getElementById(elementId)), { types: ['address'] });
+            var initializedAutocomplete = new google.maps.places.Autocomplete((document.getElementById(elementId)), { types: ['geocode'] });
 
             if (onPlaceChanged) {
                 initializedAutocomplete.addListener('place_changed', onPlaceChanged);

@@ -3,7 +3,7 @@ using CatchMe.MapService;
 
 namespace CatchMe.WebUI.Models
 {
-    public class TripAddRequestModel
+    public class TripPostRequestModel
     {
         public TripEntity Trip { get; set; } 
 

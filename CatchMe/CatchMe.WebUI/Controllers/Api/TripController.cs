@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Web.Http;
 using CatchMe.Domain.Values;
 using CatchMe.MapService;
@@ -52,15 +52,14 @@ namespace CatchMe.WebUI.Controllers.Api
 
             return Ok();
         }
-
+       
         [HttpPost]
-        public IHttpActionResult AddTrip(TripAddRequestModel tripAddModel)
+        public IHttpActionResult SaveTrip(TripPostRequestModel tripModel)
         {
-            var mapPoints = new List<MapPoint>(tripAddModel.Trip.WayPoints) { tripAddModel.Trip.Origin, tripAddModel.Trip.Destination };
+            var mapPoints = new List<MapPoint>(tripModel.Trip.WayPoints) { tripModel.Trip.Origin, tripModel.Trip.Destination };
+            tripModel.Trip.StaticMapUrl = _mapService.CreateStaticMapUrl(tripModel.StaticMapConfiguration, mapPoints);
 
-            tripAddModel.Trip.StaticMapUrl = _mapService.CreateStaticMapUrl(tripAddModel.StaticMapConfiguration, mapPoints);
-
-            _tripRepository.Add(tripAddModel.Trip);
+            _tripRepository.Save(tripModel.Trip);
 
             return Ok();
         }

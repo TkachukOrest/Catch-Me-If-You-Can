@@ -34,10 +34,11 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/services/trip.service.js",
                         "~/Assets/Scripts/angular/services/googleMap.service.js",
                         "~/Assets/Scripts/angular/controllers/tripList.controller.js",
-                        "~/Assets/Scripts/angular/controllers/tripAdd.controller.js",
+                        "~/Assets/Scripts/angular/controllers/trip.controller.js",
                         "~/Assets/Scripts/angular/controllers/partialDrawerMenu.controller.js",
                         "~/Assets/Scripts/angular/controllers/dialog.controller.js",
                         "~/Assets/Scripts/angular/services/loadingDialog.service.js",
+                        "~/Assets/Scripts/angular/services/snackBarNotification.service.js",
                         "~/Assets/Scripts/angular/components/hoverClass.directive.js",
                         "~/Assets/Scripts/angular/components/isValid.directive.js"));
             #endregion
@@ -48,10 +49,11 @@ namespace CatchMe.WebUI
                       "~/Assets/Styles/material-design-lite.css",
                       "~/Assets/Styles/material-customized.css",
                       "~/Assets/Styles/material-fonts.css",
-                      "~/Assets/Styles/material-datetimepicker.css"));
+                      "~/Assets/Styles/material-datetimepicker.css",
+                      "~/Assets/Styles/paper-snackbar.css"));
             #endregion
 
-            BundleTable.EnableOptimizations = false;            
+            BundleTable.EnableOptimizations = true;            
         }
     }
 }

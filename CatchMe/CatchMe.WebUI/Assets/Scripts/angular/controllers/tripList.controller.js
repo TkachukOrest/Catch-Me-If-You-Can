@@ -3,9 +3,9 @@
         .module('catchMeApp')
         .controller('TripListController', TripListController);
 
-    TripListController.$inject = ['tripService'];
+    TripListController.$inject = ['tripService', '$location', 'snackBarNotification'];
 
-    function TripListController(tripService) {
+    function TripListController(tripService, $location, snackBarNotification) {
         var tripListVm = this;
 
         //view model
@@ -20,7 +20,7 @@
             getTrips();            
         }
 
-        function getTrips() {
+        function getTrips() {                        
             tripService.getAllTrips().then(function (response) {
                 tripListVm.trips = response.data;                
             });
@@ -28,13 +28,14 @@
 
         //public function
         function deleteTrip(index, tripId) {            
-            tripService.deleteTrip(tripId).then(function() {
+            tripService.deleteTrip(tripId).then(function () {
+                snackBarNotification.create('The trip has been deleted successfully.', 'OK');
                 tripListVm.trips.splice(index, 1);
             });
         }
 
         function editTrip(tripId) {
-            
+            $location.path('/TripEdit/' + tripId);
         };
     };
 })();

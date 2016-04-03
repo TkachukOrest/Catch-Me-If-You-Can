@@ -9,8 +9,8 @@ namespace CatchMe.Repositories.Abstract
 
         IEnumerable<TripEntity> GetAll();
 
-        void Add(TripEntity trip);
+        void Save(TripEntity trip);
 
-        void Delete(int id);
+        void Delete(int id);        
     }
 }

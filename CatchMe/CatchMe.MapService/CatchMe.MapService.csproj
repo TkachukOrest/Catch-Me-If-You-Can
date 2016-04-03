@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="IMapService.cs" />
+    <Compile Include="MapServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticMapConfiguration.cs" />
   </ItemGroup>
@@ -49,6 +51,10 @@
     <ProjectReference Include="..\CatchMe.Domain\CatchMe.Domain.csproj">
       <Project>{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}</Project>
       <Name>CatchMe.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Infrastructure\CatchMe.Infrastructure.csproj">
+      <Project>{542F64A3-D5E7-443C-8D13-02238C1595EA}</Project>
+      <Name>CatchMe.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

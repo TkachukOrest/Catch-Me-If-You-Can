@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -7937,10 +7937,11 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
   .mdl-snackbar--active {
     transform: translate(0, 0);
     pointer-events: auto;
-    transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1); }
+    transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
   .mdl-snackbar__text {
     padding: 14px 24px;
     vertical-align: middle;
+    text-align: center;    
     color: white; }
   .mdl-snackbar__action {
     background: transparent;

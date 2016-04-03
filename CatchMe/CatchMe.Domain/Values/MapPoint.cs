@@ -6,10 +6,13 @@
 
         public double Longitude { get; set; }
 
-        public MapPoint(double latitude, double longitude)
+        public string Address { get; set; }
+
+        public MapPoint(double latitude, double longitude, string address)
         {
             Latitude = latitude;
             Longitude = longitude;
-        }
+            Address = address;
+        }        
     }
 }

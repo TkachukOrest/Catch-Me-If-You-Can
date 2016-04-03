@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Abstract\ITripRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sql\Repository.cs" />
     <Compile Include="Sql\TripRepository.cs" />
     <Compile Include="Static\StaticTripRepository.cs" />
   </ItemGroup>

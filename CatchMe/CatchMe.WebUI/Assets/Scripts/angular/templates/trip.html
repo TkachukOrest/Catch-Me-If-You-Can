@@ -1,7 +1,7 @@
 ﻿<form name="tripForm">
     <div id="add-new-trip-container" ng-controller="TripController as tripVm">
         <div class="mdl-grid">
-            <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col" hover-class="mdl-shadow--24dp">
+            <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col" hover-class="mdl-shadow--16dp">
                 <div class="mdl-card__title mdl-color--accent">
                     <div class="mdl-card__title-text mdl-color-text--white">
                         <div class="mdl-grid mdl-grid--no-spacing">
@@ -65,8 +65,8 @@
                     <div id="trip-map" class="mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet mdl-cell--8-col-phone wide-map"></div>
                 </div>
             </div>
-            <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-                <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet" hover-class="mdl-shadow--24dp">
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-phone mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+                <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet" hover-class="mdl-shadow--16dp">
                     <div class="mdl-card__title mdl-color--accent">
                         <div class="mdl-card__title-text mdl-color-text--white">
                             <div class="mdl-grid mdl-grid--no-spacing">
@@ -143,7 +143,7 @@
                 <div class="mdl-cell--12-col-desktop mdl-cell--1-col-tablet mdl-cell--12-col-phone">
                     <br />
                 </div>
-                <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--3-col-tablet" hover-class="mdl-shadow--24dp">
+                <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--3-col-tablet" hover-class="mdl-shadow--16dp" >
                     <div class="mdl-card__title mdl-color--accent">
                         <div class="mdl-card__title-text mdl-color-text--white">
                             <div class="mdl-grid mdl-grid--no-spacing">
@@ -173,7 +173,7 @@
 
                             <md-input-container class="md-block">
                                 <label>Color</label>
-                                <input type="text"
+                                <input type="color"
                                        name="color"
                                        ng-model="tripVm.trip.Vehicle.Color"
                                        required>
@@ -214,10 +214,10 @@
             </div>
 
             <div class="mdl-cell mdl-cell--12-col mdl-typography--text-right">
-                <button ng-click="tripVm.addTrip(tripForm)"
+                <button ng-click="tripVm.saveTrip(tripForm)"
                         ng-disabled="tripForm.$invalid || !tripVm.isOriginAndDestinationValid()"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                    Add trip
+                    Save trip
                 </button>
             </div>
         </div>

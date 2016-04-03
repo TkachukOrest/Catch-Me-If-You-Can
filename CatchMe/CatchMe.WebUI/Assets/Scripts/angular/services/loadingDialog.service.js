@@ -3,9 +3,9 @@
         .module('catchMeApp')
         .service('loadingDialogService', loadingDialogService);
 
-    loadingDialogService.$inject = ['$mdDialog', '$mdMedia'];
+    loadingDialogService.$inject = ['$mdDialog'];
 
-    function loadingDialogService($mdDialog, $mdMedia) {
+    function loadingDialogService($mdDialog) {
         var service = {
             show: show,
             hide: hide            
