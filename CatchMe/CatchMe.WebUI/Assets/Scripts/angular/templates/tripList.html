@@ -1,5 +1,4 @@
 ﻿<div class="mdl-grid" ng-controller="TripListController as tripListVm">
-
     <div ng-repeat="trip in tripListVm.trips"
          class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--4-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__media">
@@ -15,15 +14,12 @@
                 <div>
                     <i class="material-icons md-18" ng-click="tripListVm.deleteTrip($index, trip.Id)">delete</i>
                     <i class="material-icons md-18" ng-click="tripListVm.editTrip(trip.Id)">mode_edit</i>
-                </div>
-                <!--<div class="mdl-cell mdl-cell--8-col mdl-typography--text-right thumb-up">
-                    <i class="material-icons md-18">thumb_up</i>
-                </div>-->
+                </div>                
             </div>
         </div>
     </div>
 
-    <a href="/TripAdd" id="add-trip" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab
+    <a href="/TripAdd" id="add-trip" data-ng-hide="!authenticationCtrlVm.authentication.isAuth" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab
                                      mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp">
         <i class="material-icons">add</i>
     </a>

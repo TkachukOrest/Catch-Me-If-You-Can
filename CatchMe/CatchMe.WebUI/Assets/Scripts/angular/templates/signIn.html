@@ -1,0 +1,35 @@
+﻿<div class="mdl-grid" ng-controller="SignInController as signInVm">
+    <div class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-shadow--6dp centered">
+        <div class="authentication-title">
+            Login
+        </div>
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600 mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-cell--no-spacing">
+                <md-input-container class="md-icon-float md-block">
+                    <label>Email</label>
+                    <input type="email" ng-model="signInVm.loginData.Email" required>
+                </md-input-container>
+            </div>
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-cell--no-spacing">
+                <md-input-container class="md-icon-float md-block ">
+                    <label>Password</label>
+                    <input type="password" ng-model="signInVm.loginData.Password" required>
+                </md-input-container>
+            </div>
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent full-width"
+                        ng-click="signInVm.login()">
+                    Sign in
+                </button>
+            </div>
+        </div>
+
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+            <div class="text-centered">
+                <a href="/SignUp">No account yet? Create one</a>
+            </div>
+        </div>
+    </div>
+</div>

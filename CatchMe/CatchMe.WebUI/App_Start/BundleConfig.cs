@@ -21,7 +21,8 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/libs/angular/angular-touch.js",
                         "~/Assets/Scripts/libs/moment/moment.js",
                         "~/Assets/Scripts/libs/material/material-datetimepicker.js",
-                        "~/Assets/Scripts/libs/input-masks/input-masks.js"));
+                        "~/Assets/Scripts/libs/input-masks/input-masks.js",
+                        "~/Assets/Scripts/libs/angularLocalStorage/angular-local-storage.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-module/js").Include(
                         "~/Assets/Scripts/angular/catchMe.app.js",
@@ -37,10 +38,18 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/controllers/trip.controller.js",
                         "~/Assets/Scripts/angular/controllers/partialDrawerMenu.controller.js",
                         "~/Assets/Scripts/angular/controllers/dialog.controller.js",
+                        "~/Assets/Scripts/angular/controllers/signIn.controller.js",
+                        "~/Assets/Scripts/angular/controllers/signUp.controller.js",
+                        "~/Assets/Scripts/angular/controllers/headerMenu.controller.js",
+                        "~/Assets/Scripts/angular/controllers/authentication.controller.js",
                         "~/Assets/Scripts/angular/services/loadingDialog.service.js",
                         "~/Assets/Scripts/angular/services/snackBarNotification.service.js",
+                        "~/Assets/Scripts/angular/services/authentication.service.js",
                         "~/Assets/Scripts/angular/components/hoverClass.directive.js",
-                        "~/Assets/Scripts/angular/components/isValid.directive.js"));
+                        "~/Assets/Scripts/angular/components/isValid.directive.js",
+                        "~/Assets/Scripts/angular/components/headerMenu.directive.js",
+                        "~/Assets/Scripts/angular/components/drawerMenu.directive.js",
+                        "~/Assets/Scripts/angular/components/headerMenuLink.directive.js"));
             #endregion
 
             #region Styles bundles
@@ -53,7 +62,7 @@ namespace CatchMe.WebUI
                       "~/Assets/Styles/paper-snackbar.css"));
             #endregion
 
-            BundleTable.EnableOptimizations = true;            
+            BundleTable.EnableOptimizations = false;            
         }
     }
 }

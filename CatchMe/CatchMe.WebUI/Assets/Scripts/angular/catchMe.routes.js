@@ -20,6 +20,14 @@
 
 		$routeProvider.when('/Trips', { redirectTo: '/' });
 
+		$routeProvider.when('/SignIn', {
+		    templateUrl: '/Assets/Scripts/angular/templates/signIn.html'
+		});
+
+		$routeProvider.when('/SignUp', {
+		    templateUrl: '/Assets/Scripts/angular/templates/signUp.html'
+		});
+
 		$routeProvider.otherwise({ redirectTo: '/' });
 
 		$locationProvider.html5Mode(true);        

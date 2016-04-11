@@ -215,11 +215,7 @@ a img {
     .search-box.is-focused ~ .mobile-title,
     .search-box.is-focused + .navigation-container + .mobile-title {
         opacity: 0;
-    }
-
-    .menu-buttons {
-        display: none;
-    }
+    }    
 
     .search-box.is-focused {
         width: calc(100% - 48px);
@@ -291,6 +287,9 @@ a img {
     display: none;
 }
 
+.text-centered {
+    text-align: center;
+}
 
 .pagination {
     text-align: center;
@@ -415,4 +414,26 @@ md-input-container.md-input-invalid > md-icon {
 
 .md-small-spacing {
     margin: 12px 0;
+}
+
+.mdl-card .authentication-title {
+    position: relative;    
+    border-left: 5px solid #86a8a8;    
+    padding: 10px 0 10px 30px;
+    color: #86a8a8;
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }    
+
+.full-width {
+    width: 100%
+}
+.mdl-cell .mdl-cell--no-spacing {
+    margin-top: 0;
+    margin-bottom: 0;    
+}
+
+a.no-text-decoration {
+    text-decoration: none;
 }

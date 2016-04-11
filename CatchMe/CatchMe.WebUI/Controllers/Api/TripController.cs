@@ -38,6 +38,7 @@ namespace CatchMe.WebUI.Controllers.Api
         }
 
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetTripById(int id)
         {
             var trip = _tripRepository.GetById(id);

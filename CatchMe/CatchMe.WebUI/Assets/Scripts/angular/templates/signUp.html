@@ -1,0 +1,56 @@
+﻿<div class="mdl-grid" ng-controller="SignUpController as signUpVm">
+    <div class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-shadow--6dp centered">
+        <div class="authentication-title">
+            Register
+        </div>
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600 mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-cell--no-spacing">
+                <md-input-container class="md-icon-float md-block">
+                    <label>Email</label>
+                    <input type="email" ng-model="signUpVm.registerData.Email" required>
+                </md-input-container>
+            </div>
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-cell--no-spacing">
+                <md-input-container class="md-icon-float md-block ">
+                    <label>Password</label>
+                    <input type="password" ng-model="signUpVm.registerData.Password" required>
+                </md-input-container>
+            </div>
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-cell--no-spacing">
+                <md-input-container class="md-icon-float md-block ">
+                    <label>Confirm password</label>
+                    <input type="password" ng-model="signUpVm.registerData.ConfirmPassword" required>
+                </md-input-container>
+            </div>
+
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-cell--no-spacing">
+                <md-input-container class="md-icon-float md-block">
+                    <label>First name</label>
+                    <input type="text" ng-model="signUpVm.registerData.FirstName" required>
+                </md-input-container>
+            </div>
+
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-cell--no-spacing">
+                <md-input-container class="md-icon-float md-block">
+                    <label>Last name</label>
+                    <input type="text" ng-model="signUpVm.registerData.LastName" required>
+                </md-input-container>
+            </div>            
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent full-width"
+                        ng-click="signUpVm.register()">
+                    Create account
+                </button>
+            </div>
+        </div>
+
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+            <div class="text-centered">
+                <a href="/SignIn">Already a member? Login</a>
+            </div>
+        </div>
+    </div>
+</div>

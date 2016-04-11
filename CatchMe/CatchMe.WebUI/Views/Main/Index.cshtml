@@ -12,22 +12,24 @@
     <script src="@ViewBag.MapsApiSource"></script>    
 </head>
 <body ng-app="catchMeApp">
-    <div class="catch-me mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        @{
+<div class="catch-me mdl-layout mdl-js-layout mdl-layout--fixed-header" ng-controller="AuthenticationController as authenticationCtrlVm">
+    <div header-menu class="header mdl-layout__header mdl-layout__header--waterfall mdl-shadow--4dp"></div>
+    <div drawer-menu class="drawer mdl-layout__drawer"></div>
+    @*@{
         <!--HEADER-->
-            Html.RenderPartial("PartialHeader");
+        Html.RenderPartial("PartialHeader");
 
         <!--DRAWER MENU-->
-            Html.RenderPartial("PartialDrawerMenu");
-        }
+        Html.RenderPartial("PartialDrawerMenu");
+    }*@
 
-        <!--CONTENT-->
-        <div class="mdl-layout__content mdl-color--grey-100" id="container">
-            <div class="centered">
-                <div ng-view></div>
-            </div>
-        </div>      
+    <!--CONTENT-->
+    <div class="mdl-layout__content mdl-color--grey-100" id="container">
+        <div class="centered">
+            <div ng-view></div>
+        </div>
     </div>
+</div>
     
     @Scripts.Render("~/bundles/libs/js")
     @Scripts.Render("~/bundles/angular/catchMe-module/js")    

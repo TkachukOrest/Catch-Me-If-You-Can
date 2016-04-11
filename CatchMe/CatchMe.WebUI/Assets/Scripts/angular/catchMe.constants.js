@@ -5,7 +5,10 @@
             getAllTrips: 'api/Trip/GetAllTrips/',
             getTrip: 'api/Trip/GetTripById/',
             saveTrip: 'api/Trip/saveTrip/',
-            deleteTrip: 'api/Trip/DeleteTrip/',            
+            deleteTrip: 'api/Trip/DeleteTrip/',
+            register: 'api/Account/Register/',
+            logout: 'api/Account/Logout',
+            tokenEndpoint: '/OAuth/Token'
         })
         .constant('googleMapConfigs', {
             styles: [
