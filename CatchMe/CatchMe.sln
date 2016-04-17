@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.MapService.GoogleMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.BL", "CatchMe.BL\CatchMe.BL.csproj", "{315FC341-F818-4A46-AD71-BEA4774222B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.SecurityService", "CatchMe.AuthorizationService\CatchMe.SecurityService.csproj", "{03BAC9CD-B30A-469B-AC7B-DB5A6D85A607}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.Security", "CatchMe.Security\CatchMe.Security.csproj", "{36D8747A-F529-4217-ADBD-4B8D8EFD85D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +69,14 @@ Global
 		{315FC341-F818-4A46-AD71-BEA4774222B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{315FC341-F818-4A46-AD71-BEA4774222B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{315FC341-F818-4A46-AD71-BEA4774222B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03BAC9CD-B30A-469B-AC7B-DB5A6D85A607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03BAC9CD-B30A-469B-AC7B-DB5A6D85A607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03BAC9CD-B30A-469B-AC7B-DB5A6D85A607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03BAC9CD-B30A-469B-AC7B-DB5A6D85A607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36D8747A-F529-4217-ADBD-4B8D8EFD85D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36D8747A-F529-4217-ADBD-4B8D8EFD85D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36D8747A-F529-4217-ADBD-4B8D8EFD85D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36D8747A-F529-4217-ADBD-4B8D8EFD85D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

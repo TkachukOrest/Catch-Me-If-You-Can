@@ -1,9 +1,13 @@
+using System.Collections.Generic;
+using CatchMe.Infrastructure;
 using CatchMe.Infrastructure.Abstract;
 using CatchMe.Infrastructure.Concrete;
 using CatchMe.MapService;
 using CatchMe.MapService.GoogleMapService;
+using CatchMe.Repositories;
 using CatchMe.Repositories.Abstract;
 using CatchMe.Repositories.Static;
+using Ninject.Modules;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CatchMe.WebUI.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(CatchMe.WebUI.App_Start.NinjectWebCommon), "Stop")]
@@ -54,10 +58,15 @@ namespace CatchMe.WebUI.App_Start
         }
         
         private static void RegisterServices(IKernel kernel)
-        { 
-            kernel.Bind<ITripRepository>().To<StaticTripRepository>();
-            kernel.Bind<IConfigurationService>().To<ConfigurationService>();
-            kernel.Bind<IMapService>().To<GoogleMapService>();
+        {
+            var modules = new List<INinjectModule>
+            {              
+                new RepositoryModule(),
+                new InfrastructureModule(),
+                new GoogleMapServiceModule()
+            };
+                                    
+            kernel.Load(modules);
         }        
     }
 }

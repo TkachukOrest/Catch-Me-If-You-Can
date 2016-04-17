@@ -6,9 +6,9 @@
             getTrip: 'api/Trip/GetTripById/',
             saveTrip: 'api/Trip/saveTrip/',
             deleteTrip: 'api/Trip/DeleteTrip/',
-            register: 'api/Account/Register/',
-            logout: 'api/Account/Logout',
-            tokenEndpoint: '/OAuth/Token'
+            register: 'http://localhost:50144/api/Account/Register/',
+            logout: 'http://localhost:50144/api/Account/Logout',
+            tokenEndpoint: 'http://localhost:50144//OAuth/Token'
         })
         .constant('googleMapConfigs', {
             styles: [
