@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using CatchMe.Domain.Entities;
 using CatchMe.Domain.Values;
 using CatchMe.Repositories.Abstract;
@@ -7,8 +6,10 @@ using CatchMe.Repositories.Abstract;
 
 namespace CatchMe.Repositories.Sql
 {
-    public class UserRepository : IUserRepository
-    {                
+    public class UserRepository : Repository, IUserRepository
+    {
+        public UserRepository(IRepositorySettings repositorySettings) : base(repositorySettings) { }
+
         public void Create(UserEntity user)
         {
             throw new System.NotImplementedException();
@@ -127,6 +128,6 @@ namespace CatchMe.Repositories.Sql
         public void Dispose()
         {
             throw new System.NotImplementedException();
-        }
+        }        
     }
 }

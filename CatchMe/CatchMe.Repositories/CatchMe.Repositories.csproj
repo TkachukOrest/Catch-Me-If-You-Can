@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IRepositorySettings.cs" />
     <Compile Include="Abstract\IRoleRepository.cs" />
     <Compile Include="Abstract\ITripRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Abstract\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryModule.cs" />
     <Compile Include="Sql\RoleRepository.cs" />

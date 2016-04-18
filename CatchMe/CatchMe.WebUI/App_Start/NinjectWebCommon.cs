@@ -63,7 +63,8 @@ namespace CatchMe.WebUI.App_Start
             {              
                 new RepositoryModule(),
                 new InfrastructureModule(),
-                new GoogleMapServiceModule()
+                new GoogleMapServiceModule(),
+                new WebUIModule()
             };
                                     
             kernel.Load(modules);

@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using CatchMe.Infrastructure;
 using CatchMe.Repositories;
 using CatchMe.Security;
+using CommonServiceLocator.NinjectAdapter.Unofficial;
+using Microsoft.Practices.ServiceLocation;
 using Ninject.Modules;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CatchMe.SecurityService.App_Start.NinjectWebCommon), "Start")]
@@ -70,11 +72,15 @@ namespace CatchMe.SecurityService.App_Start
             var modules = new List<INinjectModule>
             {
                 new RepositoryModule(),
-                new SecurityModule()                                
+                new InfrastructureModule(),
+                new SecurityModule(),
+                new SecurityServiceModule()                         
             };            
 
             kernel.Load(modules);
-            ServiceProvider.SetContainer(kernel);
+
+            var ninject = new NinjectServiceLocator(kernel);
+            ServiceLocator.SetLocatorProvider(() => ninject);            
         }        
     }
 }

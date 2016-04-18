@@ -4,8 +4,10 @@ using CatchMe.Repositories.Abstract;
 
 namespace CatchMe.Repositories.Sql
 {
-    public class RoleRepository: IRoleRepository
-    {        
+    public class RoleRepository: Repository, IRoleRepository
+    {
+        public RoleRepository(IRepositorySettings repositorySettings) : base(repositorySettings) { }
+
         public void Create(RoleEntity role)
         {
             throw new NotImplementedException();
@@ -34,6 +36,6 @@ namespace CatchMe.Repositories.Sql
         public void Dispose()
         {
             throw new NotImplementedException();
-        }
+        }        
     }
 }

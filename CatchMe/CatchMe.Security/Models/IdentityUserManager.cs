@@ -1,10 +1,9 @@
-﻿using CatchMe.Infrastructure;
-using CatchMe.Security.Abstract;
-using CatchMe.Security.Concrete;
+﻿using CatchMe.Security.Abstract;
 using CatchMe.Security.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Practices.ServiceLocation;
 
 namespace CatchMe.Security.Configurations
 {
@@ -14,7 +13,7 @@ namespace CatchMe.Security.Configurations
 
         public static IdentityUserManager Create(IdentityFactoryOptions<IdentityUserManager> options, IOwinContext context)
         {
-            var userStorage = ServiceProvider.Get<IUserStorageService<IdentityUser>>();
+            var userStorage = ServiceLocator.Current.GetInstance<IUserStorageService<IdentityUser>>();
             var manager = new IdentityUserManager(userStorage);            
 
             manager.UserValidator = new UserValidator<IdentityUser>(manager)

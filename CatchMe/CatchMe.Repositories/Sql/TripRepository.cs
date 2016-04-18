@@ -5,8 +5,10 @@ using CatchMe.Repositories.Abstract;
 
 namespace CatchMe.Repositories.Sql
 {
-    public class TripRepository : ITripRepository
-    {        
+    public class TripRepository : Repository, ITripRepository
+    {
+        public TripRepository(IRepositorySettings repositorySettings) : base(repositorySettings) { }
+
         public IEnumerable<TripEntity> GetAll()
         {
             throw new NotImplementedException();
@@ -25,6 +27,6 @@ namespace CatchMe.Repositories.Sql
         public void Delete(int id)
         {
             throw new NotImplementedException();
-        }
+        }     
     }
 }
