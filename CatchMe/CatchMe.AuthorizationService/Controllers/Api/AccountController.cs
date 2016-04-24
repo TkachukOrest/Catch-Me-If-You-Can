@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using CatchMe.Domain.Entities;
-using CatchMe.Security;
-using CatchMe.Security.Configurations;
+using CatchMe.Repositories.Abstract;
 using CatchMe.Security.Helpers;
 using CatchMe.Security.Models;
 using CatchMe.Security.Providers;
@@ -16,7 +13,6 @@ using CatchMe.SecurityService.Models.AccountBindingModels;
 using CatchMe.SecurityService.Models.AccountViewModels;
 using CatchMe.SecurityService.Results.HttpActionResults;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
@@ -38,21 +34,17 @@ namespace CatchMe.SecurityService.Controllers.Api
         private readonly ISecureDataFormat<AuthenticationTicket> _accessTokenFormat;
         #endregion
 
-        #region Constructors
-        public AccountController() { }
-
+        #region Constructors                     
         public AccountController(IdentityUserManager userManager,
             IAuthenticationManager authManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             _userManager = userManager;
             _authenticationManager = authManager;
-
             _accessTokenFormat = accessTokenFormat;
         }
         #endregion        
 
-        // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
@@ -67,7 +59,6 @@ namespace CatchMe.SecurityService.Controllers.Api
             };
         }
 
-        // POST api/Account/Logout
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
@@ -75,7 +66,6 @@ namespace CatchMe.SecurityService.Controllers.Api
             return Ok();
         }
 
-        // POST api/Account/ChangePassword
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -95,7 +85,6 @@ namespace CatchMe.SecurityService.Controllers.Api
             return Ok();
         }
 
-        // POST api/Account/SetPassword
         [Route("SetPassword")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
         {
@@ -114,7 +103,6 @@ namespace CatchMe.SecurityService.Controllers.Api
             return Ok();
         }
 
-        // POST api/Account/AddExternalLogin
         [Route("AddExternalLogin")]
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
         {
@@ -152,7 +140,6 @@ namespace CatchMe.SecurityService.Controllers.Api
             return Ok();
         }
 
-        // POST api/Account/RemoveLogin
         [Route("RemoveLogin")]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
         {
@@ -181,7 +168,6 @@ namespace CatchMe.SecurityService.Controllers.Api
             return Ok();
         }
 
-        // GET api/Account/ExternalLogin
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
@@ -235,7 +221,6 @@ namespace CatchMe.SecurityService.Controllers.Api
             return Ok();
         }
 
-        // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
         [AllowAnonymous]
         [Route("ExternalLogins")]
         public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
@@ -264,7 +249,7 @@ namespace CatchMe.SecurityService.Controllers.Api
                     {
                         provider = description.AuthenticationType,
                         response_type = "token",
-                        client_id = Startup.PublicClientId,
+                        client_id = Security.Startup.PublicClientId,
                         redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
                         state = state
                     }),
@@ -276,7 +261,6 @@ namespace CatchMe.SecurityService.Controllers.Api
             return logins;
         }
 
-        // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
@@ -286,7 +270,12 @@ namespace CatchMe.SecurityService.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var user = new IdentityUser() { UserName = model.Email, Email = model.Email, Profile = new UserProfileEntity { FirstName = model.FirstName, LastName = model.LastName } };
+            var user = new IdentityUser()
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                Profile = new UserProfileEntity { FirstName = model.FirstName, LastName = model.LastName }
+            };
 
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
 

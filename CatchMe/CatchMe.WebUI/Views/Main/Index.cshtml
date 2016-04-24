@@ -13,8 +13,8 @@
 </head>
 <body ng-app="catchMeApp">
 <div class="catch-me mdl-layout mdl-js-layout mdl-layout--fixed-header" ng-controller="AuthenticationController as authenticationCtrlVm">
-    <div header-menu class="header mdl-layout__header mdl-layout__header--waterfall mdl-shadow--4dp"></div>
-    <div drawer-menu class="drawer mdl-layout__drawer"></div>
+    <header-menu></header-menu>
+    <drawer-menu></drawer-menu>
     @*@{
         <!--HEADER-->
         Html.RenderPartial("PartialHeader");

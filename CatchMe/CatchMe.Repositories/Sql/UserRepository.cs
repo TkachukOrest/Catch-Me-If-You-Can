@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using CatchMe.Domain.Entities;
-using CatchMe.Domain.Values;
 using CatchMe.Repositories.Abstract;
 
 
 namespace CatchMe.Repositories.Sql
 {
-    public class UserRepository : Repository, IUserRepository
+    public class UserRepository : DataBaseRepository, IUserRepository
     {
         public UserRepository(IRepositorySettings repositorySettings) : base(repositorySettings) { }
 
@@ -21,6 +20,11 @@ namespace CatchMe.Repositories.Sql
         }
 
         public void Delete(UserEntity user)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<UserEntity> GetAll()
         {
             throw new System.NotImplementedException();
         }
@@ -70,21 +74,6 @@ namespace CatchMe.Repositories.Sql
             throw new System.NotImplementedException();
         }
 
-        public UserEntity FindByEmail(string email)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetSecurityStamp(UserEntity user, string stamp)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public string GetSecurityStamp(UserEntity user)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void AddToRole(UserEntity user, string roleName)
         {
             throw new System.NotImplementedException();
@@ -105,29 +94,9 @@ namespace CatchMe.Repositories.Sql
             throw new System.NotImplementedException();
         }
 
-        public void AddLogin(UserEntity user, UserLoginInfo login)
+        public UserEntity FindByEmail(string email)
         {
             throw new System.NotImplementedException();
-        }
-
-        public void RemoveLogin(UserEntity user, UserLoginInfo login)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IList<UserLoginInfo> GetLogins(UserEntity user)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public UserEntity Find(UserLoginInfo login)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            throw new System.NotImplementedException();
-        }        
+        }                          
     }
 }

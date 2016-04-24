@@ -5,7 +5,7 @@ using CatchMe.Repositories.Abstract;
 
 namespace CatchMe.Repositories.Sql
 {
-    public class TripRepository : Repository, ITripRepository
+    public class TripRepository : DataBaseRepository, ITripRepository
     {
         public TripRepository(IRepositorySettings repositorySettings) : base(repositorySettings) { }
 

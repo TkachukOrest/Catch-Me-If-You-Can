@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CatchMe.Domain.Entities;
-using CatchMe.Domain.Values;
 
 namespace CatchMe.Repositories.Abstract
 {
-    public interface IUserRepository : IDisposable
+    public interface IUserRepository
     {        
         void Create(UserEntity user);
 
@@ -13,15 +11,19 @@ namespace CatchMe.Repositories.Abstract
 
         void Delete(UserEntity user);
 
-        UserEntity FindById(string userId);        
+        List<UserEntity> GetAll();        
 
         UserEntity FindByName(string userName);
 
-        void SetPasswordHash(UserEntity user, string passwordHash);
+        UserEntity FindByEmail(string email);
 
-        string GetPasswordHash(UserEntity user);
+        UserEntity FindById(string id);
 
         bool HasPassword(UserEntity user);
+
+        void SetPasswordHash(UserEntity user, string passwordHash);
+
+        string GetPasswordHash(UserEntity user);        
 
         void SetEmail(UserEntity user, string email);
 
@@ -29,13 +31,7 @@ namespace CatchMe.Repositories.Abstract
 
         bool GetEmailConfirmed(UserEntity user);
 
-        void SetEmailConfirmed(UserEntity user, bool confirmed);                  
-
-        UserEntity FindByEmail(string email);
-
-        void SetSecurityStamp(UserEntity user, string stamp);
-
-        string GetSecurityStamp(UserEntity user);
+        void SetEmailConfirmed(UserEntity user, bool confirmed);
 
         void AddToRole(UserEntity user, string roleName);
 
@@ -44,13 +40,5 @@ namespace CatchMe.Repositories.Abstract
         IList<string> GetRoles(UserEntity user);
 
         bool IsInRole(UserEntity user, string roleName);
-
-        void AddLogin(UserEntity user, UserLoginInfo login);
-
-        void RemoveLogin(UserEntity user, UserLoginInfo login);
-
-        IList<UserLoginInfo> GetLogins(UserEntity user);       
-
-        UserEntity Find(UserLoginInfo login);        
     }
 }

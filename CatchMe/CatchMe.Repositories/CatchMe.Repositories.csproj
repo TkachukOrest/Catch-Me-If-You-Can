@@ -55,11 +55,16 @@
     <Compile Include="Sql\TripRepository.cs" />
     <Compile Include="Sql\UserRepository.cs" />
     <Compile Include="Static\StaticTripRepository.cs" />
+    <Compile Include="Static\StaticUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CatchMe.Domain\CatchMe.Domain.csproj">
       <Project>{a3b4810a-f8e2-4708-9545-2efeb9f9d9e8}</Project>
       <Name>CatchMe.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Infrastructure\CatchMe.Infrastructure.csproj">
+      <Project>{542F64A3-D5E7-443C-8D13-02238C1595EA}</Project>
+      <Name>CatchMe.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

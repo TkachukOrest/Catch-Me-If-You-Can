@@ -11,7 +11,7 @@ namespace CatchMe.Repositories
         {
             Bind<IRoleRepository>().To<RoleRepository>();
             Bind<ITripRepository>().To<StaticTripRepository>();
-            Bind<IUserRepository>().To<UserRepository>();
+            Bind<IUserRepository>().To<StaticUserRepository>();
         }
     }
 }

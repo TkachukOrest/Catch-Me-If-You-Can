@@ -4,7 +4,7 @@ using CatchMe.Repositories.Abstract;
 
 namespace CatchMe.Repositories.Sql
 {
-    public class RoleRepository: Repository, IRoleRepository
+    public class RoleRepository: DataBaseRepository, IRoleRepository
     {
         public RoleRepository(IRepositorySettings repositorySettings) : base(repositorySettings) { }
 

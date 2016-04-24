@@ -5,10 +5,11 @@
 
     function headerMenuDirective() {
         var directive = {
-            restrict: 'A',
+            restrict: 'E',
             templateUrl: '/Assets/Scripts/angular/templates/header.html',
             controller: 'HeaderMenuController',
-            controllerAs: 'headerMenuVm'
+            controllerAs: 'headerMenuVm',
+            replace: true
         };
 
         return directive;

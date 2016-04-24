@@ -1,5 +1,4 @@
-﻿using System;
-using CatchMe.Repositories.Abstract;
+﻿using CatchMe.Repositories.Abstract;
 using CatchMe.SecurityService.Code;
 using Ninject.Modules;
 
@@ -9,7 +8,7 @@ namespace CatchMe.SecurityService
     {
         public override void Load()
         {
-            Bind<IRepositorySettings>().To<RepositorySettings>();
+            Bind<IRepositorySettings>().To<RepositorySettings>();         
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using CatchMe.Security.Configurations;
+using CatchMe.Security.Models;
 using CatchMe.Security.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
@@ -27,12 +27,11 @@ namespace CatchMe.Security
                 TokenEndpointPath = new PathString("/OAuth/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                // In production mode set AllowInsecureHttp = false
-                AllowInsecureHttp = true
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),                
+                AllowInsecureHttp = true //in production mode - set to true
             };
 
-            app.UseOAuthBearerTokens(OAuthOptions);
+            app.UseOAuthBearerTokens(OAuthOptions);            
 
             //app.UseFacebookAuthentication(
             //    appId: "",
@@ -44,14 +43,5 @@ namespace CatchMe.Security
             //    ClientSecret = ""
             //});
         }
-
-        //public static IKernel CreateKernel()
-        //{
-        //    var kernel = new StandardKernel();
-
-        //    kernel.Bind<IUserStore<UserEntity>>().To<UserRepository<UserEntity>>();
-
-        //    return kernel;
-        //}
     }
 }

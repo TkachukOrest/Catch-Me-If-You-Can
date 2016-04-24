@@ -1,10 +1,10 @@
 ﻿namespace CatchMe.Repositories.Abstract
 {
-    public abstract class Repository
+    public abstract class DataBaseRepository
     {
         protected IRepositorySettings _repositorySettings;
 
-        public Repository(IRepositorySettings repositorySettings)
+        public DataBaseRepository(IRepositorySettings repositorySettings)
         {
             _repositorySettings = repositorySettings;
         }

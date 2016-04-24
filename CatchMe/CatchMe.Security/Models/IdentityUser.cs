@@ -25,6 +25,8 @@ namespace CatchMe.Security.Models
 
         public static explicit operator IdentityUser(UserEntity user)
         {
+            if (user == null) return null;
+
             var identityUser = new IdentityUser();
 
             identityUser.Id = user.Id;
@@ -40,6 +42,8 @@ namespace CatchMe.Security.Models
 
         public static explicit operator UserEntity(IdentityUser identityUser)
         {
+            if (identityUser == null) return null;
+
             var user = new UserEntity();
 
             user.Id = identityUser.Id;

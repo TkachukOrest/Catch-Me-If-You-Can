@@ -5,8 +5,9 @@
 
     function drawerMenuDirective() {
         var directive = {
-            restrict: 'A',
-            templateUrl: '/Assets/Scripts/angular/templates/drawer.html'
+            restrict: 'E',
+            templateUrl: '/Assets/Scripts/angular/templates/drawer.html',
+            replace: true
         };
 
         return directive;

@@ -31,14 +31,15 @@
 
             var deferred = $q.defer();
 
-            $http.post(urlConfigs.tokenEndpoint, data).success(function (response) {
-                authentication.isAuth = true;
-                authentication.userName = loginData.Email;
+            $http.post(urlConfigs.tokenEndpoint, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                .success(function(response) {
+                    authentication.isAuth = true;
+                    authentication.userName = loginData.Email;
 
-                deferred.resolve(response);
-            }).error(function (err) {                
-                deferred.reject(err);
-            });
+                    deferred.resolve(response);
+                }).error(function(err) {
+                    deferred.reject(err);
+                });
 
             return deferred.promise;
         };

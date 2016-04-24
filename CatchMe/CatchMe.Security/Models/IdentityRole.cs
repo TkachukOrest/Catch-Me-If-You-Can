@@ -15,6 +15,8 @@ namespace CatchMe.Security.Models
 
         public static explicit operator IdentityRole(RoleEntity role)
         {
+            if (role == null) return null;
+
             var identityRole = new IdentityRole();
 
             identityRole.Id = role.Id;
@@ -25,6 +27,8 @@ namespace CatchMe.Security.Models
 
         public static explicit operator RoleEntity(IdentityRole identityRole)
         {
+            if (identityRole == null) return null;
+
             var role = new RoleEntity();
 
             role.Id = identityRole.Id;

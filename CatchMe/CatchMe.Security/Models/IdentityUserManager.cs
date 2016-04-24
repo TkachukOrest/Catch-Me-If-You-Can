@@ -1,11 +1,10 @@
 ﻿using CatchMe.Security.Abstract;
-using CatchMe.Security.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Practices.ServiceLocation;
 
-namespace CatchMe.Security.Configurations
+namespace CatchMe.Security.Models
 {
     public class IdentityUserManager : UserManager<IdentityUser>
     {
@@ -30,6 +29,7 @@ namespace CatchMe.Security.Configurations
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
+
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
