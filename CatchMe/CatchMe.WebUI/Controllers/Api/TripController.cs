@@ -47,6 +47,7 @@ namespace CatchMe.WebUI.Controllers.Api
         }
 
         [HttpDelete]
+        [Authorize]
         public IHttpActionResult DeleteTrip([FromUri] int id)
         {
             _tripRepository.Delete(id);
