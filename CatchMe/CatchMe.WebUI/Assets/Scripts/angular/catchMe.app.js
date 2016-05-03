@@ -1,12 +1,12 @@
 ﻿(function () {
-        angular.module('catchMeApp', [
+    angular.module('catchMeApp', [
             'ngRoute',
             'ngAnimate',
             'ngMaterial',
             'ngMessages',
             'ngMaterialDatePicker',
             'ui.utils.masks',
-            'snackBarNotification', 
+            'snackBarNotification',
             'LocalStorageModule'
         ])
         .run([

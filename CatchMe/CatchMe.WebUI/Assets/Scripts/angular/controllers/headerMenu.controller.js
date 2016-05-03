@@ -8,20 +8,20 @@
     function HeaderMenuController($location, authenticationService, loadingDialogService, snackBarNotification) {
         //view model
         var headerMenuVm = this;
-
-        headerMenuVm.authentication = authenticationService.authentication;
+        
         headerMenuVm.logout = logout;
         headerMenuVm.signIn = signIn;
+        headerMenuVm.isSignIn = isSignIn;
 
         //public methods
-        function logout() {
-            loadingDialogService.show();
+        function isSignIn() {
+            return authenticationService.isLoggedIn();
+        }
 
-            authenticationService.logout().then(function() {
-                snackBarNotification.create('You have been successfully logged out.', 'OK');
-            }).finally(function() {
-                loadingDialogService.hide();                
-            });
+        function logout() {            
+            authenticationService.logout();
+
+            snackBarNotification.create('You have been successfully logged out.', 'OK');                        
         };
 
         function signIn() {

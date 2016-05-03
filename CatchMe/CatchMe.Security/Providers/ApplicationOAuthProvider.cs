@@ -24,33 +24,22 @@ namespace CatchMe.Security.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            try
+            var userManager = context.OwinContext.GetUserManager<IdentityUserManager>();
+
+            IdentityUser user = await userManager.FindAsync(context.UserName, context.Password);
+
+            if (user == null)
             {
-                var userManager = context.OwinContext.GetUserManager<IdentityUserManager>();
-
-                IdentityUser user = await userManager.FindAsync(context.UserName, context.Password);
-
-                if (user == null)
-                {
-                    context.SetError("invalid_grant", "The user name or password is incorrect.");
-                    return;
-                }
-
-                ClaimsIdentity oAuthIdentity =
-                    await userManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
-                ClaimsIdentity cookiesIdentity =
-                    await userManager.CreateIdentityAsync(user, CookieAuthenticationDefaults.AuthenticationType);
-
-                AuthenticationProperties properties = CreateProperties(user.UserName);
-                AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-                context.Validated(ticket);
-                context.Request.Context.Authentication.SignIn(cookiesIdentity);
-            }
-            catch (Exception ex)
-            {
-                var a = ex;
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
             }
 
+            ClaimsIdentity oAuthIdentity =
+                await userManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
+            
+            AuthenticationProperties properties = CreateProperties(user.UserName);
+            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            context.Validated(ticket);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

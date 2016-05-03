@@ -26,7 +26,11 @@
                 $location.path('/SignIn');                
                 snackBarNotification.create('Your account has been successfully created.', 'OK');
             }, function (response) {
-                snackBarNotification.create("Failed to register user due to: " + parseErrors(response), 'OK');
+                if (response.data && response.data.ModelState) {
+                    snackBarNotification.create("Failed to register user due to: " + parseErrors(response), 'OK');
+                } else {
+                    snackBarNotification.create("An error has been occured", 'OK');
+                }
             }).finally(function () {
                 loadingDialogService.hide();
             });
@@ -42,6 +46,5 @@
             }
             return errors.join(', ');            
         }
-
     };
 })();

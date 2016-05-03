@@ -3,7 +3,6 @@ using CatchMe.Security.Models;
 using CatchMe.Security.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 
@@ -18,8 +17,7 @@ namespace CatchMe.Security
         {            
             app.CreatePerOwinContext<IdentityUserManager>(IdentityUserManager.Create);
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions());
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);            
+            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             PublicClientId = "self";
             OAuthOptions = new OAuthAuthorizationServerOptions
@@ -28,10 +26,12 @@ namespace CatchMe.Security
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),                
-                AllowInsecureHttp = true //in production mode - set to true
+                AllowInsecureHttp = true
             };
 
-            app.UseOAuthBearerTokens(OAuthOptions);            
+            app.UseOAuthBearerTokens(OAuthOptions);
+            app.UseOAuthAuthorizationServer(OAuthOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             //app.UseFacebookAuthentication(
             //    appId: "",

@@ -22,13 +22,13 @@
             <i class="material-icons">more_vert</i>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menu-buttons">
-            <li class="mdl-menu__item mdl-color-text--accent" data-ng-hide="!authenticationCtrlVm.isAuthorized">
+            <li class="mdl-menu__item mdl-color-text--accent">
                 Profile
             </li>
-            <li class="mdl-menu__item mdl-color-text--accent" data-ng-hide="!authenticationCtrlVm.isAuthorized" ng-click="authorizationCtrlVm.logout()">
+            <li class="mdl-menu__item mdl-color-text--accent" @*ng-click="authorizationCtrlVm.logout()"*@>
                 <a class="no-text-decoration" href="">Log out</a>
             </li>
-            <li class="mdl-menu__item mdl-color-text--accent" data-ng-hide="authenticationCtrlVm.isAuthorized" ng-click="authorizationCtrlVm.signIn()">
+            <li class="mdl-menu__item mdl-color-text--accent" @*ng-click="authorizationCtrlVm.signIn()"*@>
                 <a class="no-text-decoration">Log in</a>
             </li>
         </ul>

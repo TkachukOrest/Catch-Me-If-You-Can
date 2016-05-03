@@ -11,16 +11,23 @@
         <div class="mdl-card__supporting-text mdl-color-text--grey-600 trip-info">
             <div class="mdl-grid mdl-grid--no-spacing ">
                 <div class="mdl-cell mdl-cell--4-col price">{{trip.Price}} грн.</div>
-                <div>
+                <div is-logged-in>
                     <i class="material-icons md-18" ng-click="tripListVm.deleteTrip($index, trip.Id)">delete</i>
                     <i class="material-icons md-18" ng-click="tripListVm.editTrip(trip.Id)">mode_edit</i>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
 
-    <a href="/TripAdd" id="add-trip" data-ng-hide="!authenticationCtrlVm.authentication.isAuth" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab
-                                     mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp">
+    <a href="/TripAdd" id="add-trip" 
+       is-logged-in
+       class="mdl-button
+       mdl-js-button
+       mdl-button--fab
+       mdl-button--mini-fab
+       mdl-js-ripple-effect
+       mdl-button--colored
+       mdl-shadow--4dp">
         <i class="material-icons">add</i>
     </a>
 </div>

@@ -28,7 +28,8 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/catchMe.app.js",
                         "~/Assets/Scripts/angular/catchMe.routes.js",
                         "~/Assets/Scripts/angular/catchMe.constants.js",
-                        "~/Assets/Scripts/angular/catchMe.material.js"));                        
+                        "~/Assets/Scripts/angular/catchMe.material.js",
+                        "~/Assets/Scripts/angular/catchMe.configs.js"));                        
 
             bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-app/js").Include(
                         "~/Assets/Scripts/angular/data_models/mapPoint.model.js",
@@ -41,15 +42,16 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/controllers/signIn.controller.js",
                         "~/Assets/Scripts/angular/controllers/signUp.controller.js",
                         "~/Assets/Scripts/angular/controllers/headerMenu.controller.js",
-                        "~/Assets/Scripts/angular/controllers/authentication.controller.js",
                         "~/Assets/Scripts/angular/services/loadingDialog.service.js",
                         "~/Assets/Scripts/angular/services/snackBarNotification.service.js",
                         "~/Assets/Scripts/angular/services/authentication.service.js",
                         "~/Assets/Scripts/angular/components/hoverClass.directive.js",
+                        "~/Assets/Scripts/angular/components/isLoggedIn.directive.js",
                         "~/Assets/Scripts/angular/components/isValid.directive.js",
                         "~/Assets/Scripts/angular/components/headerMenu.directive.js",
                         "~/Assets/Scripts/angular/components/drawerMenu.directive.js",
-                        "~/Assets/Scripts/angular/components/headerMenuLink.directive.js"));
+                        "~/Assets/Scripts/angular/components/headerMenuLink.directive.js",
+                        "~/Assets/Scripts/angular/interceptors/authentication.interceptor.js"));
             #endregion
 
             #region Styles bundles

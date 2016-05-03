@@ -10,6 +10,9 @@
             logout: 'http://localhost:50144/api/Account/Logout',
             tokenEndpoint: 'http://localhost:50144//OAuth/Token'
         })
+        .constant('localStorageKeys', {
+            authorizationData: 'authorizationData'
+        })
         .constant('googleMapConfigs', {
             styles: [
                 //{ "stylers": [{ "saturation": -100 }, { "gamma": 1 }] },

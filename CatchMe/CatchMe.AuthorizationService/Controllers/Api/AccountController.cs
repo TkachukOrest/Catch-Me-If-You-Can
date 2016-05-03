@@ -59,13 +59,6 @@ namespace CatchMe.SecurityService.Controllers.Api
             };
         }
 
-        [Route("Logout")]
-        public IHttpActionResult Logout()
-        {
-            _authenticationManager.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-            return Ok();
-        }
-
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -192,8 +185,7 @@ namespace CatchMe.SecurityService.Controllers.Api
             }
 
             if (externalLogin.LoginProvider != provider)
-            {
-                _authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            {                
                 return new ChallengeResult(provider, this);
             }
 
@@ -202,14 +194,11 @@ namespace CatchMe.SecurityService.Controllers.Api
             bool hasRegistered = user != null;
 
             if (hasRegistered)
-            {
-                _authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-
-                ClaimsIdentity oAuthIdentity = await _userManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
-                ClaimsIdentity cookieIdentity = await _userManager.CreateIdentityAsync(user, CookieAuthenticationDefaults.AuthenticationType);
-
+            {                
+                ClaimsIdentity oAuthIdentity = await _userManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);                
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
-                _authenticationManager.SignIn(properties, oAuthIdentity, cookieIdentity);
+
+                _authenticationManager.SignIn(properties, oAuthIdentity);
             }
             else
             {
