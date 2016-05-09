@@ -10,6 +10,7 @@ namespace CatchMe.Security.Models
         public string LoginProvider { get; set; }
         public string ProviderKey { get; set; }
         public string UserName { get; set; }
+        public string ExternalAccessToken { get; set; }
 
         public IList<Claim> GetClaims()
         {
@@ -48,7 +49,8 @@ namespace CatchMe.Security.Models
             {
                 LoginProvider = providerKeyClaim.Issuer,
                 ProviderKey = providerKeyClaim.Value,
-                UserName = identity.FindFirstValue(ClaimTypes.Name)
+                UserName = identity.FindFirstValue(ClaimTypes.Name),
+                ExternalAccessToken = identity.FindFirstValue("ExternalAccessToken"),
             };
         }
     }

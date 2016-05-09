@@ -24,7 +24,7 @@
 
             authenticationService.register(signUpVm.registerData).then(function () {
                 $location.path('/SignIn');                
-                snackBarNotification.create('Your account has been successfully created.', 'OK');
+                snackBarNotification.create('Your account has been successfully created. Please confirm your account.', 'OK');
             }, function (response) {
                 if (response.data && response.data.ModelState) {
                     snackBarNotification.create("Failed to register user due to: " + parseErrors(response), 'OK');

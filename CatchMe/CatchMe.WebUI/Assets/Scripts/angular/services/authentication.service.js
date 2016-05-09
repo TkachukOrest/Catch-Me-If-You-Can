@@ -3,9 +3,9 @@
         .module('catchMeApp')
         .service('authenticationService', authenticationService);
 
-    authenticationService.$inject = ['$http', '$q', 'localStorageService', 'urlConfigs', 'localStorageKeys'];
+    authenticationService.$inject = ['$http', '$q', 'localStorageService', 'localStorageKeys', 'urlConfigs'];
 
-    function authenticationService($http, $q, localStorageService, urlConfigs, localStorageKeys) {
+    function authenticationService($http, $q, localStorageService, localStorageKeys, urlConfigs) {
         //fields        
         var currentUser = getUser();
 
@@ -15,7 +15,8 @@
             login: login,
             logout: logout,
             isLoggedIn: isLoggedIn,
-            user: currentUser
+            user: currentUser,
+            getAuthData: getAuthData
         };
         return service;
 
@@ -29,7 +30,7 @@
 
             return $http.post(urlConfigs.tokenEndpoint, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                 .success(function (response) {
-                    localStorageService.set(localStorageKeys.authorizationData, {
+                    setAuthData({
                         token: response.access_token,
                         user: { userName: loginData.Email }
                     });
@@ -50,16 +51,23 @@
             return user.userName !== "" && user.userName === currentUser.userName;
         }
 
+        function getAuthData() {
+            return localStorageService.get(localStorageKeys.authorizationData);
+        }        
+
         //private helpers
+        function setAuthData(authData) {
+            localStorageService.set(localStorageKeys.authorizationData, authData);
+        }
+
         function changeUser(user) {
             angular.extend(currentUser, user);
         }
 
         function getUser() {
-            var authData = localStorageService.get(localStorageKeys.authorizationData);
+            var authData = getAuthData();
 
-            return authData ? authData.user : { userName: "" };
-            //return authData ? { userName: authData.userName } : { userName: "" };
+            return authData ? authData.user : { userName: "" };            
         }
     };
 })();

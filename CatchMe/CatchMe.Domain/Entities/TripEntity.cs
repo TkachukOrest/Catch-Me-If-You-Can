@@ -6,7 +6,7 @@ namespace CatchMe.Domain.Entities
 {
     public class TripEntity
     {
-        public int Id { get; set; }
+        public int Id { get; set; }        
 
         public int Seats { get; set; }
 
@@ -22,6 +22,8 @@ namespace CatchMe.Domain.Entities
 
         public VehicleEntity Vehicle { get; set; }   
         
-        public string StaticMapUrl { get; set; }        
+        public string StaticMapUrl { get; set; }
+
+        public string UserName { get; set; }
     }
 }

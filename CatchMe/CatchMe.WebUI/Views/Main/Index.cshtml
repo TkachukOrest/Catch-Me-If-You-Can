@@ -7,32 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/" />
     <title>@ViewBag.Title</title>
-    
-    @Styles.Render("~/styles/material/css")    
-    <script src="@ViewBag.MapsApiSource"></script>    
+
+    @Styles.Render("~/styles/material/css")
+    <script src="@ViewBag.MapsApiSource"></script>
 </head>
 <body ng-app="catchMeApp">
-<div class="catch-me mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header-menu></header-menu>
-    <drawer-menu></drawer-menu>
-    @*@{
-        <!--HEADER-->
-        Html.RenderPartial("PartialHeader");
+    <div class="catch-me mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header-menu></header-menu>
+        <drawer-menu></drawer-menu>
 
-        <!--DRAWER MENU-->
-        Html.RenderPartial("PartialDrawerMenu");
-    }*@
-
-    <!--CONTENT-->
-    <div class="mdl-layout__content mdl-color--grey-100" id="container">
-        <div class="centered">
-            <div ng-view></div>
+        <!--CONTENT-->
+        <div class="mdl-layout__content mdl-color--grey-100" id="container">
+            <div class="centered">
+                <div ng-view></div>
+            </div>
         </div>
     </div>
-</div>
-    
     @Scripts.Render("~/bundles/libs/js")
-    @Scripts.Render("~/bundles/angular/catchMe-module/js")    
-    @Scripts.Render("~/bundles/angular/catchMe-app/js")    
+    @Scripts.Render("~/bundles/angular/catchMe-module/js")
+    @Scripts.Render("~/bundles/angular/catchMe-app/js")
 </body>
 </html>

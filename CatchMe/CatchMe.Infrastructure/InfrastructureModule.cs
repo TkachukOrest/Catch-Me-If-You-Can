@@ -8,7 +8,10 @@ namespace CatchMe.Infrastructure
     {
         public override void Load()
         {
-            Bind<IConfigurationService>().To<ConfigurationService>();            
+            Bind<IConfigurationService>().To<ConfigurationService>();
+            Bind<IEmailService>().To<EmailService>();
+            Bind<IClientSideLogger>().To<Logger>().WithConstructorArgument("loggerSide", "ClientSide");
+            Bind<IServerSideLogger>().To<Logger>().WithConstructorArgument("loggerSide", "ServerSide");            
         }
     }
 }

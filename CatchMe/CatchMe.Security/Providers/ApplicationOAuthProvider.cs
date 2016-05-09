@@ -33,8 +33,13 @@ namespace CatchMe.Security.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity =
-                await userManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
+            if (!user.EmailConfirmed)
+            {
+                context.SetError("invalid_grant", "Please confirm your email.");
+                return;
+            }
+
+            ClaimsIdentity oAuthIdentity = await userManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
 
             AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
@@ -99,14 +104,8 @@ namespace CatchMe.Security.Providers
         }
 
         private void SetCorsPolicy(IOwinContext context)
-        {
-            //if (!context.Response.Headers.ContainsKey("Access-Control-Allow-Headers"))
-            {
-                context.Response.Headers.Add("Access-Control-Allow-Headers", new string[] { "Authorization", "Content-Type" });
-            }            
-
-
-
+        {                        
+            context.Response.Headers.Add("Access-Control-Allow-Headers", new string[] { "Authorization", "Content-Type" });            
             context.Response.Headers.Add("Access-Control-Allow-Methods", new string[] { "OPTIONS", "POST" });
         }
     }

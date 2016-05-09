@@ -1,4 +1,5 @@
 ﻿using CatchMe.Security.Abstract;
+using CatchMe.Security.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -29,6 +30,8 @@ namespace CatchMe.Security.Models
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
+
+            manager.EmailService = new IdentityEmailService();
 
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)

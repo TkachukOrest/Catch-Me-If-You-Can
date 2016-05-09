@@ -45,11 +45,12 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/services/loadingDialog.service.js",
                         "~/Assets/Scripts/angular/services/snackBarNotification.service.js",
                         "~/Assets/Scripts/angular/services/authentication.service.js",
+                        "~/Assets/Scripts/angular/services/exceptionLogging.service.js",
                         "~/Assets/Scripts/angular/components/hoverClass.directive.js",
                         "~/Assets/Scripts/angular/components/isLoggedIn.directive.js",
                         "~/Assets/Scripts/angular/components/isValid.directive.js",
                         "~/Assets/Scripts/angular/components/headerMenu.directive.js",
-                        "~/Assets/Scripts/angular/components/drawerMenu.directive.js",
+                        "~/Assets/Scripts/angular/components/drawerMenu.directive.js",                        
                         "~/Assets/Scripts/angular/components/headerMenuLink.directive.js",
                         "~/Assets/Scripts/angular/interceptors/authentication.interceptor.js"));
             #endregion

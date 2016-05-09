@@ -11,7 +11,8 @@
 
         //service
         var service = {
-            create: create
+            create: create,
+            createIfNotAnyExists: createIfNotAnyExists
         };        
         return service;               
 
@@ -59,5 +60,11 @@
             snackbar.style.bottom = '0px';
             snackbar.style.opacity = 1;
         };
+
+        function createIfNotAnyExists(message, actionText, action) {
+            if (previous) { return; }
+
+            create(message, actionText, action);
+        }
     };
 })();

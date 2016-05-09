@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IRoleStorageService.cs" />
     <Compile Include="Abstract\IUserStorageService.cs" />
+    <Compile Include="Services\IdentityEmailService.cs" />
     <Compile Include="Models\IdentityUserManager.cs" />
     <Compile Include="Configurations\Startup.AuthConfig.cs" />
     <Compile Include="Models\ExternalLoginData.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Concrete\RoleStorageService.cs" />
     <Compile Include="Concrete\UserStorageService.cs" />
+    <Compile Include="Providers\GoogleAuthProvider .cs" />
     <Compile Include="SecurityModule.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

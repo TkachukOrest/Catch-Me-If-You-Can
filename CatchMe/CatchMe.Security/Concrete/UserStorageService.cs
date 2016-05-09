@@ -26,7 +26,9 @@ namespace CatchMe.Security.Concrete
         {
             return Task.Factory.StartNew(() =>
             {
-                _userRepository.Create((UserEntity)user);
+                var userEntity = (UserEntity) user;
+                _userRepository.Create(userEntity);
+                user.Id = userEntity.Id;
             });
         }
 

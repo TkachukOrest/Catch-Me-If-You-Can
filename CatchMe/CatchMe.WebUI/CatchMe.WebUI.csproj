@@ -214,6 +214,7 @@
     <Content Include="Assets\Scripts\angular\data_models\mapPoint.model.js" />
     <Content Include="Assets\Scripts\angular\interceptors\authentication.interceptor.js" />
     <Content Include="Assets\Scripts\angular\services\authentication.service.js" />
+    <Content Include="Assets\Scripts\angular\services\exceptionLogging.service.js" />
     <Content Include="Assets\Scripts\angular\services\googleMap.service.js" />
     <Content Include="Assets\Scripts\angular\services\loadingDialog.service.js" />
     <Content Include="Assets\Scripts\angular\services\snackBarNotification.service.js" />
@@ -245,12 +246,12 @@
     <Content Include="Assets\Styles\material-datetimepicker.css" />
     <Content Include="Assets\Styles\material-design-lite.css" />
     <Content Include="Assets\Styles\material-fonts.css" />
-    <Content Include="Assets\Styles\material.min.css" />
     <Content Include="Assets\Styles\material-customized.css" />
     <Content Include="Assets\Styles\paper-snackbar.css" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Scripts\angular\templates\trip.html" />
     <Content Include="Web.config" />
+    <Content Include="Log4Net.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -258,11 +259,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\RepositorySettings.cs" />
+    <Compile Include="Controllers\Api\LogController.cs" />
     <Compile Include="Controllers\Api\TripController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClientException.cs" />
     <Compile Include="Models\TripAddRequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -275,7 +278,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Scripts\libs\material\material.min.js.map" />
-    <Content Include="Assets\Styles\material.min.css.map" />
     <Content Include="Assets\Scripts\angular\templates\tripList.html" />
     <Content Include="Views\Main\Index.cshtml" />
     <None Include="Web.Debug.config">

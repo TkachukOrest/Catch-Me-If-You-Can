@@ -3116,9 +3116,14 @@ componentHandler.register({
    * @param {HTMLElement} element The element that will be upgraded.
    */
 var MaterialLayout = function MaterialLayout(element) {
-    this.element_ = element;
-    // Initialize instance.
-    this.init();
+    var elementv = element;
+    var self = this;
+
+    setTimeout(function() {
+        self.element_ = elementv;
+        // Initialize instance.
+        self.init();
+    }, 500);
 };
 window['MaterialLayout'] = MaterialLayout;
 /**

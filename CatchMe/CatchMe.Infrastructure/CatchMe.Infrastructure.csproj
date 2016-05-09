@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -45,10 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IClientSideLogger.cs" />
     <Compile Include="Abstract\IConfigurationService.cs" />
+    <Compile Include="Abstract\IEmailService.cs" />
+    <Compile Include="Abstract\ILogger.cs" />
+    <Compile Include="Abstract\IServerSideLogger.cs" />
+    <Compile Include="Concrete\EmailService.cs" />
+    <Compile Include="Concrete\Logger.cs" />
     <Compile Include="Concrete\ConfigurationService.cs" />
     <Compile Include="Extensions\ParseExtension.cs" />
     <Compile Include="InfrastructureModule.cs" />
+    <Compile Include="Models\EmailMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

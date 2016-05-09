@@ -33,12 +33,12 @@ namespace CatchMe.Security
             app.UseOAuthBearerTokens(OAuthOptions);            
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "852925537385-9t4d8fg869kpi1dlm58v77277b70lc6e.apps.googleusercontent.com",
-                ClientSecret = "078iMDZvE2JKYZc8-a5TeEey",
-                Provider = new GoogleAuthProvider()
-            });
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "852925537385-9t4d8fg869kpi1dlm58v77277b70lc6e.apps.googleusercontent.com",
+            //    ClientSecret = "078iMDZvE2JKYZc8-a5TeEey",
+            //    Provider = new GoogleAuthProvider()
+            //});
         }
     }
 }

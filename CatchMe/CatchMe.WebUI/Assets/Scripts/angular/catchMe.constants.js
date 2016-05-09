@@ -6,12 +6,14 @@
             getTrip: 'api/Trip/GetTripById/',
             saveTrip: 'api/Trip/saveTrip/',
             deleteTrip: 'api/Trip/DeleteTrip/',
+            logError: 'api/Log/LogError',
             register: 'http://localhost:50144/api/Account/Register/',
             logout: 'http://localhost:50144/api/Account/Logout',
             tokenEndpoint: 'http://localhost:50144//OAuth/Token'          
         })
         .constant('localStorageKeys', {
-            authorizationData: 'authorizationData'
+            authorizationData: 'authorizationData',
+            exceptionsData: 'exceptionsData'
         })
         .constant('googleMapConfigs', {
             styles: [

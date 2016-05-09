@@ -3,15 +3,17 @@
         .module('catchMeApp')
         .controller('TripListController', TripListController);
 
-    TripListController.$inject = ['tripService', '$location', 'snackBarNotification'];
+    TripListController.$inject = ['tripService', '$location', 'snackBarNotification', 'authenticationService'];
 
-    function TripListController(tripService, $location, snackBarNotification) {
+    function TripListController(tripService, $location, snackBarNotification, authenticationService) {
         var tripListVm = this;
 
         //view model
         tripListVm.trips = [];
         tripListVm.deleteTrip = deleteTrip;
         tripListVm.editTrip = editTrip;
+        tripListVm.isLoggedIn = authenticationService.isLoggedIn;
+        tripListVm.user = authenticationService.user;
 
         //initializtion
         initialize();

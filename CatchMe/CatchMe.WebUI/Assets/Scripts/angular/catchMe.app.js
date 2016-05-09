@@ -8,11 +8,11 @@
             'ui.utils.masks',
             'snackBarNotification',
             'LocalStorageModule'
-        ])
+    ])
         .run([
-            '$rootScope', '$timeout', function($rootScope, $timeout) {
-                $rootScope.$on('$viewContentLoaded', function() {
-                    $timeout(function() {
+            '$rootScope', '$timeout', function ($rootScope, $timeout) {
+                $rootScope.$on('$viewContentLoaded', function () {
+                    $timeout(function () {
                         componentHandler.upgradeAllRegistered();
                     });
                 });

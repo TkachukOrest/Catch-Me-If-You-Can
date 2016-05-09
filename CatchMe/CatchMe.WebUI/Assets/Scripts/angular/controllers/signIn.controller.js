@@ -17,14 +17,15 @@
 
         //private functions
         function login() {
+            //throw new Error();
             loadingDialogService.show();
 
             authenticationService.login(signInVm.loginData).then(function () {
                 $location.path('/Trips');
                 snackBarNotification.create(signInVm.loginData.Email + ', you have been successfully logged in.', 'OK');
             }, function (error) {
-                if (error.error_description) {
-                    snackBarNotification.create(error.error_description, 'OK');
+                if (error.data.error_description) {
+                    snackBarNotification.create(error.data.error_description, 'OK');
                 } else {
                     snackBarNotification.create("An error has been occured", 'OK');
                 }

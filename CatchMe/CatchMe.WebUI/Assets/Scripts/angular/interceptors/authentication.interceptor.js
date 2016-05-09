@@ -3,14 +3,15 @@
         .module('catchMeApp')
         .factory('authenticationInterceptor', authenticationInterceptor);
 
-    authenticationInterceptor.$inject = ['$q', '$injector', '$location', 'localStorageService', 'localStorageKeys'];
+    authenticationInterceptor.$inject = ['$q', '$location', '$injector'];
 
-    function authenticationInterceptor($q, $injector, $location, localStorageService, localStorageKeys) {
+    function authenticationInterceptor($q, $location, $injector) {
         //public functions
         function request(config) {
             config.headers = config.headers || {};
 
-            var authData = localStorageService.get(localStorageKeys.authorizationData);
+            var authenticationService = $injector.get('authenticationService');
+            var authData = authenticationService.getAuthData();
 
             if (authData) {
                 config.headers.Authorization = 'Bearer ' + authData.token;
@@ -21,9 +22,8 @@
 
         function responseError(response) {
             if (response.status === 401 || response.status === 403) {
-                var authService = $injector.get('authenticationService');
-                authService.logout();
-
+                var authenticationService = $injector.get('authenticationService');
+                authenticationService.logout();
                 $location.path('/SignIn');
             }
 

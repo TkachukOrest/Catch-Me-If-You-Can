@@ -3,9 +3,9 @@
         .module('catchMeApp')
         .service('tripService', tripService);
 
-    tripService.$inject = ['$http', 'urlConfigs', 'snackBarNotification'];
+    tripService.$inject = ['$http', 'urlConfigs'];
 
-    function tripService($http, urlConfigs, snackBarNotification) {
+    function tripService($http, urlConfigs) {
         var service = {
             getAllTrips: getAllTrips,
             getTrip: getTrip,
@@ -17,33 +17,26 @@
 
         //functions
         function getAllTrips() {
-            return $http.get(urlConfigs.getAllTrips)
-                   .error(errorCallback);
+            return $http.get(urlConfigs.getAllTrips);
         }
 
         function getTrip(id) {
-            return $http.get(urlConfigs.getTrip + id)
-                   .error(errorCallback);
+            return $http.get(urlConfigs.getTrip + id);
         }
 
         function saveTrip(trip, staticMapConfiguration) {
             return $http({
-                method: 'POST',                
+                method: 'POST',
                 data: {
                     trip: trip,
                     staticMapConfiguration: staticMapConfiguration
                 },
                 url: urlConfigs.saveTrip
-            }).error(errorCallback);
+            });
         }        
 
         function deleteTrip(tripId) {
-            return $http.delete(urlConfigs.deleteTrip + tripId)
-                        .error(errorCallback);
-        }
-
-        function errorCallback() {
-            snackBarNotification.create('An error has been occured.', 'OK');
-        }
+            return $http.delete(urlConfigs.deleteTrip + tripId);
+        }        
     }
 })();

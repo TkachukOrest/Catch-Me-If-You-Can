@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
 using System.Web.Http;
 using CatchMe.Domain.Values;
 using CatchMe.MapService;
@@ -56,10 +55,12 @@ namespace CatchMe.WebUI.Controllers.Api
         }
        
         [HttpPost]
-        public IHttpActionResult SaveTrip(TripPostRequestModel tripModel)
+        [Authorize]
+        public IHttpActionResult SaveTrip(TripPostBindingModel tripModel)
         {
             var mapPoints = new List<MapPoint>(tripModel.Trip.WayPoints) { tripModel.Trip.Origin, tripModel.Trip.Destination };
             tripModel.Trip.StaticMapUrl = _mapService.CreateStaticMapUrl(tripModel.StaticMapConfiguration, mapPoints);
+            tripModel.Trip.UserName = User.Identity.Name;
 
             _tripRepository.Save(tripModel.Trip);
 
