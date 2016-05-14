@@ -437,3 +437,7 @@ md-input-container.md-input-invalid > md-icon {
 a.no-text-decoration {
     text-decoration: none;
 }
+
+.cursor-pointer {
+    cursor: pointer
+}

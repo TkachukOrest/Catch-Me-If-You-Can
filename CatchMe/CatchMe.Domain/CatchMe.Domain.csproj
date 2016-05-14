@@ -43,6 +43,7 @@
     <Compile Include="Entities\RoleEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Entities\UserProfileEntity.cs" />
+    <Compile Include="Values\Address.cs" />
     <Compile Include="Values\MapPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\TripEntity.cs" />

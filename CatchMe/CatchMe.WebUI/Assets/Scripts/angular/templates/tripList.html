@@ -1,26 +1,31 @@
 ﻿<div class="mdl-grid" ng-controller="TripListController as tripListVm">
     <div ng-repeat="trip in tripListVm.trips"
-         class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--4-col-tablet mdl-shadow--4dp">
+         class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--4-col-tablet mdl-shadow--4dp"
+         hover-class="mdl-shadow--8dp">
         <div class="mdl-card__media">
-            <img ng-src="{{trip.StaticMapUrl}}" style="width: 100%; height: 100%" />
+            <img ng-src="{{trip.StaticMapUrl}}" style="width: 100%; height: 100%;" />
+
+            <div ng-show="tripListVm.isLoggedIn() && tripListVm.user.userName == trip.UserName" style="position:absolute; z-index: 999; right: 0; top: 0">
+                <i class="material-icons md-18 cursor-pointer" ng-click="tripListVm.deleteTrip($index, trip.Id)">delete</i>
+                <i class="material-icons md-18 cursor-pointer" ng-click="tripListVm.editTrip(trip.Id)">mode_edit</i>
+            </div>
         </div>
         <div class="mdl-card__supporting-text">
-            {{trip.Destination.Latitude}}
+            {{trip.Origin.FormattedShortAddress}} -
+            <span ng-repeat="point in trip.WayPoints"> {{point.FormattedShortAddress}} - </span>
+            {{trip.Destination.FormattedShortAddress}}
         </div>
         <div class="mdl-layout-spacer"></div>
         <div class="mdl-card__supporting-text mdl-color-text--grey-600 trip-info">
             <div class="mdl-grid mdl-grid--no-spacing">
-                <div class="price">{{trip.Price}} грн.</div>
+                <div class="price">{{trip.Price}} ₴</div>
                 <div class="mdl-layout-spacer"></div>
-                <div ng-show="tripListVm.isLoggedIn() && tripListVm.user.userName == trip.UserName">
-                    <i class="material-icons md-18" ng-click="tripListVm.deleteTrip($index, trip.Id)">delete</i>
-                    <i class="material-icons md-18" ng-click="tripListVm.editTrip(trip.Id)">mode_edit</i>
-                </div>
+                <div>{{trip.StartDateTime | date: "EEEE, MMM d, h:mm"}} </div> <br />
             </div>
         </div>
     </div>
 
-    <a href="/TripAdd" id="add-trip" 
+    <a href="/TripAdd" id="add-trip"
        ng-show="tripListVm.isLoggedIn()"
        class="mdl-button
        mdl-js-button

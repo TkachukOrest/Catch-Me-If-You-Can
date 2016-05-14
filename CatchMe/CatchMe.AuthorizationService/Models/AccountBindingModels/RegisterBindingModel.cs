@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CatchMe.SecurityService.Models.AccountBindingModels
 {
@@ -26,5 +22,9 @@ namespace CatchMe.SecurityService.Models.AccountBindingModels
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Field PhoneNumber can't be empty")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "PhoneNumber is not valid")]
+        public string PhoneNumber { get; set; }
     }
 }

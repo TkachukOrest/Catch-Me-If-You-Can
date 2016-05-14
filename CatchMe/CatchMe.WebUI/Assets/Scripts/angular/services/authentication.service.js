@@ -6,8 +6,15 @@
     authenticationService.$inject = ['$http', '$q', 'localStorageService', 'localStorageKeys', 'urlConfigs'];
 
     function authenticationService($http, $q, localStorageService, localStorageKeys, urlConfigs) {
-        //fields        
-        var currentUser = getUser();
+        //fields                
+        var currentUser = { userName: '' };
+
+        //initialization        
+        activate();
+
+        function activate() {
+            getUser();
+        }
 
         //service
         var service = {
@@ -65,9 +72,23 @@
         }
 
         function getUser() {
-            var authData = getAuthData();
+            var authData = getAuthData();            
 
-            return authData ? authData.user : { userName: "" };            
+            if (authData) {
+                return $http.get(urlConfigs.getUserName).then(function (response) {
+                    if (response.data !== authData.user.userName) {
+                        logout();
+                        return;
+                    }
+
+                    changeUser(authData.user);
+               }, function() {
+                   logout();
+                   return;
+                });
+            }
+
+            changeUser({ userName: '' });            
         }
     };
 })();

@@ -9,7 +9,8 @@
             logError: 'api/Log/LogError',
             register: 'http://localhost:50144/api/Account/Register/',
             logout: 'http://localhost:50144/api/Account/Logout',
-            tokenEndpoint: 'http://localhost:50144//OAuth/Token'          
+            getUserName: 'http://localhost:50144/api/Account/GetUserName',
+            tokenEndpoint: 'http://localhost:50144//OAuth/Token'            
         })
         .constant('localStorageKeys', {
             authorizationData: 'authorizationData',

@@ -1354,8 +1354,8 @@
              * FIXME: all numbers will have 9 digits after 2016.
              * see http://portal.embratel.com.br/embratel/9-digito/
              */
-            var phoneMask8D = new StringMask('(00) 0000-0000'),
-                phoneMask9D = new StringMask('(00) 00000-0000');
+            var phoneMask8D = new StringMask('(000) 00-00-000'),
+                phoneMask9D = new StringMask('(000) 00-00-000');
 
             function clearValue(value) {
                 if (!value) {

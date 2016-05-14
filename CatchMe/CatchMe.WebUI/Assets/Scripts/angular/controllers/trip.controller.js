@@ -198,9 +198,9 @@
         }
 
         function getSelectedPoint(autocomplete) {
-            var place = autocomplete.getPlace();
+            var place = autocomplete.getPlace();            
 
-            return mapPointFactory.create(place.geometry.location.lat(), place.geometry.location.lng(), place.formatted_address);
+            return googleMapService.getMapPoint(place);            
         }
 
         function renderMap() {
@@ -261,10 +261,14 @@
             tripVm.trip = tripEntity;
             tripVm.trip.Origin = mapPointFactory.create(tripEntity.Origin.Latitude,
                 tripEntity.Origin.Longitude,
-                tripEntity.Origin.Address);
+                tripEntity.Origin.FormattedLongAddress,
+                tripEntity.Origin.FormattedShortAddress,
+                tripEntity.Origin.AddressDetails);
             tripVm.trip.Destination = mapPointFactory.create(tripEntity.Destination.Latitude,
                 tripEntity.Destination.Longitude,
-                tripEntity.Destination.Address);
+                tripEntity.Origin.FormattedLongAddress,
+                tripEntity.Origin.FormattedShortAddress,
+                tripEntity.Origin.AddressDetails);
             tripVm.trip.WayPoints = parseWayPoints(tripEntity.WayPoints);
 
             tripVm.trip.Origin.IsValid = true;
@@ -275,7 +279,11 @@
             var wayPoints = [];
 
             points.forEach(function(point) {
-                wayPoints.push(mapPointFactory.create(point.Latitude, point.Longitude, point.Address));
+                wayPoints.push(mapPointFactory.create(point.Latitude,
+                    point.Longitude,
+                    point.FormattedLongAddress,
+                    point.FormattedShortAddress,
+                    point.AddressDetails));
             });
 
             return wayPoints;

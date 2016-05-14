@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -6,6 +7,7 @@ using CatchMe.Domain.Entities;
 using CatchMe.Infrastructure.Abstract;
 using CatchMe.Security.Models;
 using CatchMe.SecurityService.Models.AccountBindingModels;
+using CatchMe.SecurityService.Models.AccountViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -38,6 +40,12 @@ namespace CatchMe.SecurityService.Controllers.Api
             _configurationService = configurationService;
         }
         #endregion
+        
+        public string GetUserName()
+        {
+            var userName = User.Identity.GetUserName();
+            return userName;
+        }
 
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
@@ -89,7 +97,13 @@ namespace CatchMe.SecurityService.Controllers.Api
             {
                 UserName = model.Email,
                 Email = model.Email,
-                Profile = new UserProfileEntity { FirstName = model.FirstName, LastName = model.LastName }
+                Profile =
+                    new UserProfileEntity
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        PhoneNumber = model.PhoneNumber
+                    }
             };
 
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);

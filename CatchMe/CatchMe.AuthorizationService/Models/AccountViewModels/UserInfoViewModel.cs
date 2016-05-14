@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace CatchMe.SecurityService.Models.AccountViewModels
+﻿namespace CatchMe.SecurityService.Models.AccountViewModels
 {
     public class UserInfoViewModel
     {

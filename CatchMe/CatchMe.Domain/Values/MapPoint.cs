@@ -6,13 +6,23 @@
 
         public double Longitude { get; set; }
 
-        public string Address { get; set; }
+        public string FormattedLongAddress { get; set; }
 
-        public MapPoint(double latitude, double longitude, string address)
+        public string FormattedShortAddress { get; set; }
+
+        public Address AddressDetails { get; set; }
+
+        public MapPoint(double latitude,
+            double longitude,
+            string formattedAddress,
+            string formattedShortAddress,
+            Address addressDetails = null)
         {
             Latitude = latitude;
             Longitude = longitude;
-            Address = address;
-        }        
+            FormattedLongAddress = formattedAddress;
+            FormattedShortAddress = formattedShortAddress;
+            AddressDetails = addressDetails;
+        }
     }
 }

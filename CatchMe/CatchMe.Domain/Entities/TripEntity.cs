@@ -22,8 +22,10 @@ namespace CatchMe.Domain.Entities
 
         public VehicleEntity Vehicle { get; set; }   
         
-        public string StaticMapUrl { get; set; }
+        public string StaticMapUrl { get; set; }                
 
         public string UserName { get; set; }
+
+        public string FormattedRoute { get; set; }
     }
 }

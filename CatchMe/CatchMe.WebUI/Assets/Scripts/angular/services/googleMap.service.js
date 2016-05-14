@@ -3,9 +3,9 @@
         .module('catchMeApp')
         .service('googleMapService', googleMapService);
 
-    googleMapService.$inject = ['$q', 'googleMapConfigs', 'mapPointFactory'];
+    googleMapService.$inject = ['$q', 'googleMapConfigs', 'mapPointFactory', 'addressDetailsFactory'];
 
-    function googleMapService($q, googleMapConfigs, mapPointFactory) {
+    function googleMapService($q, googleMapConfigs, mapPointFactory, addressDetailsFactory) {
         //fields        
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -20,6 +20,8 @@
             initAutocomplete: initAutocomplete,
             isWayDirectionValid: isWayDirectionValid,
             getCurrentPosition: getCurrentPosition,
+            getAddressDetails: getAddressDetails,
+            getMapPoint: getMapPoint,
             createStaticMapConfiguration: createStaticMapConfiguration,
             clearMap: clearMap,
             getCenter: getCenter,
@@ -132,6 +134,39 @@
             }
 
             return deferred.promise;
+        }
+
+        function getAddressDetails(place) {
+            var streetNumber = filterAddressDetails(place.address_components, "street_number");
+            var streetName = filterAddressDetails(place.address_components, "route");
+            var district = filterAddressDetails(place.address_components, "sublocality");
+            var city = filterAddressDetails(place.address_components, "locality");
+            var region = filterAddressDetails(place.address_components, "administrative_area_level_1");
+            var country = filterAddressDetails(place.address_components, "country");
+
+            return addressDetailsFactory.create(streetNumber, streetName, district, city, region, country);
+        }
+
+        function filterAddressDetails(addressDetails, addressDetailType) {
+            var address = addressDetails.find(function (component) {
+                var type = component.types.find(function (type) {
+                    return type === addressDetailType;
+                });
+
+                return type !== undefined;
+            });
+
+            return address ? address.long_name : "";
+        }
+
+        function getMapPoint(place) {
+            var addressDetails = getAddressDetails(place);
+
+            return mapPointFactory.create(place.geometry.location.lat(),
+                place.geometry.location.lng(),
+                place.formatted_address,
+                place.name,
+                addressDetails);
         }
 
         function createStaticMapConfiguration(googleMap, pathPoints, center, zoom) {            

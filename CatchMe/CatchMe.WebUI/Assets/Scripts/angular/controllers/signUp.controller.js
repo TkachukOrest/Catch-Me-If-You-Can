@@ -14,26 +14,31 @@
             LastName: "",
             Email: "",
             Password: "",
-            ConfirmPassword: ""
+            ConfirmPassword: "",
+            PhoneNumber: ""
         };
         signUpVm.register = register;
 
         //private functions
-        function register() {
-            loadingDialogService.show();
+        function register(registerForm) {
+            if (!registerForm.$invalid) {
+                loadingDialogService.show();
 
-            authenticationService.register(signUpVm.registerData).then(function () {
-                $location.path('/SignIn');                
-                snackBarNotification.create('Your account has been successfully created. Please confirm your account.', 'OK');
-            }, function (response) {
-                if (response.data && response.data.ModelState) {
-                    snackBarNotification.create("Failed to register user due to: " + parseErrors(response), 'OK');
-                } else {
-                    snackBarNotification.create("An error has been occured", 'OK');
-                }
-            }).finally(function () {
-                loadingDialogService.hide();
-            });
+                authenticationService.register(signUpVm.registerData).then(function () {
+                    $location.path('/SignIn');
+                    snackBarNotification.create('Your account has been successfully created. Please confirm your account.', 'OK');
+                }, function (response) {
+                    if (response.data && response.data.ModelState) {
+                        snackBarNotification.create("Failed to register user due to: " + parseErrors(response), 'OK');
+                    } else {
+                        snackBarNotification.create("An error has been occured", 'OK');
+                    }
+                }).finally(function () {
+                    loadingDialogService.hide();
+                });
+            } else {
+                snackBarNotification.create("Register form has invalid fields", 'OK');
+            }
         };
 
         //helpers
@@ -44,7 +49,7 @@
                     errors.push(response.data.ModelState[key][i]);
                 }
             }
-            return errors.join(', ');            
+            return errors.join(', ');
         }
     };
 })();

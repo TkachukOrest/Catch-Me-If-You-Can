@@ -200,6 +200,7 @@
     <Content Include="Assets\Scripts\angular\catchMe.configs.js" />
     <Content Include="Assets\Scripts\angular\catchMe.constants.js" />
     <Content Include="Assets\Scripts\angular\catchMe.material.js" />
+    <Content Include="Assets\Scripts\angular\components\compareTo.directive.js" />
     <Content Include="Assets\Scripts\angular\components\drawerMenu.directive.js" />
     <Content Include="Assets\Scripts\angular\components\headerMenu.directive.js" />
     <Content Include="Assets\Scripts\angular\components\headerMenuLink.directive.js" />
@@ -211,6 +212,7 @@
     <Content Include="Assets\Scripts\angular\controllers\trip.controller.js" />
     <Content Include="Assets\Scripts\angular\controllers\headerMenu.controller.js" />
     <Content Include="Assets\Scripts\angular\controllers\tripList.controller.js" />
+    <Content Include="Assets\Scripts\angular\data_models\addressDetails.model.js" />
     <Content Include="Assets\Scripts\angular\data_models\mapPoint.model.js" />
     <Content Include="Assets\Scripts\angular\interceptors\authentication.interceptor.js" />
     <Content Include="Assets\Scripts\angular\services\authentication.service.js" />

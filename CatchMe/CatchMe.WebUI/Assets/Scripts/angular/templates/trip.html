@@ -23,7 +23,7 @@
                                    placeholder=""
                                    type="text"
                                    name="originPoint"                                   
-                                   ng-model="tripVm.trip.Origin.Address"
+                                   ng-model="tripVm.trip.Origin.FormattedLongAddress"
                                    ng-change="tripVm.onOriginAddressChange()"
                                    is-valid="tripVm.trip.Origin.IsValid"
                                    required>
@@ -36,7 +36,7 @@
                         <md-input-container class="md-icon-float md-block md-small-spacing"
                                             ng-repeat="wayPoint in tripVm.trip.WayPoints">
                             <md-icon class="material-icons" ng-click="tripVm.deleteWayPoint($index)">clear</md-icon>
-                            <input type="text" ng-model="tripVm.trip.WayPoints[$index].Address" required disabled>
+                            <input type="text" ng-model="tripVm.trip.WayPoints[$index].FormattedLongAddress" required disabled>
                         </md-input-container>
 
                         <md-input-container class="md-icon-float md-block md-small-spacing">
@@ -46,7 +46,7 @@
                                    placeholder=""
                                    type="text"
                                    name="destinationPoint"
-                                   ng-model="tripVm.trip.Destination.Address"
+                                   ng-model="tripVm.trip.Destination.FormattedLongAddress"
                                    ng-change="tripVm.onDestinationAddressChange()"
                                    is-valid="tripVm.trip.Destination.IsValid"
                                    required>

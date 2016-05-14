@@ -17,9 +17,9 @@ namespace CatchMe.Repositories.Static
                 Id = 1,
                 Price = 100,
                 Seats = 5,
-                Origin = new MapPoint(49.7946898, 24.0647954, string.Empty),
-                Destination = new MapPoint(49.842582, 24.003351, string.Empty),
-                WayPoints = new List<MapPoint>() {new MapPoint(49.835327, 24.0144097, string.Empty) },
+                Origin = new MapPoint(49.7946898, 24.0647954, string.Empty, "вулиця Виговського"),
+                Destination = new MapPoint(49.842582, 24.003351, string.Empty, "вулиця Єфремова"),
+                WayPoints = new List<MapPoint>() { new MapPoint(49.842582, 24.003351, string.Empty, "вулиця Валова") },
                 StartDateTime = DateTime.Today,
                 Vehicle = new VehicleEntity()
                 {
@@ -36,9 +36,9 @@ namespace CatchMe.Repositories.Static
                 Id = 2,
                 Price = 22,
                 Seats = 5,
-                Origin = new MapPoint(49.7946898, 24.0647954, string.Empty),
-                Destination = new MapPoint(49.842582, 24.003351, string.Empty),
-                WayPoints = new List<MapPoint>() {new MapPoint(49.835327, 24.0144097, string.Empty) },
+                Origin = new MapPoint(49.7946898, 24.0647954, string.Empty, "вулиця Університетська"),
+                Destination = new MapPoint(49.842582, 24.003351, string.Empty, "вулиця Сихівська"),
+                WayPoints = new List<MapPoint>() { new MapPoint(49.842582, 24.003351, string.Empty, "вулиця Бойка") },
                 StartDateTime = DateTime.Today,
                 Vehicle = new VehicleEntity()
                 {

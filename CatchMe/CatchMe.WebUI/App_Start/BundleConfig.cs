@@ -33,6 +33,7 @@ namespace CatchMe.WebUI
 
             bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-app/js").Include(
                         "~/Assets/Scripts/angular/data_models/mapPoint.model.js",
+                        "~/Assets/Scripts/angular/data_models/addressDetails.model.js",
                         "~/Assets/Scripts/angular/services/trip.service.js",
                         "~/Assets/Scripts/angular/services/googleMap.service.js",
                         "~/Assets/Scripts/angular/controllers/tripList.controller.js",
@@ -49,6 +50,7 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/components/hoverClass.directive.js",
                         "~/Assets/Scripts/angular/components/isLoggedIn.directive.js",
                         "~/Assets/Scripts/angular/components/isValid.directive.js",
+                        "~/Assets/Scripts/angular/components/compareTo.directive.js",
                         "~/Assets/Scripts/angular/components/headerMenu.directive.js",
                         "~/Assets/Scripts/angular/components/drawerMenu.directive.js",                        
                         "~/Assets/Scripts/angular/components/headerMenuLink.directive.js",
