@@ -10,6 +10,7 @@ namespace CatchMe.Infrastructure
         {
             Bind<IConfigurationService>().To<ConfigurationService>();
             Bind<IEmailService>().To<EmailService>();
+            Bind<IWebApiRequestService>().To<HttpClientApiRequestService>();
             Bind<IClientSideLogger>().To<Logger>().WithConstructorArgument("loggerSide", "ClientSide");
             Bind<IServerSideLogger>().To<Logger>().WithConstructorArgument("loggerSide", "ServerSide");            
         }

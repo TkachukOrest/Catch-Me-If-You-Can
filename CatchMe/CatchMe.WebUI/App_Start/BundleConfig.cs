@@ -9,7 +9,7 @@ namespace CatchMe.WebUI
             #region Scripts bundles
 
             bundles.Add(new ScriptBundle("~/bundles/libs/js").Include(
-                        "~/Assets/Scripts/libs/material/material.js",                        
+                        "~/Assets/Scripts/libs/material/material.js",
                         "~/Assets/Scripts/libs/iscroll/iscroll.js",
                         "~/Assets/Scripts/libs/angular/angular.js",
                         "~/Assets/Scripts/libs/angular/angular-animate.js",
@@ -29,7 +29,7 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/catchMe.routes.js",
                         "~/Assets/Scripts/angular/catchMe.constants.js",
                         "~/Assets/Scripts/angular/catchMe.material.js",
-                        "~/Assets/Scripts/angular/catchMe.configs.js"));                        
+                        "~/Assets/Scripts/angular/catchMe.configs.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular/catchMe-app/js").Include(
                         "~/Assets/Scripts/angular/data_models/mapPoint.model.js",
@@ -52,7 +52,7 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/components/isValid.directive.js",
                         "~/Assets/Scripts/angular/components/compareTo.directive.js",
                         "~/Assets/Scripts/angular/components/headerMenu.directive.js",
-                        "~/Assets/Scripts/angular/components/drawerMenu.directive.js",                        
+                        "~/Assets/Scripts/angular/components/drawerMenu.directive.js",
                         "~/Assets/Scripts/angular/components/headerMenuLink.directive.js",
                         "~/Assets/Scripts/angular/interceptors/authentication.interceptor.js"));
             #endregion
@@ -67,7 +67,7 @@ namespace CatchMe.WebUI
                       "~/Assets/Styles/paper-snackbar.css"));
             #endregion
 
-            BundleTable.EnableOptimizations = false;            
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

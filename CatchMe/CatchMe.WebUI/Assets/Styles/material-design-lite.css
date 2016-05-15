@@ -9747,6 +9747,12 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
   .mdl-grid.mdl-grid--no-spacing {
     padding: 0; }
 
+  .mdl-grid.mdl-grid--no--vertical-spacing {
+    padding: 12px 12px 0px 12px; }
+
+    .mdl-grid.mdl-grid--no--horizontal-spacing {
+    padding: 0px 0px 12px 0px; }
+
 .mdl-cell {
   box-sizing: border-box; }
 

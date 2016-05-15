@@ -1,6 +1,6 @@
 ﻿namespace CatchMe.WebUI.Models
 {
-    public class ClientException
+    public class ClientExceptionBindingModel
     {
         public string User { get; set; }
 

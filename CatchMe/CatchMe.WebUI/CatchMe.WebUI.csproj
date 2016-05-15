@@ -195,6 +195,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\avatar.png" />
     <Content Include="Assets\Images\logo.png" />
     <Content Include="Assets\Scripts\angular\catchMe.app.js" />
     <Content Include="Assets\Scripts\angular\catchMe.configs.js" />
@@ -225,6 +226,7 @@
     <Content Include="Assets\Scripts\angular\templates\header.html" />
     <Content Include="Assets\Scripts\angular\templates\signIn.html" />
     <Content Include="Assets\Scripts\angular\templates\signUp.html" />
+    <Content Include="Assets\Scripts\angular\templates\tripDetails.html" />
     <Content Include="Assets\Scripts\libs\angularLocalStorage\angular-local-storage.min.js" />
     <Content Include="Assets\Scripts\libs\angular\angular-animate.js" />
     <Content Include="Assets\Scripts\libs\angular\angular-aria.js" />
@@ -260,6 +262,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\AppSettingsKeys.cs" />
     <Compile Include="Code\RepositorySettings.cs" />
     <Compile Include="Controllers\Api\LogController.cs" />
     <Compile Include="Controllers\Api\TripController.cs" />
@@ -267,8 +270,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClientException.cs" />
-    <Compile Include="Models\TripAddRequestModel.cs" />
+    <Compile Include="Models\CatchCarBindingModel.cs" />
+    <Compile Include="Models\ClientExceptionBindingModel.cs" />
+    <Compile Include="Models\TripDetailsViewModel.cs" />
+    <Compile Include="Models\TripPostBindingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="WebUIModule.cs" />

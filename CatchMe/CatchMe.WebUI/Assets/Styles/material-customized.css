@@ -259,6 +259,10 @@ a img {
     /*overflow: hidden;*/
 }
 
+.material-icons.md-12 {
+    font-size: 12px;
+}
+
 .material-icons.md-18 {
     font-size: 18px;
 }
@@ -440,4 +444,40 @@ a.no-text-decoration {
 
 .cursor-pointer {
     cursor: pointer
+}
+
+.border-top {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.trip-details-block {
+    padding: 16px 0 16px 0;
+    margin-left: 10px;
+}
+.trip-details-block .text {    
+    margin-left: 5px;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    margin: auto;
+    margin-right: 12px;
+    text-align: center;        
+}
+
+.circle {
+	width: 16px;
+	height: 16px;	
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    margin: 0 5px 0 5px;
+}
+
+.link-uncolored {
+    color: #757575;
+     text-decoration: none;
 }

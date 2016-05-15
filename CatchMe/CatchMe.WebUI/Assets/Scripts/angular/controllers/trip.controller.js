@@ -58,7 +58,7 @@
         }
 
         function initializeMap() {
-            loadingDialogService.show();
+            loadingDialogService.show();            
             googleMap = googleMapService.createMap('trip-map', mapPointFactory.create(50.4501, 30.5234));
 
             googleMapService.getCurrentPosition().then(function(position) {

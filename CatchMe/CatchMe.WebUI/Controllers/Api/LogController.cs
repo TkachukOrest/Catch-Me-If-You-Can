@@ -14,7 +14,7 @@ namespace CatchMe.WebUI.Controllers.Api
         }
 
         [HttpPost]
-        public void LogError(ClientException[] errors)
+        public void LogError(ClientExceptionBindingModel[] errors)
         {
             foreach (var error in errors)
             {

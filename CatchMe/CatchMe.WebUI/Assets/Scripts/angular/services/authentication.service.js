@@ -60,7 +60,7 @@
 
         function getAuthData() {
             return localStorageService.get(localStorageKeys.authorizationData);
-        }        
+        }
 
         //private helpers
         function setAuthData(authData) {
@@ -72,23 +72,24 @@
         }
 
         function getUser() {
-            var authData = getAuthData();            
+            var authData = getAuthData();
 
-            if (authData) {
-                return $http.get(urlConfigs.getUserName).then(function (response) {
-                    if (response.data !== authData.user.userName) {
+            if (authData && authData.user && authData.user.userName) {
+                return $http.get(urlConfigs.verifyUserName, { params: {userName: authData.user.userName}})
+                    .then(function (response) {
+                        if (!response.data) {
+                            logout();
+                            return;
+                        }
+
+                        changeUser(authData.user);
+                    }, function () {
                         logout();
                         return;
-                    }
-
-                    changeUser(authData.user);
-               }, function() {
-                   logout();
-                   return;
-                });
+                    });
             }
 
-            changeUser({ userName: '' });            
+            changeUser({ userName: '' });
         }
     };
 })();

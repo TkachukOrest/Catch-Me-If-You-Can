@@ -9,8 +9,10 @@
         var service = {
             getAllTrips: getAllTrips,
             getTrip: getTrip,
+            getTripDetails: getTripDetails,
             saveTrip: saveTrip,            
-            deleteTrip: deleteTrip
+            deleteTrip: deleteTrip,
+            catchCar: catchCar
         };
 
         return service;
@@ -24,6 +26,10 @@
             return $http.get(urlConfigs.getTrip + id);
         }
 
+        function getTripDetails(id) {
+            return $http.get(urlConfigs.getTripDetails + id);
+        }
+
         function saveTrip(trip, staticMapConfiguration) {
             return $http({
                 method: 'POST',
@@ -33,10 +39,21 @@
                 },
                 url: urlConfigs.saveTrip
             });
-        }        
+        }      
 
         function deleteTrip(tripId) {
             return $http.delete(urlConfigs.deleteTrip + tripId);
-        }        
+        }
+
+        function catchCar(tripId, passengerName) {
+            return $http({
+                method: 'POST',
+                data: {
+                    TripId: tripId,
+                    PassengerName: passengerName
+                },
+                url: urlConfigs.catchCar
+            });
+        }
     }
 })();

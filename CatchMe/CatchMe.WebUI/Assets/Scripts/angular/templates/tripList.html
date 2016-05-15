@@ -1,6 +1,8 @@
 ﻿<div class="mdl-grid" ng-controller="TripListController as tripListVm">
     <div ng-repeat="trip in tripListVm.trips"
+         ng-click="tripListVm.openTripDetails(trip.Id, $event)"
          class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--4-col-tablet mdl-shadow--4dp"
+         ng-class="{'cursor-pointer': tripListVm.isLoggedIn()}"
          hover-class="mdl-shadow--8dp">
         <div class="mdl-card__media">
             <img ng-src="{{trip.StaticMapUrl}}" style="width: 100%; height: 100%;" />

@@ -41,10 +41,18 @@ namespace CatchMe.SecurityService.Controllers.Api
         }
         #endregion
         
-        public string GetUserName()
+        [HttpGet]
+        public async Task<IHttpActionResult> VerifyUserName(string userName)
         {
-            var userName = User.Identity.GetUserName();
-            return userName;
+            var user = await _userManager.FindByNameAsync(userName);
+            
+            return Ok(user != null);
+        }
+
+        public async Task<IHttpActionResult> GetUser(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            return Ok(user);
         }
 
         [Route("ChangePassword")]

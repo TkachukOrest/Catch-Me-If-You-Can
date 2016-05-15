@@ -4,12 +4,14 @@
         .constant('urlConfigs', {
             getAllTrips: 'api/Trip/GetAllTrips/',
             getTrip: 'api/Trip/GetTripById/',
+            getTripDetails: 'api/Trip/GetTripDetailsById/',
             saveTrip: 'api/Trip/saveTrip/',
             deleteTrip: 'api/Trip/DeleteTrip/',
+            catchCar: 'api/Trip/CatchCar',
             logError: 'api/Log/LogError',
             register: 'http://localhost:50144/api/Account/Register/',
             logout: 'http://localhost:50144/api/Account/Logout',
-            getUserName: 'http://localhost:50144/api/Account/GetUserName',
+            verifyUserName: 'http://localhost:50144/api/Account/VerifyUserName/',
             tokenEndpoint: 'http://localhost:50144//OAuth/Token'            
         })
         .constant('localStorageKeys', {

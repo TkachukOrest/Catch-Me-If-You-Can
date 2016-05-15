@@ -10,6 +10,8 @@ namespace CatchMe.Domain.Entities
 
         public int Seats { get; set; }
 
+        public int SeatsTaken { get; set; }        
+
         public decimal Price { get; set; }
 
         public MapPoint Origin { get; set; }
