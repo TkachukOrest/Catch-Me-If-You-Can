@@ -3,10 +3,10 @@ using Microsoft.AspNet.Identity;
 
 namespace CatchMe.Security.Models
 {
-    public class IdentityRole : IRole<string>
+    public class IdentityRole : IRole<int>
     {
         #region Properties
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
         #endregion

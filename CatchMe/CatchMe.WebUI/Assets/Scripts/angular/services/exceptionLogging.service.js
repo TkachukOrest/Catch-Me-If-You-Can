@@ -20,7 +20,7 @@
                 var authData = authenticationService.getAuthData();
 
                 var errorData = {
-                    User: (authData ? authData.userName : 'Anonim'),
+                    User: (authData && authData.user ? authData.user.userName : 'Anonim'),
                     Url: ($window.location.href || ""),
                     Message: (exception.cause || ""),
                     StackTrace: (exception.stack || ""),

@@ -58,11 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IClientSideLogger.cs" />
     <Compile Include="Abstract\IConfigurationService.cs" />
     <Compile Include="Abstract\IEmailService.cs" />
     <Compile Include="Abstract\ILogger.cs" />
-    <Compile Include="Abstract\IServerSideLogger.cs" />
     <Compile Include="Abstract\IWebApiRequestService.cs" />
     <Compile Include="Concrete\EmailService.cs" />
     <Compile Include="Concrete\HttpClientApiRequestService.cs" />

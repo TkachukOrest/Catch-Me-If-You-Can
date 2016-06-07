@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using CatchMe.Domain.Entities;
 using CatchMe.Infrastructure.Abstract;
+using CatchMe.Infrastructure.Extensions;
 using CatchMe.Security.Models;
 using CatchMe.SecurityService.Models.AccountBindingModels;
 using CatchMe.SecurityService.Models.AccountViewModels;
@@ -63,7 +64,7 @@ namespace CatchMe.SecurityService.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
+            IdentityResult result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId().To<int>(), model.OldPassword,
                 model.NewPassword);
 
             if (!result.Succeeded)
@@ -82,7 +83,7 @@ namespace CatchMe.SecurityService.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _userManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+            IdentityResult result = await _userManager.AddPasswordAsync(User.Identity.GetUserId().To<int>(), model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -142,7 +143,7 @@ namespace CatchMe.SecurityService.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var result = await _userManager.ConfirmEmailAsync(userId, code);
+            var result = await _userManager.ConfirmEmailAsync(userId.To<int>(), code);
 
             if (!result.Succeeded)
             {

@@ -10,8 +10,8 @@ namespace CatchMe.Repositories
         public override void Load()
         {
             Bind<IRoleRepository>().To<RoleRepository>();
-            Bind<ITripRepository>().To<StaticTripRepository>();
-            Bind<IUserRepository>().To<StaticUserRepository>();
+            Bind<ITripRepository>().To<TripRepository>();
+            Bind<IUserRepository>().To<UserRepository>();
         }
     }
 }

@@ -22,12 +22,10 @@ namespace CatchMe.Domain.Entities
 
         public DateTime StartDateTime { get; set; }
 
-        public VehicleEntity Vehicle { get; set; }   
-        
-        public string StaticMapUrl { get; set; }                
+        public VehicleEntity Vehicle { get; set; }
 
-        public string UserName { get; set; }
+        public UserEntity Driver { get; set; }
 
-        public string FormattedRoute { get; set; }
+        public string StaticMapUrl { get; set; }                        
     }
 }

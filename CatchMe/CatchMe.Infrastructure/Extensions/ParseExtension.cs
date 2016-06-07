@@ -29,7 +29,41 @@ namespace CatchMe.Infrastructure.Extensions
             {
                 return false;                 
             }
-        }        
+        }
+
+        public static T FromDb<T>(this object input)
+        {
+            var type = typeof(T);
+            if (input == DBNull.Value)
+            {
+                if (!IsNullableType(type))
+                {
+                    throw new InvalidOperationException(string.Format("Cannot convert DBNull to {0}", type.Name));                 
+                }
+
+                return (T)(object)null;
+            }            
+
+            return (T)input;            
+        }
+
+        #region Helpers
+        private static bool IsNullableType(Type type)
+        {
+            if (!type.IsValueType)
+            {
+                return true;
+                
+            }
+
+            if (Nullable.GetUnderlyingType(type) != null)
+            {
+                return true;                
+            } 
+
+            return false; 
+        }
+        #endregion
     }
 }
 

@@ -7,16 +7,16 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace CatchMe.Security.Models
 {
-    public class IdentityUserManager : UserManager<IdentityUser>
+    public class IdentityUserManager : UserManager<IdentityUser, int>
     {
-        public IdentityUserManager(IUserStore<IdentityUser> store) : base(store) { }
+        public IdentityUserManager(IUserStore<IdentityUser, int> store) : base(store) { }
 
         public static IdentityUserManager Create(IdentityFactoryOptions<IdentityUserManager> options, IOwinContext context)
         {
             var userStorage = ServiceLocator.Current.GetInstance<IUserStorageService<IdentityUser>>();
             var manager = new IdentityUserManager(userStorage);            
 
-            manager.UserValidator = new UserValidator<IdentityUser>(manager)
+            manager.UserValidator = new UserValidator<IdentityUser, int>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -36,7 +36,7 @@ namespace CatchMe.Security.Models
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = new DataProtectorTokenProvider<IdentityUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                manager.UserTokenProvider = new DataProtectorTokenProvider<IdentityUser, int>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
 
             return manager;

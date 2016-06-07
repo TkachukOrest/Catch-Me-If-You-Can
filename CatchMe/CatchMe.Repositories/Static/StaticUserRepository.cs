@@ -10,33 +10,34 @@ namespace CatchMe.Repositories.Static
     {
         private static readonly List<UserEntity> _users = new List<UserEntity>()
         {
-            //new UserEntity()
-            //{
-            //    Id = "1",
-            //    PasswordHash = "AIY1sp1VMZac3/DENKUosDj2Zc0L7pa1jNb6/PQr+j1yvwQ/QvPCA1kNbcbD5igryg==",
-            //    Email = "orcoss36@gmail.com",
-            //    EmailConfirmed = true,
-            //    UserName = "orcoss36@gmail.com",
-            //    Profile =
-            //        new UserProfileEntity()
-            //        {
-            //            FirstName = "Orest",
-            //            LastName = "Tkachuk",
-            //            PhoneNumber = "0931331195",
-            //            UserId = 1,
-            //            Id = 1
-            //        }
-            //}
+            new UserEntity()
+            {
+                Id = 1,
+                PasswordHash = "AIY1sp1VMZac3/DENKUosDj2Zc0L7pa1jNb6/PQr+j1yvwQ/QvPCA1kNbcbD5igryg==",
+                Email = "orcoss36@gmail.com",
+                EmailConfirmed = true,
+                UserName = "orcoss36@gmail.com",
+                Profile =
+                    new UserProfileEntity()
+                    {
+                        FirstName = "Orest",
+                        LastName = "Tkachuk",
+                        PhoneNumber = "0931331195",
+                        UserId = 1,
+                        Id = 1
+                    }
+            }
         };
         private static readonly List<UserInRole> _userRoles = new List<UserInRole>();
 
-        public void Create(UserEntity user)
+        public int Create(UserEntity user)
         {
             var maxId = _users.Max(u => u.Id);
-            var newId = maxId != null ? int.Parse(maxId) + 1 : 1;
-            user.Id = newId.ToString();
+            var newId = maxId != 0 ? maxId + 1 : 1;            
 
             _users.Add(user);
+
+            return newId;
         }
 
         public void Update(UserEntity user)
@@ -56,7 +57,7 @@ namespace CatchMe.Repositories.Static
             return _users;
         }
 
-        public UserEntity FindById(string userId)
+        public UserEntity FindById(int userId)
         {
             var user = _users.Find(u => u.Id == userId);
 

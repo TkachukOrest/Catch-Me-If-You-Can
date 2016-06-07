@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using CatchMe.Domain.Entities;
@@ -15,18 +16,11 @@ namespace CatchMe.WebUI.Controllers.Api
 {
     public class TripController : ApiController
     {
-        #region Consts
-
-        private const string GetUserWebUrl = "api/Account/GetUser";
-
-        #endregion
-
         #region Fields
 
         private readonly ITripRepository _tripRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapService _mapService;
-        private readonly IWebApiRequestService _webApiRequestService;
-        private readonly IConfigurationService _configurationService;
         private readonly IEmailService _emailService;
 
         #endregion
@@ -34,15 +28,13 @@ namespace CatchMe.WebUI.Controllers.Api
         #region Constructor
 
         public TripController(ITripRepository tripRepository,
-            IWebApiRequestService webApiRequestService,
+            IUserRepository userRepository,
             IMapService mapService,
-            IConfigurationService configurationService,
             IEmailService emailService)
         {
             _tripRepository = tripRepository;
-            _webApiRequestService = webApiRequestService;
+            _userRepository = userRepository;
             _mapService = mapService;
-            _configurationService = configurationService;
             _emailService = emailService;
         }
 
@@ -53,23 +45,17 @@ namespace CatchMe.WebUI.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetAllTrips()
         {
-            var trips = _tripRepository.GetAll();
+            var trips = _tripRepository.GetAll().Where(t => t.Seats > t.SeatsTaken);
 
             return Ok(trips);
         }
 
         [HttpGet]
         [Authorize]
-        public async Task<IHttpActionResult> GetTripDetailsById(int id)
+        public IHttpActionResult GetTripDetailsById(int id)
         {
             var trip = _tripRepository.GetById(id);
-
-            var getUserApiUrl = _configurationService.GetConfiguration(AppSettingsKeys.SecurityServiceBaseAddressKey) + GetUserWebUrl;
-            var user = await _webApiRequestService.GetAsync<UserEntity>(getUserApiUrl,
-                new List<KeyValuePair<string, string>>() { new KeyValuePair<string, string>("userName", trip.UserName) },
-                Request.Headers.Authorization);
-
-            if (user == null) return BadRequest();
+            var user = _userRepository.FindById(trip.Driver.Id);
 
             var result = new TripDetailsViewModel()
             {
@@ -83,42 +69,19 @@ namespace CatchMe.WebUI.Controllers.Api
 
         [HttpPost]
         [Authorize]
-        public async Task<IHttpActionResult> CatchCar(CatchCarBindingModel catchCarModel)
+        public IHttpActionResult CatchCar(CatchCarBindingModel catchCarModel)
         {
             var trip = _tripRepository.GetById(catchCarModel.TripId);
-            if(trip.SeatsTaken >= trip.Seats) return BadRequest();
+            if (trip.SeatsTaken >= trip.Seats) return BadRequest();
 
-            var driver = await this.GetUser(trip.UserName);
-            var passenger = await this.GetUser(catchCarModel.PassengerName);
-            if (driver == null || passenger == null) return BadRequest();
+            var passenger = _userRepository.FindByName(catchCarModel.PassengerName);
+            if (passenger == null) return BadRequest();            
 
-            trip.SeatsTaken++;
+            SendNotificationToTripDriver(trip, passenger);
+            SendNotificationToTripPassenger(trip, passenger);
+
+            _tripRepository.AddPassenger(trip.Id, passenger.Id);
             _tripRepository.Save(trip);
-
-            _emailService.Send(new EmailMessage() { Destination = driver.UserName,
-                Subject = "New passenger",
-                Message = string.Format("Your trip from {0} to {1} ({2}) has new passenger: {3}. Contact information:\n {4}. Your car:\n {5}",
-                trip.Origin.FormattedLongAddress,
-                trip.Destination.FormattedLongAddress,
-                trip.StartDateTime,
-                passenger.Email,
-                passenger.Profile,
-                trip.Vehicle)
-            });
-
-            _emailService.Send(new EmailMessage()
-            {
-                Destination = passenger.UserName,
-                Subject = "New trip",
-                Message = string.Format("You was successfully assigned to trip from {0} to {1} ({2}) with Driver: {3}.\n" +
-                                        " Contact information:\n {4}. Car:\n {5} ",
-                trip.Origin.FormattedLongAddress,
-                trip.Destination.FormattedLongAddress,
-                trip.StartDateTime,
-                driver.Email,
-                driver.Profile,
-                trip.Vehicle)
-            });
 
             return Ok();
         }
@@ -129,7 +92,7 @@ namespace CatchMe.WebUI.Controllers.Api
         {
             var trip = _tripRepository.GetById(id);
 
-            if (trip.UserName != User.Identity.Name)
+            if (trip.Driver.UserName != User.Identity.Name)
             {
                 return Unauthorized();
             }
@@ -143,13 +106,13 @@ namespace CatchMe.WebUI.Controllers.Api
         {
             var trip = _tripRepository.GetById(id);
 
-            if (trip.UserName != User.Identity.Name)
+            if (trip.Driver.UserName != User.Identity.Name)
             {
                 return Unauthorized();
             }
 
             _tripRepository.Delete(id);
-            return Ok();             
+            return Ok();
         }
 
         [HttpPost]
@@ -158,7 +121,7 @@ namespace CatchMe.WebUI.Controllers.Api
         {
             var mapPoints = new List<MapPoint>(tripModel.Trip.WayPoints) { tripModel.Trip.Origin, tripModel.Trip.Destination };
             tripModel.Trip.StaticMapUrl = _mapService.CreateStaticMapUrl(tripModel.StaticMapConfiguration, mapPoints);
-            tripModel.Trip.UserName = User.Identity.Name;            
+            tripModel.Trip.Driver = _userRepository.FindByName(User.Identity.Name);
 
             _tripRepository.Save(tripModel.Trip);
 
@@ -168,16 +131,53 @@ namespace CatchMe.WebUI.Controllers.Api
 
         #region Helpers
 
-        private async Task<UserEntity> GetUser(string userName)
+        private void SendNotificationToTripDriver(TripEntity trip, UserEntity passenger)
         {
-            var getUserApiUrl = _configurationService.GetConfiguration(AppSettingsKeys.SecurityServiceBaseAddressKey) + GetUserWebUrl;
-
-            var user = await _webApiRequestService.GetAsync<UserEntity>(getUserApiUrl,
-                                new List<KeyValuePair<string, string>>() { new KeyValuePair<string, string>("userName", userName) },
-                                Request.Headers.Authorization);
-
-            return user;
+            _emailService.Send(new EmailMessage()
+            {
+                Destination = trip.Driver.UserName,
+                Subject = "New passenger",
+                Message = string.Format("Your trip from {0} to {1} ({2}) has new passenger: {3}. Contact information:\n {4}.\nPrice: {5}.\n Your car:\n {6}",
+               trip.Origin.FormattedLongAddress,
+               trip.Destination.FormattedLongAddress,
+               trip.StartDateTime,
+               passenger.Email,
+               passenger.Profile,
+               trip.Price,
+               trip.Vehicle)
+            });
         }
+
+        private void SendNotificationToTripPassenger(TripEntity trip, UserEntity passenger)
+        {
+            _emailService.Send(new EmailMessage()
+            {
+                Destination = passenger.UserName,
+                Subject = "New trip",
+                Message =
+                    string.Format("You was successfully assigned to trip from {0} to {1} ({2}) with Driver: {3}.\n" +
+                                  " Contact information:\n {4}.\n Price: {5}.\n Car:\n {6} ",
+                        trip.Origin.FormattedLongAddress,
+                        trip.Destination.FormattedLongAddress,
+                        trip.StartDateTime,
+                        trip.Driver.Email,
+                        trip.Driver.Profile,
+                        trip.Price,
+                        trip.Vehicle)
+            });
+        }
+
+        //private async Task<UserEntity> GetUser(string userName)
+        //{
+        //    var getUserApiUrl = _configurationService.GetConfiguration(AppSettingsKeys.SecurityServiceBaseAddressKey) + GetUserWebUrl;
+
+        //    var user = await _webApiRequestService.GetAsync<UserEntity>(getUserApiUrl,
+        //                        new List<KeyValuePair<string, string>>() { new KeyValuePair<string, string>("userName", userName) },
+        //                        Request.Headers.Authorization);
+
+        //    return user;
+        //}
+
         #endregion
     }
 }

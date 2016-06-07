@@ -3,8 +3,8 @@ using Microsoft.AspNet.Identity;
 
 namespace CatchMe.Security.Abstract
 {
-    public interface IRoleStorageService<TRole> : IRoleStore<TRole, string>,
-                                           IQueryableRoleStore<TRole, string>
+    public interface IRoleStorageService<TRole> : IRoleStore<TRole, int>,
+                                           IQueryableRoleStore<TRole, int>
                                            where TRole : IdentityRole
     {
     }

@@ -1,14 +1,15 @@
 ﻿using System.Web.Http;
 using CatchMe.Infrastructure.Abstract;
 using CatchMe.WebUI.Models;
+using Ninject;
 
 namespace CatchMe.WebUI.Controllers.Api
 {
     public class LogController : ApiController
     {
-        private readonly IClientSideLogger _clientSideLogger;
+        private readonly ILogger _clientSideLogger;
 
-        public LogController(IClientSideLogger logger)
+        public LogController([Named("ClientSideLogger")]ILogger logger)
         {
             _clientSideLogger = logger;
         }

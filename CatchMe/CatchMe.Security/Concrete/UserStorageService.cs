@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CatchMe.Domain.Entities;
@@ -26,9 +27,8 @@ namespace CatchMe.Security.Concrete
         {
             return Task.Factory.StartNew(() =>
             {
-                var userEntity = (UserEntity) user;
-                _userRepository.Create(userEntity);
-                user.Id = userEntity.Id;
+                user.CreationTime = DateTime.Now;
+                user.Id = _userRepository.Create((UserEntity)user);                                
             });
         }
 
@@ -48,7 +48,7 @@ namespace CatchMe.Security.Concrete
             });
         }
 
-        public Task<IdentityUser> FindByIdAsync(string userId)
+        public Task<IdentityUser> FindByIdAsync(int userId)
         {
             return Task<IdentityUser>.Factory.StartNew(() => (IdentityUser)_userRepository.FindById(userId));
         }        
@@ -56,51 +56,6 @@ namespace CatchMe.Security.Concrete
         public Task<IdentityUser> FindByNameAsync(string userName)
         {
             return Task<IdentityUser>.Factory.StartNew(() => (IdentityUser)_userRepository.FindByName(userName));
-        }
-
-        public Task SetPasswordHashAsync(IdentityUser user, string passwordHash)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                user.PasswordHash = passwordHash;
-                //_userRepository.SetPasswordHash((UserEntity)user, passwordHash);
-            });
-        }
-
-        public Task<string> GetPasswordHashAsync(IdentityUser user)
-        {
-            return Task<string>.Factory.StartNew(() => _userRepository.GetPasswordHash((UserEntity)user));
-        }
-
-        public Task<bool> HasPasswordAsync(IdentityUser user)
-        {
-            return Task<bool>.Factory.StartNew(() => _userRepository.HasPassword((UserEntity)user));
-        }
-
-        public Task SetEmailAsync(IdentityUser user, string email)
-        {
-            return Task.Factory.StartNew(() => { 
-                user.Email = email;
-                //_userRepository.SetEmail((UserEntity)user, email)
-            });
-        }
-
-        public Task<string> GetEmailAsync(IdentityUser user)
-        {
-            return Task.Factory.StartNew(() => _userRepository.GetEmail((UserEntity)user));
-        }
-
-        public Task<bool> GetEmailConfirmedAsync(IdentityUser user)
-        {
-            return Task<bool>.Factory.StartNew(() => _userRepository.GetEmailConfirmed((UserEntity)user));
-        }
-
-        public Task SetEmailConfirmedAsync(IdentityUser user, bool confirmed)
-        {
-            return Task.Factory.StartNew(() => { 
-                user.EmailConfirmed = confirmed;
-                //_userRepository.SetEmailConfirmed((UserEntity)user, confirmed)
-            });
         }
 
         public Task<IdentityUser> FindByEmailAsync(string email)
@@ -127,6 +82,47 @@ namespace CatchMe.Security.Concrete
         {
             return Task<bool>.Factory.StartNew(() => _userRepository.IsInRole((UserEntity)user, roleName));
         }
+
+        public Task SetPasswordHashAsync(IdentityUser user, string passwordHash)
+        {                        
+            user.PasswordHash = passwordHash;
+
+            return Task.FromResult(0);
+        }
+
+        public Task<string> GetPasswordHashAsync(IdentityUser user)
+        {            
+            return Task.FromResult(user.PasswordHash);
+        }
+
+        public Task<bool> HasPasswordAsync(IdentityUser user)
+        {            
+            return Task.FromResult(!string.IsNullOrEmpty(user.PasswordHash));
+        }
+
+        public Task SetEmailAsync(IdentityUser user, string email)
+        {            
+            user.Email = email;
+
+            return Task.FromResult(0);
+        }
+
+        public Task<string> GetEmailAsync(IdentityUser user)
+        {            
+            return Task.FromResult(user.Email);
+        }
+
+        public Task<bool> GetEmailConfirmedAsync(IdentityUser user)
+        {            
+            return Task.FromResult(user.EmailConfirmed);
+        }
+
+        public Task SetEmailConfirmedAsync(IdentityUser user, bool confirmed)
+        {            
+            user.EmailConfirmed = confirmed;
+
+            return Task.FromResult(0);
+        }      
 
         public void Dispose() { }
     }

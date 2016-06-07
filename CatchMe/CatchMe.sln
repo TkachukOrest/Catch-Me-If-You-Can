@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.SecurityService", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchMe.Security", "CatchMe.Security\CatchMe.Security.csproj", "{36D8747A-F529-4217-ADBD-4B8D8EFD85D6}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CatchMe.DataBase", "CatchMe.DataBase\CatchMe.DataBase.sqlproj", "{0D666B56-4AC4-452A-9A8B-35D74C905068}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,12 @@ Global
 		{36D8747A-F529-4217-ADBD-4B8D8EFD85D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36D8747A-F529-4217-ADBD-4B8D8EFD85D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36D8747A-F529-4217-ADBD-4B8D8EFD85D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D666B56-4AC4-452A-9A8B-35D74C905068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D666B56-4AC4-452A-9A8B-35D74C905068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D666B56-4AC4-452A-9A8B-35D74C905068}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0D666B56-4AC4-452A-9A8B-35D74C905068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D666B56-4AC4-452A-9A8B-35D74C905068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D666B56-4AC4-452A-9A8B-35D74C905068}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

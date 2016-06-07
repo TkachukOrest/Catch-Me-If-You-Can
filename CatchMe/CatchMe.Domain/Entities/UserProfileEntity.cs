@@ -14,7 +14,7 @@
 
         public override string ToString()
         {
-            return string.Format("First name: {0},\n Last name: {1},\n Phone number: {2}\n",
+            return string.Format("First name: {0},\n Last name: {1},\n Phone number: {2}",
                 FirstName,
                 LastName,
                 PhoneNumber);

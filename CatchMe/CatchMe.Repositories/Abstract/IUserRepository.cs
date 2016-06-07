@@ -5,7 +5,7 @@ namespace CatchMe.Repositories.Abstract
 {
     public interface IUserRepository
     {        
-        void Create(UserEntity user);
+        int Create(UserEntity user);
 
         void Update(UserEntity user);        
 
@@ -17,22 +17,8 @@ namespace CatchMe.Repositories.Abstract
 
         UserEntity FindByEmail(string email);
 
-        UserEntity FindById(string id);
-
-        bool HasPassword(UserEntity user);
-
-        void SetPasswordHash(UserEntity user, string passwordHash);
-
-        string GetPasswordHash(UserEntity user);        
-
-        void SetEmail(UserEntity user, string email);
-
-        string GetEmail(UserEntity user);
-
-        bool GetEmailConfirmed(UserEntity user);
-
-        void SetEmailConfirmed(UserEntity user, bool confirmed);
-
+        UserEntity FindById(int id);
+     
         void AddToRole(UserEntity user, string roleName);
 
         void RemoveFromRole(UserEntity user, string roleName);

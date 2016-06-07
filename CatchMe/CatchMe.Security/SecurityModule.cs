@@ -25,7 +25,7 @@ namespace CatchMe.Security
 
             Bind<IAuthenticationManager>().ToMethod(x => HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
             Bind<IdentityUserManager>().ToMethod(x => HttpContext.Current.GetOwinContext().GetUserManager<IdentityUserManager>()).InRequestScope();
-            Bind<IUserStore<IdentityUser>>().To<UserStorageService>().InRequestScope();
+            Bind<IUserStore<IdentityUser, int>>().To<UserStorageService>().InRequestScope();
             Bind<ISecureDataFormat<AuthenticationTicket>>().To<SecureDataFormat<AuthenticationTicket>>();
             Bind<IDataSerializer<AuthenticationTicket>>().To<TicketSerializer>();
             Bind<ITextEncoder>().To<Base64UrlTextEncoder>();

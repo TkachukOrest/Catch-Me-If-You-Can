@@ -11,6 +11,8 @@ namespace CatchMe.Repositories.Abstract
 
         void Save(TripEntity trip);
 
-        void Delete(int id);        
+        void Delete(int id);
+
+        void AddPassenger(int tripId, int passengerId);
     }
 }

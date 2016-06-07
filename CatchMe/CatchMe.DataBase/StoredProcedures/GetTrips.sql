@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[GetTrips]
+AS
+BEGIN
+	SELECT * FROM Trips;
+END	

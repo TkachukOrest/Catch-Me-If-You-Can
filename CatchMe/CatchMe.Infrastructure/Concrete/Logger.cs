@@ -3,13 +3,13 @@ using log4net;
 
 namespace CatchMe.Infrastructure.Abstract
 {
-    public class Logger : IClientSideLogger, IServerSideLogger
+    public class Logger : ILogger
     {
         private readonly ILog _logger;
 
-        public Logger(string loggerSide)
+        public Logger(string appenderName)
         {
-            _logger = LogManager.GetLogger(loggerSide);            
+            _logger = LogManager.GetLogger(appenderName);            
         }
 
         public void LogError(Exception exception)

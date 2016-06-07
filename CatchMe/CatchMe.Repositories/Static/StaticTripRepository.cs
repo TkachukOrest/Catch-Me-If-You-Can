@@ -29,7 +29,7 @@ namespace CatchMe.Repositories.Static
                     Year = 2015
                 },
                 StaticMapUrl = @"https://maps.googleapis.com/maps/api/staticmap?center=49,8399150068689,24,0314&zoom=16&size=640x640&maptype=roadmap&markers=color:blue%7C|weight:5%7C|49,840034,24,0336112|49,8408445,24,0289195&path=weight:3%7Ccolor:blue%7Cenc:ekeoHaauqClBcAZIf@G]lCEz@BhEf@dFCTG\OR_@L]JUfBc@~AKRy@n@aBv@Ik@",
-                UserName = "omanko51@gmail.com"
+                Driver = new UserEntity() { UserName="omanko51@gmail.com"}
             },
             new TripEntity()
             {
@@ -48,7 +48,7 @@ namespace CatchMe.Repositories.Static
                     Year = 2015
                 },
                 StaticMapUrl = @"https://maps.googleapis.com/maps/api/staticmap?center=49,8399150068689,24,0314&zoom=16&size=640x640&maptype=roadmap&markers=color:blue%7C|weight:5%7C|49,840034,24,0336112|49,8408445,24,0289195&path=weight:3%7Ccolor:blue%7Cenc:ekeoHaauqClBcAZIf@G]lCEz@BhEf@dFCTG\OR_@L]JUfBc@~AKRy@n@aBv@Ik@",
-                UserName = "orcoss36@gmail.com"
+                Driver = new UserEntity() { UserName="orcoss36@gmail.com"}                
             }
         };
         #endregion        
@@ -83,6 +83,12 @@ namespace CatchMe.Repositories.Static
             {                
                 Update(trip);
             }
+        }
+
+        public void AddPassenger(int tripId, int passengerId)
+        {
+            var trip = this.GetById(tripId);
+            trip.SeatsTaken++;
         }
         #endregion
 

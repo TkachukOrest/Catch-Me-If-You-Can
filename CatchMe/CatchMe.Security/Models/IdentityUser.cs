@@ -1,12 +1,13 @@
-﻿using CatchMe.Domain.Entities;
+﻿using System;
+using CatchMe.Domain.Entities;
 using Microsoft.AspNet.Identity;
 
 namespace CatchMe.Security.Models
 {
-    public class IdentityUser : IUser<string>
+    public class IdentityUser : IUser<int>
     {
         #region Properties        
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string Email { get; set; }
 
@@ -17,6 +18,8 @@ namespace CatchMe.Security.Models
         public string SecurityStamp { get; set; }
 
         public string UserName { get; set; }
+
+        public DateTime CreationTime { get; set; }
 
         public UserProfileEntity Profile { get; set; }
         #endregion
@@ -36,6 +39,7 @@ namespace CatchMe.Security.Models
             identityUser.SecurityStamp = user.SecurityStamp;
             identityUser.UserName = user.UserName;
             identityUser.Profile = user.Profile;
+            identityUser.CreationTime = user.CreationTime;
 
             return identityUser;
         }
@@ -52,6 +56,7 @@ namespace CatchMe.Security.Models
             user.PasswordHash = identityUser.PasswordHash;
             user.SecurityStamp = identityUser.SecurityStamp;
             user.UserName = identityUser.UserName;
+            user.CreationTime = identityUser.CreationTime;
             user.Profile = identityUser.Profile;
 
             return user;

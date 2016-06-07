@@ -50,7 +50,7 @@
             changeUser({ userName: '' });
         };
 
-        function isLoggedIn(user) {
+        function isLoggedIn(user) {            
             if (user === undefined || user === null) {
                 user = currentUser;
             }

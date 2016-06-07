@@ -1,15 +1,17 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using CatchMe.Domain.Entities;
 
 namespace CatchMe.Repositories.Abstract
 {
-    public interface IRoleRepository : IDisposable
+    public interface IRoleRepository
     {
-        void Create(RoleEntity role);
+        IEnumerable<RoleEntity> GetAll();
+
+        int Create(RoleEntity role);
 
         void Delete(RoleEntity role);
 
-        RoleEntity FindById(string roleId);
+        RoleEntity FindById(int roleId);
 
         RoleEntity FindByName(string roleName);
 
