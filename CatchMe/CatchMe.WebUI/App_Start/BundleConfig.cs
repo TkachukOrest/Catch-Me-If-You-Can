@@ -44,6 +44,7 @@ namespace CatchMe.WebUI
                         "~/Assets/Scripts/angular/controllers/signUp.controller.js",
                         "~/Assets/Scripts/angular/controllers/headerMenu.controller.js",
                         "~/Assets/Scripts/angular/services/loadingDialog.service.js",
+                        "~/Assets/Scripts/angular/services/tripDetailsDialog.service.js",                        
                         "~/Assets/Scripts/angular/services/snackBarNotification.service.js",
                         "~/Assets/Scripts/angular/services/authentication.service.js",
                         "~/Assets/Scripts/angular/services/exceptionLogging.service.js",

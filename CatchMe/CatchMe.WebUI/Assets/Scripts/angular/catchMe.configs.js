@@ -5,13 +5,13 @@
         .config(exceptionHandlerConfig);
 
     //interceptors configuration
+    interceptorsConfig.$inject = ['$httpProvider'];
     function interceptorsConfig($httpProvider) {
         $httpProvider.interceptors.push('authenticationInterceptor');
     };
 
     //exception handling config
     exceptionHandlerConfig.$inject = ['$provide'];
-
     function exceptionHandlerConfig($provide) {
         $provide.decorator('$exceptionHandler', extendExceptionHandler);
     }

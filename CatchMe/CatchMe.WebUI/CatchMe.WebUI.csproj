@@ -222,6 +222,7 @@
     <Content Include="Assets\Scripts\angular\services\loadingDialog.service.js" />
     <Content Include="Assets\Scripts\angular\services\snackBarNotification.service.js" />
     <Content Include="Assets\Scripts\angular\services\trip.service.js" />
+    <Content Include="Assets\Scripts\angular\services\tripDetailsDialog.service.js" />
     <Content Include="Assets\Scripts\angular\templates\drawer.html" />
     <Content Include="Assets\Scripts\angular\templates\header.html" />
     <Content Include="Assets\Scripts\angular\templates\signIn.html" />
