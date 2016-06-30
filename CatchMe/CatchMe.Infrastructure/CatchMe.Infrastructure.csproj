@@ -50,6 +50,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,7 +71,8 @@
     <Compile Include="Concrete\Logger.cs" />
     <Compile Include="Concrete\ConfigurationService.cs" />
     <Compile Include="Exceptions\WebApiFailedException.cs" />
-    <Compile Include="Extensions\ParseExtension.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\ParseExtensions.cs" />
     <Compile Include="InfrastructureModule.cs" />
     <Compile Include="Models\EmailMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

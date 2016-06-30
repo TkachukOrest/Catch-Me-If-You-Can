@@ -1,5 +1,10 @@
-﻿namespace CatchMe.Domain.Entities
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
+
+namespace CatchMe.Domain.Entities
 {
+    [Table("Vehicle")]
     public class VehicleEntity
     {
         public int Id { get; set; }
@@ -20,5 +25,10 @@
                 Year,
                 Color);
         }
+
+        #region Navigation properties 
+        [JsonIgnore]
+        public virtual ICollection<TripEntity> Trip { get; set; }
+        #endregion
     }
 }

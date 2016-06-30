@@ -481,3 +481,7 @@ a.no-text-decoration {
     color: #757575;
      text-decoration: none;
 }
+
+.error-box {    
+    min-height: 100px;
+}

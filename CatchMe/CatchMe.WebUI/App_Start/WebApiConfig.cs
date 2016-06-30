@@ -1,4 +1,7 @@
 ﻿using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+using CatchMe.WebUI.Infrastructure.ErrorHandling;
+using Microsoft.Practices.ServiceLocation;
 
 namespace CatchMe.WebUI
 {
@@ -13,7 +16,7 @@ namespace CatchMe.WebUI
                 "api/{controller}/{action}/{id}", 
                 new { id = RouteParameter.Optional });
 
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.Formatters.Remove(config.Formatters.XmlFormatter);            
         }
     }
 }

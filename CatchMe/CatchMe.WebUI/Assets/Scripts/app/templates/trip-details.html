@@ -1,0 +1,77 @@
+﻿<md-dialog aria-label="Details" ng-cloak class="mdl-cell--8-col">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Trip details</h2>                               
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content mdl-grid mdl-grid--no--vertical-spacing">
+                <h2></h2>
+                <div id="detailed-trip-map"
+                     class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--8-col-phone"
+                     style="height: 530px;"></div>
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+                    <div class="mdl-grid mdl-grid--no-horizontal-spacing">
+                        <div layout="row">
+                            <img src="Assets/Images/avatar.png" class="avatar"/>
+                            <div>
+                                <a href="/#/" class="link-uncolored">{{driverProfile.FirstName}} {{driverProfile.LastName}} </a> <br/>
+                                Email: {{driverName}} <br />
+                                Tel: {{driverProfile.PhoneNumber}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trip-details-block border-top">
+                        <div>
+                            <md-icon class="material-icons">adjust</md-icon>
+                            <span class="text">{{trip.Origin.FormattedLongAddress}}</span>
+                        </div>
+
+                        <div ng-repeat="wayPoint in trip.WayPoints">
+                            <md-icon class="material-icons">panorama_fish_eye</md-icon>
+                            <span class="text">{{trip.WayPoints[$index].FormattedLongAddress}}</span>
+                        </div>
+
+                        <div>
+                            <md-icon class="material-icons">adjust</md-icon>
+                            <span class="text">{{trip.Destination.FormattedLongAddress}}</span>
+                        </div>
+                    </div>
+                    <div class="trip-details-block border-top">
+                        <md-icon class="material-icons">airline_seat_recline_normal</md-icon>:
+                        <span class="text">{{trip.Seats-trip.SeatsTaken}}/{{trip.Seats}}</span>
+                    </div>
+                    <div class="trip-details-block border-top">
+                        <md-icon class="material-icons">account_balance_wallet</md-icon>:
+                        <span class="text">{{trip.Price}} ₴</span>
+                    </div>
+                    <div class="trip-details-block border-top">
+                        <md-icon class="material-icons">access_time</md-icon>:
+                        <span class="text">{{trip.StartDateTime | date: 'medium'}} </span>
+                    </div>
+                    <div class="trip-details-block border-top">
+                        <div layout="row">
+                            <md-icon class="material-icons">directions_car</md-icon>:
+                            <div class="text" layout="row">
+                                {{trip.Vehicle.Manufacturer}} {{trip.Vehicle.Model}} ({{trip.Vehicle.Year}}) in color:
+                                <div ng-style="{background: trip.Vehicle.Color}" class="circle"></div>
+                            </div>
+                            <span flex></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()" class="mdl-color-text--accent">
+                Close
+            </md-button>
+            <md-button ng-click="catchCar()" ng-enabled="trip.Seats > trip.SeatsTaken" class="mdl-color-text--accent" style="margin-right: 20px;">
+                Catch this car
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

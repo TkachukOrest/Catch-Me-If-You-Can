@@ -1,0 +1,53 @@
+﻿<div class="mdl-grid" ng-controller="TripListController as tripListVm">
+    <div ng-repeat="trip in tripListVm.trips"         
+         class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-phone mdl-cell--4-col-tablet mdl-shadow--4dp"
+         ng-class="{'cursor-pointer': tripListVm.isLoggedIn()}"
+         hover-class="mdl-shadow--8dp">
+        <div class="mdl-card__media">
+            <img ng-src="{{trip.StaticMapUrl}}" style="width: 100%; height: 100%;"/>
+
+            <div ng-show="tripListVm.isLoggedIn() && tripListVm.user.userName == trip.Driver.UserName" style="position: absolute; z-index: 999; right: 0; top: 0">
+                <i class="material-icons md-18 cursor-pointer" ng-click="tripListVm.deleteTrip($index, trip.Id)">delete</i>
+                <i class="material-icons md-18 cursor-pointer" ng-click="tripListVm.editTrip(trip.Id)">mode_edit</i>
+            </div>
+        </div>
+        <div ng-click="tripListVm.openTripDetails(trip.Id, $event)">
+            <div class="mdl-card__supporting-text">
+                {{trip.Origin.FormattedShortAddress}} -
+                <span ng-repeat="point in trip.WayPoints"> {{point.FormattedShortAddress}} - </span>
+                {{trip.Destination.FormattedShortAddress}}
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-card__supporting-text mdl-color-text--grey-600 trip-info">
+                <div class="mdl-grid mdl-grid--no-spacing">
+                    <div class="price">{{trip.Price}} ₴</div>
+                    <div class="mdl-layout-spacer"></div>
+                    <div>{{trip.StartDateTime | date: "EEEE, MMM d, h:mm"}} </div> <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="/#/TripAdd" id="add-trip"
+       ng-show="tripListVm.isLoggedIn()"
+       class="mdl-button
+       mdl-js-button
+       mdl-button--fab
+       mdl-button--mini-fab
+       mdl-js-ripple-effect
+       mdl-button--colored
+       mdl-shadow--4dp">
+        <i class="material-icons">add</i>
+    </a>
+</div>
+
+<!--PAGINATION-->
+<!--<ul class="pagination">
+    <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active mdl-shadow--4dp"><a href="#">1</a></li>
+    <li class="waves-effect"><a href="#">2</a></li>
+    <li class="waves-effect"><a href="#">3</a></li>
+    <li class="waves-effect"><a href="#">4</a></li>
+    <li class="waves-effect"><a href="#">5</a></li>
+    <li class="waves-effect"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+</ul>-->

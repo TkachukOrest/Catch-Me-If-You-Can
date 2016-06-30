@@ -1,8 +1,16 @@
-﻿namespace CatchMe.Domain.Values
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using CatchMe.Domain.Entities;
+using Newtonsoft.Json;
+
+namespace CatchMe.Domain.Values
 {
+    [Table("MapPoint")]
     public class MapPoint
     {
         public int Id { get; set; }
+        
+        public int TripId { get; set; }
 
         public double Latitude { get; set; }
 
@@ -12,6 +20,7 @@
 
         public string FormattedShortAddress { get; set; }
 
+        [NotMapped]
         public Address AddressDetails { get; set; }
 
         public int Sequence { get; set; }
@@ -38,5 +47,12 @@
             FormattedShortAddress = formattedShortAddress;
             AddressDetails = addressDetails;
         }
+
+        #region Navigation properties                
+        [JsonIgnore]
+        public virtual TripEntity Trip { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Address> Addresses { get; set; }                
+        #endregion
     }
 }

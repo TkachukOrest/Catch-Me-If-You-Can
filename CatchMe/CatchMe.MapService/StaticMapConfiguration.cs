@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using CatchMe.Domain.Values;
+﻿using CatchMe.Domain.Values;
 
 namespace CatchMe.MapService
 {

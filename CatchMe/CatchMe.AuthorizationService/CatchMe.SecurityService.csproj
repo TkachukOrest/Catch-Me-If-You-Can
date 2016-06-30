@@ -48,6 +48,14 @@
       <HintPath>..\packages\CommonServiceLocator.NinjectAdapter.Unofficial.3.2.2.0\lib\Net40\CommonServiceLocator.NinjectAdapter.Unofficial.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -247,6 +255,14 @@
     <ProjectReference Include="..\CatchMe.Infrastructure\CatchMe.Infrastructure.csproj">
       <Project>{542F64A3-D5E7-443C-8D13-02238C1595EA}</Project>
       <Name>CatchMe.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Repositories.EF\CatchMe.Repositories.EF.csproj">
+      <Project>{292838ca-2127-40a5-9737-f9e453efec59}</Project>
+      <Name>CatchMe.Repositories.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Repositories.Sql\CatchMe.Repositories.Sql.csproj">
+      <Project>{97FEC5B4-B30E-4DED-A76F-8466345C2568}</Project>
+      <Name>CatchMe.Repositories.Sql</Name>
     </ProjectReference>
     <ProjectReference Include="..\CatchMe.Repositories\CatchMe.Repositories.csproj">
       <Project>{C5C2BCE8-D497-407E-A728-D43E51EBA72C}</Project>

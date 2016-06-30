@@ -1,0 +1,36 @@
+﻿<div class="header mdl-layout__header mdl-layout__header--waterfall mdl-shadow--4dp">
+    <div class="mdl-layout__header-row header-centered">
+        <!--DRAWER-MENU BUTTON-->
+        <div class="mdl-layout__drawer-button">
+            <i class="material-icons">menu</i>
+        </div>
+
+        <!--LOGO-->
+        <span class="title mdl-layout-title">
+            <img class="logo-image" src="/Assets/Images/logo.png">
+        </span>
+        <div class="header-spacer mdl-layout-spacer"></div>
+
+        <!--MOBILE LOGO-->
+        <div class="navigation-container"></div>
+        <span class="mobile-title mdl-layout-title">
+            <img class="logo-image" src="/Assets/Images/logo.png">
+        </span>
+
+        <!--CONTEXT-MENU BUTTON-->
+        <button id="menu-buttons" class="menu-buttons mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect">
+            <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menu-buttons">
+            <li class="mdl-menu__item mdl-color-text--accent" data-ng-hide="!headerMenuVm.isSignIn()">
+                Profile
+            </li>
+            <li class="mdl-menu__item mdl-color-text--accent" ng-click="headerMenuVm.logout()" data-ng-hide="!headerMenuVm.isSignIn()">
+                <a class="no-text-decoration">Log out</a>
+            </li>
+            <li class="mdl-menu__item mdl-color-text--accent" ng-click="headerMenuVm.signIn()" data-ng-hide="headerMenuVm.isSignIn()"> 
+                <a class="no-text-decoration">Log in</a>
+            </li>
+        </ul>
+    </div>
+</div>

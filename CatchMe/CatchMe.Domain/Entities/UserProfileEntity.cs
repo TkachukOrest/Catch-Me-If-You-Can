@@ -1,5 +1,9 @@
-﻿namespace CatchMe.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
+
+namespace CatchMe.Domain.Entities
 {
+    [Table("UserProfile")]
     public class UserProfileEntity
     {
         public int Id { get; set; }
@@ -19,5 +23,10 @@
                 LastName,
                 PhoneNumber);
         }
+
+        #region Navigation properties 
+        [JsonIgnore]
+        public virtual UserEntity User { get; set; }
+        #endregion
     }
 }

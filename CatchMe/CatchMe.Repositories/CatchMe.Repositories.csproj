@@ -48,16 +48,7 @@
     <Compile Include="Abstract\IRoleRepository.cs" />
     <Compile Include="Abstract\ITripRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
-    <Compile Include="Abstract\SqlRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryModule.cs" />
-    <Compile Include="Sql\RoleRepository.cs" />
-    <Compile Include="Sql\SpNames.cs" />
-    <Compile Include="Sql\SpParams.cs" />
-    <Compile Include="Sql\TripRepository.cs" />
-    <Compile Include="Sql\UserRepository.cs" />
-    <Compile Include="Static\StaticTripRepository.cs" />
-    <Compile Include="Static\StaticUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CatchMe.Domain\CatchMe.Domain.csproj">
@@ -70,6 +61,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

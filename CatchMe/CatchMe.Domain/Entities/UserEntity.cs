@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace CatchMe.Domain.Entities
 {
+    [Table("User")]
     public class UserEntity
     {
         #region Properties        
@@ -17,8 +21,9 @@ namespace CatchMe.Domain.Entities
 
         public string UserName { get; set; }
 
-        public DateTime CreationTime { get; set; }
+        public DateTime CreationTime { get; set; }        
 
+        [NotMapped]
         public UserProfileEntity Profile { get; set; }
         #endregion
 
@@ -27,6 +32,17 @@ namespace CatchMe.Domain.Entities
         {
             Profile = new UserProfileEntity();
         }
+        #endregion
+        
+        #region Navigation properties 
+        [JsonIgnore]
+        public virtual ICollection<PassengerEntity> Passengers { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<TripEntity> Trips { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<UserProfileEntity> UserProfiles { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<RoleEntity> Roles { get; set; }        
         #endregion
     }
 }

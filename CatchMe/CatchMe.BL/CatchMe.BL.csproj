@@ -43,10 +43,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CatchMe.DataAccess\CatchMe.DataAccess.csproj">
-      <Project>{c2de84be-33ae-4786-b9fa-b6744e3a54f4}</Project>
-      <Name>CatchMe.DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CatchMe.Domain\CatchMe.Domain.csproj">
       <Project>{A3B4810A-F8E2-4708-9545-2EFEB9F9D9E8}</Project>
       <Name>CatchMe.Domain</Name>

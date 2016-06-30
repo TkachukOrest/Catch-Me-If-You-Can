@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Http;
 using CatchMe.Domain.Entities;
 using CatchMe.Domain.Values;
@@ -9,11 +8,12 @@ using CatchMe.Infrastructure.Abstract;
 using CatchMe.Infrastructure.Models;
 using CatchMe.MapService;
 using CatchMe.Repositories.Abstract;
-using CatchMe.WebUI.Code;
+using CatchMe.WebUI.Filters.Api;
 using CatchMe.WebUI.Models;
 
 namespace CatchMe.WebUI.Controllers.Api
 {
+    [LogApiActionError]
     public class TripController : ApiController
     {
         #region Fields
@@ -45,7 +45,8 @@ namespace CatchMe.WebUI.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetAllTrips()
         {
-            var trips = _tripRepository.GetAll().Where(t => t.Seats > t.SeatsTaken);
+            var trips =
+                _tripRepository.GetAll().Where(t => t.Seats > t.SeatsTaken && t.StartDateTime > DateTime.Now).ToList();
 
             return Ok(trips);
         }
@@ -75,7 +76,7 @@ namespace CatchMe.WebUI.Controllers.Api
             if (trip.SeatsTaken >= trip.Seats) return BadRequest();
 
             var passenger = _userRepository.FindByName(catchCarModel.PassengerName);
-            if (passenger == null) return BadRequest();            
+            if (passenger == null) return BadRequest();
 
             SendNotificationToTripDriver(trip, passenger);
             SendNotificationToTripPassenger(trip, passenger);

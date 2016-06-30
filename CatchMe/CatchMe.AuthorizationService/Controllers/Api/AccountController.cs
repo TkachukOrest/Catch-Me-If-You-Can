@@ -8,9 +8,7 @@ using CatchMe.Infrastructure.Abstract;
 using CatchMe.Infrastructure.Extensions;
 using CatchMe.Security.Models;
 using CatchMe.SecurityService.Models.AccountBindingModels;
-using CatchMe.SecurityService.Models.AccountViewModels;
 using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 
 namespace CatchMe.SecurityService.Controllers.Api
 {
@@ -23,21 +21,15 @@ namespace CatchMe.SecurityService.Controllers.Api
         #endregion
 
         #region Fields        
-        private IdentityUserManager _userManager;
-        private readonly IAuthenticationManager _authenticationManager;
-        private readonly ISecureDataFormat<AuthenticationTicket> _accessTokenFormat;
+        private IdentityUserManager _userManager;        
         private readonly IConfigurationService _configurationService;
         #endregion
 
         #region Constructors                     
-        public AccountController(IdentityUserManager userManager,
-            IAuthenticationManager authManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat,
+        public AccountController(IdentityUserManager userManager,            
             IConfigurationService configurationService)
         {
-            _userManager = userManager;
-            _authenticationManager = authManager;
-            _accessTokenFormat = accessTokenFormat;
+            _userManager = userManager;            
             _configurationService = configurationService;
         }
         #endregion

@@ -1,0 +1,29 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/" />
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/styles/material/css")
+    <script src="@ViewBag.MapsApiSource"></script>
+</head>
+<body ng-app="catchMeApp">
+    <div class="catch-me mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header-menu></header-menu>
+        <drawer-menu></drawer-menu>
+
+        <div class="mdl-layout__content mdl-color--grey-100" id="container">
+            <div class="centered">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/libs/js")
+    @Scripts.Render("~/bundles/angular/catchMe-module/js")
+    @Scripts.Render("~/bundles/angular/catchMe-app/js")
+</body>
+</html>

@@ -47,6 +47,10 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CommonServiceLocator.NinjectAdapter.Unofficial, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.NinjectAdapter.Unofficial.3.2.2.0\lib\Net40\CommonServiceLocator.NinjectAdapter.Unofficial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -104,6 +108,10 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -112,8 +120,20 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Extensions.ContextPreservation, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.ContextPreservation.3.2.0.0\lib\net45-full\Ninject.Extensions.ContextPreservation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.NamedScope, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net45-full\Ninject.Extensions.NamedScope.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.OwinHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.OwinHost.3.2.3.0\lib\net45-full\Ninject.Web.Common.OwinHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -122,6 +142,10 @@
     </Reference>
     <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi.OwinHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.WebApi.OwinHost.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.OwinHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject.Web.WebApi.WebHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -142,6 +166,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
       <Private>True</Private>
@@ -197,37 +225,37 @@
   <ItemGroup>
     <Content Include="Assets\Images\avatar.png" />
     <Content Include="Assets\Images\logo.png" />
-    <Content Include="Assets\Scripts\angular\catchMe.app.js" />
-    <Content Include="Assets\Scripts\angular\catchMe.configs.js" />
-    <Content Include="Assets\Scripts\angular\catchMe.constants.js" />
-    <Content Include="Assets\Scripts\angular\catchMe.material.js" />
-    <Content Include="Assets\Scripts\angular\components\compareTo.directive.js" />
-    <Content Include="Assets\Scripts\angular\components\drawerMenu.directive.js" />
-    <Content Include="Assets\Scripts\angular\components\headerMenu.directive.js" />
-    <Content Include="Assets\Scripts\angular\components\headerMenuLink.directive.js" />
-    <Content Include="Assets\Scripts\angular\components\hoverClass.directive.js" />
-    <Content Include="Assets\Scripts\angular\components\isLoggedIn.directive.js" />
-    <Content Include="Assets\Scripts\angular\components\isValid.directive.js" />
-    <Content Include="Assets\Scripts\angular\controllers\signIn.controller.js" />
-    <Content Include="Assets\Scripts\angular\controllers\signUp.controller.js" />
-    <Content Include="Assets\Scripts\angular\controllers\trip.controller.js" />
-    <Content Include="Assets\Scripts\angular\controllers\headerMenu.controller.js" />
-    <Content Include="Assets\Scripts\angular\controllers\tripList.controller.js" />
-    <Content Include="Assets\Scripts\angular\data_models\addressDetails.model.js" />
-    <Content Include="Assets\Scripts\angular\data_models\mapPoint.model.js" />
-    <Content Include="Assets\Scripts\angular\interceptors\authentication.interceptor.js" />
-    <Content Include="Assets\Scripts\angular\services\authentication.service.js" />
-    <Content Include="Assets\Scripts\angular\services\exceptionLogging.service.js" />
-    <Content Include="Assets\Scripts\angular\services\googleMap.service.js" />
-    <Content Include="Assets\Scripts\angular\services\loadingDialog.service.js" />
-    <Content Include="Assets\Scripts\angular\services\snackBarNotification.service.js" />
-    <Content Include="Assets\Scripts\angular\services\trip.service.js" />
-    <Content Include="Assets\Scripts\angular\services\tripDetailsDialog.service.js" />
-    <Content Include="Assets\Scripts\angular\templates\drawer.html" />
-    <Content Include="Assets\Scripts\angular\templates\header.html" />
-    <Content Include="Assets\Scripts\angular\templates\signIn.html" />
-    <Content Include="Assets\Scripts\angular\templates\signUp.html" />
-    <Content Include="Assets\Scripts\angular\templates\tripDetails.html" />
+    <Content Include="Assets\Scripts\app\catch-me.app.js" />
+    <Content Include="Assets\Scripts\app\catch-me.configs.js" />
+    <Content Include="Assets\Scripts\app\catch-me.constants.js" />
+    <Content Include="Assets\Scripts\app\catch-me.material.js" />
+    <Content Include="Assets\Scripts\app\components\compare-to.directive.js" />
+    <Content Include="Assets\Scripts\app\components\drawer-menu.directive.js" />
+    <Content Include="Assets\Scripts\app\components\header-menu.directive.js" />
+    <Content Include="Assets\Scripts\app\components\header-menu-link.directive.js" />
+    <Content Include="Assets\Scripts\app\components\hover-class.directive.js" />
+    <Content Include="Assets\Scripts\app\components\is-logged-in.directive.js" />
+    <Content Include="Assets\Scripts\app\components\is-valid.directive.js" />
+    <Content Include="Assets\Scripts\app\controllers\sign-in.controller.js" />
+    <Content Include="Assets\Scripts\app\controllers\sign-up.controller.js" />
+    <Content Include="Assets\Scripts\app\controllers\trip.controller.js" />
+    <Content Include="Assets\Scripts\app\controllers\header-menu.controller.js" />
+    <Content Include="Assets\Scripts\app\controllers\trip-list.controller.js" />
+    <Content Include="Assets\Scripts\app\data_models\address-details.model.js" />
+    <Content Include="Assets\Scripts\app\data_models\map-point.model.js" />
+    <Content Include="Assets\Scripts\app\interceptors\authentication.interceptor.js" />
+    <Content Include="Assets\Scripts\app\services\authentication.service.js" />
+    <Content Include="Assets\Scripts\app\services\exception-logging.service.js" />
+    <Content Include="Assets\Scripts\app\services\google-map.service.js" />
+    <Content Include="Assets\Scripts\app\services\loading-dialog.service.js" />
+    <Content Include="Assets\Scripts\app\services\snack-bar-notification.service.js" />
+    <Content Include="Assets\Scripts\app\services\trip.service.js" />
+    <Content Include="Assets\Scripts\app\services\trip-details-dialog.service.js" />
+    <Content Include="Assets\Scripts\app\templates\drawer.html" />
+    <Content Include="Assets\Scripts\app\templates\header.html" />
+    <Content Include="Assets\Scripts\app\templates\sign-in.html" />
+    <Content Include="Assets\Scripts\app\templates\sign-up.html" />
+    <Content Include="Assets\Scripts\app\templates\trip-details.html" />
     <Content Include="Assets\Scripts\libs\angularLocalStorage\angular-local-storage.min.js" />
     <Content Include="Assets\Scripts\libs\angular\angular-animate.js" />
     <Content Include="Assets\Scripts\libs\angular\angular-aria.js" />
@@ -242,7 +270,7 @@
     <Content Include="Assets\Scripts\libs\material\material-datetimepicker.js" />
     <Content Include="Assets\Scripts\libs\material\material.js" />
     <Content Include="Assets\Scripts\libs\material\material.min.js" />
-    <Content Include="Assets\Scripts\angular\catchMe.routes.js" />
+    <Content Include="Assets\Scripts\app\catch-me.routes.js" />
     <Content Include="AppSettings.config" />
     <None Include="Assets\Scripts\_references.js" />
     <Content Include="Assets\Scripts\libs\moment\moment.js" />
@@ -254,7 +282,7 @@
     <Content Include="Assets\Styles\material-customized.css" />
     <Content Include="Assets\Styles\paper-snackbar.css" />
     <Content Include="Global.asax" />
-    <Content Include="Assets\Scripts\angular\templates\trip.html" />
+    <Content Include="Assets\Scripts\app\templates\trip.html" />
     <Content Include="Web.config" />
     <Content Include="Log4Net.config" />
   </ItemGroup>
@@ -267,10 +295,15 @@
     <Compile Include="Code\RepositorySettings.cs" />
     <Compile Include="Controllers\Api\LogController.cs" />
     <Compile Include="Controllers\Api\TripController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Filters\Api\LogApiActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Filters\Api\LogApiActionErrorFilter.cs" />
+    <Compile Include="Infrastructure\ErrorHandling\MvcErrorHandler.cs" />
+    <Compile Include="Infrastructure\ErrorHandling\IErrorHandler.cs" />
     <Compile Include="Models\CatchCarBindingModel.cs" />
     <Compile Include="Models\ClientExceptionBindingModel.cs" />
     <Compile Include="Models\TripDetailsViewModel.cs" />
@@ -286,8 +319,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Scripts\libs\material\material.min.js.map" />
-    <Content Include="Assets\Scripts\angular\templates\tripList.html" />
+    <Content Include="Assets\Scripts\app\templates\trip-list.html" />
     <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -297,10 +334,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\CatchMe.BL\CatchMe.BL.csproj">
-      <Project>{315fc341-f818-4a46-ad71-bea4774222b2}</Project>
-      <Name>CatchMe.BL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CatchMe.Domain\CatchMe.Domain.csproj">
       <Project>{a3b4810a-f8e2-4708-9545-2efeb9f9d9e8}</Project>
       <Name>CatchMe.Domain</Name>
@@ -316,6 +349,14 @@
     <ProjectReference Include="..\CatchMe.MapService\CatchMe.MapService.csproj">
       <Project>{a881dbf7-18e1-426c-a645-1e713384a37f}</Project>
       <Name>CatchMe.MapService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Repositories.EF\CatchMe.Repositories.EF.csproj">
+      <Project>{292838ca-2127-40a5-9737-f9e453efec59}</Project>
+      <Name>CatchMe.Repositories.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatchMe.Repositories.Sql\CatchMe.Repositories.Sql.csproj">
+      <Project>{97fec5b4-b30e-4ded-a76f-8466345c2568}</Project>
+      <Name>CatchMe.Repositories.Sql</Name>
     </ProjectReference>
     <ProjectReference Include="..\CatchMe.Repositories\CatchMe.Repositories.csproj">
       <Project>{c5c2bce8-d497-407e-a728-d43e51eba72c}</Project>
