@@ -32,8 +32,8 @@
         }        
     };
 
-    tripDetailsDialogVm.$inject = ['$scope', '$mdDialog', 'tripService', 'googleMapService', 'snackBarNotification', 'mapPointFactory', 'authenticationService', 'tripId'];
-    function tripDetailsDialogVm($scope, $mdDialog, tripService, googleMapService, snackBarNotification, mapPointFactory, authenticationService, tripId) {
+    tripDetailsDialogVm.$inject = ['$scope', '$mdDialog', 'tripService', 'googleMapService', 'snackBarNotification', 'mapPointFactory', 'authenticationService', 'loadingDialogService', 'tripId'];
+    function tripDetailsDialogVm($scope, $mdDialog, tripService, googleMapService, snackBarNotification, mapPointFactory, authenticationService, loadingDialogService, tripId) {
         //view model        
         $scope.hide = hide;
         $scope.tripId = tripId;
@@ -76,6 +76,7 @@
             if ($scope.trip.Seats > $scope.trip.SeatsTaken) {
                 var passangerName = authenticationService.user.userName;
                 var tripId = $scope.tripId;
+                loadingDialogService.show();
 
                 return tripService.catchCar(tripId, passangerName).then(function() {
                     snackBarNotification.create('You have been successfully caught this car. Check your email for details.', 'OK');
@@ -83,7 +84,9 @@
                 }, function() {
                     snackBarNotification.create('Cannot catch this trip. Try again later.', 'OK');
                     hide();
-                });
+                }).finally(function () {
+                    loadingDialogService.hide();
+                });;
             } else {
                 snackBarNotification.create('All seats are already taken. Try again later.', 'OK');
             }

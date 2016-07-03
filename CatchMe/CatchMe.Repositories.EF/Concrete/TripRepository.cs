@@ -18,25 +18,25 @@ namespace CatchMe.Repositories.EF.Concrete
         }
 
         public TripEntity GetById(int id)
-        {            
+        {
             var trip = _catchMeContext.Trips
                 .Where(x => x.Id == id)
                 .Include(t => t.Passengers)//.Select(p => p.User)
                 .Include(t => t.Driver.UserProfiles)
                 .Include(t => t.Vehicle)
-                .Include(t => t.MapPoints.Select(v => v.Addresses))                
+                .Include(t => t.MapPoints.Select(v => v.Addresses))
                 .FirstOrDefault();
 
             this.PopulateUserProfile(trip);
-            this.PopulateTripMapPoints(trip);            
+            this.PopulateTripMapPoints(trip);
 
-            trip.SeatsTaken = trip.Passengers.Count;
+            trip.SeatsTaken = trip.Passengers.Sum(p => p.BookedSeats);
 
             return trip;
         }
-       
+
         public IEnumerable<TripEntity> GetAll()
-        {            
+        {
             var trips = _catchMeContext.Trips
             .Include(t => t.Passengers)
             .Include(t => t.Driver)
@@ -47,7 +47,7 @@ namespace CatchMe.Repositories.EF.Concrete
             trips.ForEach(trip =>
             {
                 PopulateTripMapPoints(trip);
-                
+
                 trip.SeatsTaken = trip.Passengers.Count;
             });
 
@@ -63,7 +63,7 @@ namespace CatchMe.Repositories.EF.Concrete
             else
             {
                 Update(trip);
-            }                        
+            }
         }
 
         public void Delete(int id)
@@ -110,12 +110,12 @@ namespace CatchMe.Repositories.EF.Concrete
 
         private void Add(TripEntity trip)
         {
-            _catchMeContext.Vehicles.Add(trip.Vehicle);                        
+            _catchMeContext.Vehicles.Add(trip.Vehicle);
             _catchMeContext.Trips.Add(trip);
 
             _catchMeContext.SaveChanges();
 
-            AddMapPoints(trip);            
+            AddMapPoints(trip);
         }
 
         private void Update(TripEntity trip)
@@ -137,12 +137,12 @@ namespace CatchMe.Repositories.EF.Concrete
                     tripToUpdate.Vehicle.Model = trip.Vehicle.Model;
                     tripToUpdate.Vehicle.Year = trip.Vehicle.Year;
                 }
-                
-                _catchMeContext.MapPoints.RemoveRange(tripToUpdate.MapPoints);                
+
+                _catchMeContext.MapPoints.RemoveRange(tripToUpdate.MapPoints);
 
                 _catchMeContext.SaveChanges();
 
-                AddMapPoints(trip);             
+                AddMapPoints(trip);
             }
         }
 
@@ -150,25 +150,25 @@ namespace CatchMe.Repositories.EF.Concrete
         {
             int sequence = 0;
             this.AddMapPoint(trip.Id, trip.Origin, sequence++);
-            
+
             foreach (var point in trip.WayPoints)
             {
-                this.AddMapPoint(trip.Id, point, sequence++);            
+                this.AddMapPoint(trip.Id, point, sequence++);
             }
 
-            this.AddMapPoint(trip.Id, trip.Destination, sequence);            
+            this.AddMapPoint(trip.Id, trip.Destination, sequence);
         }
 
         private void AddMapPoint(int tripId, MapPoint point, int sequence)
         {
             point.TripId = tripId;
-            point.Sequence = sequence;            
-            
+            point.Sequence = sequence;
+
             _catchMeContext.MapPoints.Add(point);
             _catchMeContext.Addresses.Add(point.AddressDetails);
 
             _catchMeContext.SaveChanges();
-        }     
+        }
 
         private void PopulateUserProfile(TripEntity trip)
         {
