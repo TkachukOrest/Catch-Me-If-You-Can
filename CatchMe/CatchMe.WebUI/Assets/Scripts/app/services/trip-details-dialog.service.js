@@ -51,7 +51,7 @@
         })();
 
         function initializeTrip() {
-            tripService.getTripDetails(tripId).then(function (response) {
+            tripService.getTripDetails(tripId).then(function(response) {
                 $scope.trip = response.data.Trip;
                 $scope.driverProfile = response.data.DriverProfile;
                 $scope.driverName = response.data.DriverName;
@@ -61,7 +61,7 @@
                     $scope.trip.Origin,
                     $scope.trip.Destination,
                     $scope.trip.WayPoints);
-            }, function () {
+            }, function() {
                 hide();
                 snackBarNotification.create('Cannot get trip details. An error has been occured.', 'OK');
             });
@@ -77,10 +77,10 @@
                 var passangerName = authenticationService.user.userName;
                 var tripId = $scope.tripId;
 
-                return tripService.catchCar(tripId, passangerName).then(function () {
+                return tripService.catchCar(tripId, passangerName).then(function() {
                     snackBarNotification.create('You have been successfully caught this car. Check your email for details.', 'OK');
                     hide();
-                }, function () {
+                }, function() {
                     snackBarNotification.create('Cannot catch this trip. Try again later.', 'OK');
                     hide();
                 });

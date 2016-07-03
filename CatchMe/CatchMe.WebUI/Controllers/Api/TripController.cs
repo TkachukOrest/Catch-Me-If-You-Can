@@ -76,13 +76,12 @@ namespace CatchMe.WebUI.Controllers.Api
             if (trip.SeatsTaken >= trip.Seats) return BadRequest();
 
             var passenger = _userRepository.FindByName(catchCarModel.PassengerName);
-            if (passenger == null) return BadRequest();
+            if (passenger == null) return BadRequest();            
+
+            _tripRepository.AddPassenger(trip.Id, passenger.Id);
 
             SendNotificationToTripDriver(trip, passenger);
             SendNotificationToTripPassenger(trip, passenger);
-
-            _tripRepository.AddPassenger(trip.Id, passenger.Id);
-            _tripRepository.Save(trip);
 
             return Ok();
         }

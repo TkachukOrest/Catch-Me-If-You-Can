@@ -22,18 +22,19 @@ namespace CatchMe.Repositories.EF.Concrete
             var trip = _catchMeContext.Trips
                 .Where(x => x.Id == id)
                 .Include(t => t.Passengers)//.Select(p => p.User)
-                .Include(t => t.Driver)
+                .Include(t => t.Driver.UserProfiles)
                 .Include(t => t.Vehicle)
-                .Include(t => t.MapPoints.Select(v => v.Addresses))
+                .Include(t => t.MapPoints.Select(v => v.Addresses))                
                 .FirstOrDefault();
 
-            this.PopulateTripMapPoints(trip);                        
+            this.PopulateUserProfile(trip);
+            this.PopulateTripMapPoints(trip);            
 
             trip.SeatsTaken = trip.Passengers.Count;
 
             return trip;
         }
-
+       
         public IEnumerable<TripEntity> GetAll()
         {            
             var trips = _catchMeContext.Trips
@@ -149,16 +150,13 @@ namespace CatchMe.Repositories.EF.Concrete
         {
             int sequence = 0;
             this.AddMapPoint(trip.Id, trip.Origin, sequence++);
-            _catchMeContext.SaveChanges();
-
+            
             foreach (var point in trip.WayPoints)
             {
-                this.AddMapPoint(trip.Id, point, sequence++);
-                _catchMeContext.SaveChanges();
+                this.AddMapPoint(trip.Id, point, sequence++);            
             }
 
-            this.AddMapPoint(trip.Id, trip.Destination, sequence);
-            _catchMeContext.SaveChanges();
+            this.AddMapPoint(trip.Id, trip.Destination, sequence);            
         }
 
         private void AddMapPoint(int tripId, MapPoint point, int sequence)
@@ -168,6 +166,13 @@ namespace CatchMe.Repositories.EF.Concrete
             
             _catchMeContext.MapPoints.Add(point);
             _catchMeContext.Addresses.Add(point.AddressDetails);
+
+            _catchMeContext.SaveChanges();
+        }     
+
+        private void PopulateUserProfile(TripEntity trip)
+        {
+            trip.Driver.Profile = trip.Driver.UserProfiles.FirstOrDefault();
         }
     }
 }
