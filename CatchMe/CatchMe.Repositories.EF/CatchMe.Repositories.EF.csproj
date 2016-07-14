@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\EfRepository.cs" />
     <Compile Include="Abstract\ICatchMeContext.cs" />
     <Compile Include="Concrete\CatchMeContext.cs" />
     <Compile Include="Concrete\RoleRepository.cs" />

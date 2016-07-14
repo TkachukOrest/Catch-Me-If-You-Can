@@ -7,31 +7,26 @@ using CatchMe.Repositories.EF.Abstract;
 
 namespace CatchMe.Repositories.EF.Concrete
 {
-    public class UserRepository : IUserRepository
-    {
-        private readonly ICatchMeContext _catchMeContext;
-
-        public UserRepository(ICatchMeContext context)
-        {
-            _catchMeContext = context;
-        }
+    public class UserRepository : EfRepository, IUserRepository
+    {      
+        public UserRepository(ICatchMeContext context) : base(context){}
 
         public int Create(UserEntity user)
         {
-            _catchMeContext.UserProfiles.Add(user.Profile);
-            _catchMeContext.Users.Add(user);
-            _catchMeContext.SaveChanges();
+            CatchMeContext.UserProfiles.Add(user.Profile);
+            CatchMeContext.Users.Add(user);
+            CatchMeContext.SaveChanges();
 
             return user.Id;
         }
 
         public void Update(UserEntity user)
         {
-            var userToUpdate = _catchMeContext.Users.Find(user.Id);
+            var userToUpdate = CatchMeContext.Users.Find(user.Id);
 
             if (userToUpdate != null)
             {
-                var userProfile = _catchMeContext.UserProfiles.FirstOrDefault(up => up.UserId == user.Id);
+                var userProfile = CatchMeContext.UserProfiles.FirstOrDefault(up => up.UserId == user.Id);
 
                 if (userProfile != null)
                 {
@@ -48,25 +43,25 @@ namespace CatchMe.Repositories.EF.Concrete
                 userToUpdate.Profile = user.Profile;
                 userToUpdate.CreationTime = user.CreationTime;
 
-                _catchMeContext.SaveChanges();
+                CatchMeContext.SaveChanges();
             }
         }
 
         public void Delete(UserEntity user)
         {
-            var userToDelete = _catchMeContext.Users             
+            var userToDelete = CatchMeContext.Users             
                 .FirstOrDefault(u => u.Id == user.Id);
 
             if (userToDelete != null)
             {                
-                _catchMeContext.Users.Remove(userToDelete);
-                _catchMeContext.SaveChanges();
+                CatchMeContext.Users.Remove(userToDelete);
+                CatchMeContext.SaveChanges();
             }
         }
 
         public List<UserEntity> GetAll()
         {
-            var users = _catchMeContext.Users.Include(u => u.UserProfiles).ToList();
+            var users = CatchMeContext.Users.Include(u => u.UserProfiles).ToList();
 
             users.ForEach(user =>
             {
@@ -81,7 +76,7 @@ namespace CatchMe.Repositories.EF.Concrete
 
         public UserEntity FindByName(string userName)
         {
-            var user = _catchMeContext.Users
+            var user = CatchMeContext.Users
                 .Include(u => u.UserProfiles)
                 .FirstOrDefault(u => u.UserName == userName);
 
@@ -95,7 +90,7 @@ namespace CatchMe.Repositories.EF.Concrete
 
         public UserEntity FindByEmail(string email)
         {
-            var user = _catchMeContext.Users
+            var user = CatchMeContext.Users
                 .Include(u => u.UserProfiles)
                 .FirstOrDefault(u => u.Email == email);
 
@@ -109,7 +104,7 @@ namespace CatchMe.Repositories.EF.Concrete
 
         public UserEntity FindById(int id)
         {
-            var user = _catchMeContext.Users
+            var user = CatchMeContext.Users
                 .Include(u => u.UserProfiles)
                 .FirstOrDefault(u => u.Id == id);
 
@@ -120,26 +115,26 @@ namespace CatchMe.Repositories.EF.Concrete
 
         public void AddToRole(UserEntity user, string roleName)
         {
-            var role = _catchMeContext.Roles.FirstOrDefault(r => r.Name == roleName);
+            var role = CatchMeContext.Roles.FirstOrDefault(r => r.Name == roleName);
 
             if (role != null)
             {
-                var foundedUser = _catchMeContext.Users
+                var foundedUser = CatchMeContext.Users
                     .Where(u => u.Id == user.Id)
                     .Include(x => x.Roles)
                     .FirstOrDefault();
                 foundedUser.Roles.Add(role);
-                _catchMeContext.SaveChanges();
+                CatchMeContext.SaveChanges();
             }
         }
 
         public void RemoveFromRole(UserEntity user, string roleName)
         {
-            var role = _catchMeContext.Roles.FirstOrDefault(r => r.Name == roleName);
+            var role = CatchMeContext.Roles.FirstOrDefault(r => r.Name == roleName);
 
             if (role != null)
             {
-                var foundedUser = _catchMeContext.Users
+                var foundedUser = CatchMeContext.Users
                     .Where(u => u.Id == user.Id)
                     .Include(x => x.Roles)
                     .FirstOrDefault();
@@ -147,14 +142,14 @@ namespace CatchMe.Repositories.EF.Concrete
                 if (foundedUser != null)
                 {
                     foundedUser.Roles.Remove(role);
-                    _catchMeContext.SaveChanges();
+                    CatchMeContext.SaveChanges();
                 }
             }
         }
 
         public IList<string> GetRoles(UserEntity user)
         {
-            var foundedUser = _catchMeContext.Users
+            var foundedUser = CatchMeContext.Users
                 .Where(u => u.Id == user.Id)
                 .Include(x => x.Roles)
                 .First();

@@ -8,18 +8,13 @@ using CatchMe.Repositories.EF.Abstract;
 
 namespace CatchMe.Repositories.EF.Concrete
 {
-    public class TripRepository : ITripRepository
-    {
-        private readonly ICatchMeContext _catchMeContext;
-
-        public TripRepository(ICatchMeContext context)
-        {
-            _catchMeContext = context;
-        }
+    public class TripRepository : EfRepository, ITripRepository
+    {         
+        public TripRepository(ICatchMeContext context) : base(context) { }        
 
         public TripEntity GetById(int id)
         {
-            var trip = _catchMeContext.Trips
+            var trip = CatchMeContext.Trips
                 .Where(x => x.Id == id)
                 .Include(t => t.Passengers)//.Select(p => p.User)
                 .Include(t => t.Driver.UserProfiles)
@@ -37,7 +32,7 @@ namespace CatchMe.Repositories.EF.Concrete
 
         public IEnumerable<TripEntity> GetAll()
         {
-            var trips = _catchMeContext.Trips
+            var trips = CatchMeContext.Trips
             .Include(t => t.Passengers)
             .Include(t => t.Driver)
             .Include(t => t.Vehicle)
@@ -68,18 +63,18 @@ namespace CatchMe.Repositories.EF.Concrete
 
         public void Delete(int id)
         {
-            var trip = _catchMeContext.Trips.Find(id);
+            var trip = CatchMeContext.Trips.Find(id);
 
             if (trip != null)
             {
-                _catchMeContext.Trips.Remove(trip);
-                _catchMeContext.SaveChanges();
+                CatchMeContext.Trips.Remove(trip);
+                CatchMeContext.SaveChanges();
             }
         }
 
         public void AddPassenger(int tripId, int passengerId)
         {
-            var passenger = _catchMeContext.Passengers.FirstOrDefault(x => x.TripId == tripId && x.UserId == passengerId);
+            var passenger = CatchMeContext.Passengers.FirstOrDefault(x => x.TripId == tripId && x.UserId == passengerId);
 
             if (passenger != null)
             {
@@ -87,7 +82,7 @@ namespace CatchMe.Repositories.EF.Concrete
             }
             else
             {
-                _catchMeContext.Passengers.Add(new PassengerEntity()
+                CatchMeContext.Passengers.Add(new PassengerEntity()
                 {
                     TripId = tripId,
                     UserId = passengerId,
@@ -95,7 +90,7 @@ namespace CatchMe.Repositories.EF.Concrete
                 });
             }
 
-            _catchMeContext.SaveChanges();
+            CatchMeContext.SaveChanges();
         }
 
         private void PopulateTripMapPoints(TripEntity trip)
@@ -110,10 +105,10 @@ namespace CatchMe.Repositories.EF.Concrete
 
         private void Add(TripEntity trip)
         {
-            _catchMeContext.Vehicles.Add(trip.Vehicle);
-            _catchMeContext.Trips.Add(trip);
+            CatchMeContext.Vehicles.Add(trip.Vehicle);
+            CatchMeContext.Trips.Add(trip);
 
-            _catchMeContext.SaveChanges();
+            CatchMeContext.SaveChanges();
 
             AddMapPoints(trip);
         }
@@ -138,9 +133,9 @@ namespace CatchMe.Repositories.EF.Concrete
                     tripToUpdate.Vehicle.Year = trip.Vehicle.Year;
                 }
 
-                _catchMeContext.MapPoints.RemoveRange(tripToUpdate.MapPoints);
+                CatchMeContext.MapPoints.RemoveRange(tripToUpdate.MapPoints);
 
-                _catchMeContext.SaveChanges();
+                CatchMeContext.SaveChanges();
 
                 AddMapPoints(trip);
             }
@@ -164,10 +159,10 @@ namespace CatchMe.Repositories.EF.Concrete
             point.TripId = tripId;
             point.Sequence = sequence;
 
-            _catchMeContext.MapPoints.Add(point);
-            _catchMeContext.Addresses.Add(point.AddressDetails);
+            CatchMeContext.MapPoints.Add(point);
+            CatchMeContext.Addresses.Add(point.AddressDetails);
 
-            _catchMeContext.SaveChanges();
+            CatchMeContext.SaveChanges();
         }
 
         private void PopulateUserProfile(TripEntity trip)
